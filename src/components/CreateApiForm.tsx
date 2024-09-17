@@ -38,7 +38,7 @@ export const CreateApiForm = ({
 
       const data = await res.json();
       // NOTE: can't use router.push here b/c we need to reload the whole layout.
-      window.location.href = `/app/${data.api_name}`;
+      window.location.href = `/${data.api_name}`;
       form.reset();
       setIsLoading(false);
     } catch (error) {

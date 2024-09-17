@@ -34,6 +34,7 @@ export interface UserSheet {
 export const getUserSheets = async () => {
   const cookieStore = cookies();
   const allCookies = cookieStore.getAll();
+  console.log("getUserSheets Cookies: ", allCookies);
 
   const cookieHeader = allCookies
     .map((cookie) => `${cookie.name}=${cookie.value}`)
@@ -72,7 +73,7 @@ export const getApiData = async (apiName: string | null) => {
   if (res.status !== 200) throw new Error("Failed to fetch API data");
 
   const data = await res.json();
-  return data as ApiData
+  return data as ApiData;
 };
 
 export async function getUserData(): Promise<{

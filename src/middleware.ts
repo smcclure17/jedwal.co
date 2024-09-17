@@ -22,8 +22,6 @@ export const getValidSubdomain = (host?: string | null) => {
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
 export async function middleware(req: NextRequest) {
-  console.warn("WE WRITINGG>..");
-  // Clone the URL
   const url = req.nextUrl.clone();
 
   // Skip public files
@@ -34,12 +32,7 @@ export async function middleware(req: NextRequest) {
 
   // TODO: fix this
   if (subdomain !== "jedwal") {
-    console.log(
-      `>>> Rewriting: ${url.pathname} to /${subdomain}${url.pathname}`
-    );
     url.pathname = `/${subdomain}${url.pathname}`;
-  } else {
-    console.log(">>> not rewriting homepage");
   }
 
   return NextResponse.rewrite(url);

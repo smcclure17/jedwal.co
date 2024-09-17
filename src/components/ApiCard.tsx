@@ -22,7 +22,7 @@ export const ApiCard = ({ apiData }: ApiCardProps) => {
     <Link
       href={`/${apiData.api_name}`}
       className={`px-2 bg-slate-50 rounded-sm hover:bg-slate-100 py-1 ${
-        selected ? "border border-gray-300 bg-slate-50" : ""
+        selected ? "border border-gray-300 bg-slate-50" : "border border-white"
       }`}
     >
       <div className="flex flex-col overflow-hidden">

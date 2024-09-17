@@ -24,7 +24,7 @@ export const CreateApiForm = ({
     const form = e.currentTarget;
     const formData = new FormData(form);
     try {
-      const res = await fetch(`https://jedwal.co/create-api`, {
+      const res = await fetch(`https://api.jedwal.co/create-api`, {
         method: "POST",
         body: formData,
         credentials: "include",

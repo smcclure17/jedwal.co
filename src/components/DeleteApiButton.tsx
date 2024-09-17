@@ -7,7 +7,7 @@ export interface DeleteApiButtonProps {
 // TODO: had to move this from data/fetching.ts because it is used
 // on the client, and the other file imported server-only stuff (next/headers/)
 export const deleteApi = async (apiName: string) => {
-  const res = await fetch(`https://jedwal.co/delete-api/${apiName}`, {
+  const res = await fetch(`https://api.jedwal.co/delete-api/${apiName}`, {
     credentials: "include",
   });
 

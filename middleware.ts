@@ -1,28 +1,42 @@
-// import { NextResponse } from "next/server";
-// import type { NextRequest } from "next/server";
+// middleware.ts
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-// export function middleware(request: NextRequest) {
-//   const hostname = request.headers.get("host");
-//   const pathname = request.nextUrl.pathname;
+export const getValidSubdomain = (host?: string | null) => {
+  let subdomain: string | null = null;
+  if (!host && typeof window !== "undefined") {
+    // On client side, get the host from window
+    host = window.location.host;
+  }
+  if (host && host.includes(".")) {
+    const candidate = host.split(".")[0];
+    if (candidate && !candidate.includes("localhost")) {
+      // Valid candidate
+      subdomain = candidate;
+    }
+  }
+  return subdomain;
+};
 
-//   // Check if the hostname matches 'app.jedwal.co'
-//   if (hostname === "app.jedwal.co") {
-//     // Rewrite the URL to '/app' followed by the original pathname
+// RegExp for public files
+const PUBLIC_FILE = /\.(.*)$/; // Files
 
-//     const url = request.nextUrl;
-//     if (url.pathname == "/app") {
-//       url.host = "jedwal.co";
-//       url.hostname = "jedwal.co";
-//       return NextResponse.rewrite(url);
-//     }
+export async function middleware(req: NextRequest) {
+  // Clone the URL
+  const url = req.nextUrl.clone();
 
-//     return NextResponse.rewrite(new URL(`/app${pathname}`, request.url));
-//   }
+  // Skip public files
+  if (PUBLIC_FILE.test(url.pathname) || url.pathname.includes("_next")) return;
 
-//   return NextResponse.next();
-// }
+  const host = req.headers.get("host");
+  const subdomain = getValidSubdomain(host);
+  if (subdomain) {
+    // Subdomain available, rewriting
+    console.log(
+      `>>> Rewriting: ${url.pathname} to /${subdomain}${url.pathname}`
+    );
+    url.pathname = `/${subdomain}${url.pathname}`;
+  }
 
-// // Only run the middleware for specific paths (optional)
-// export const config = {
-//   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-// };
+  return NextResponse.rewrite(url);
+}

@@ -22,6 +22,7 @@ export const getValidSubdomain = (host?: string | null) => {
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
 export async function middleware(req: NextRequest) {
+  console.warn("WE WRITINGG>..");
   // Clone the URL
   const url = req.nextUrl.clone();
 
@@ -30,6 +31,7 @@ export async function middleware(req: NextRequest) {
 
   const host = req.headers.get("host");
   const subdomain = getValidSubdomain(host);
+
   if (subdomain) {
     // Subdomain available, rewriting
     console.log(

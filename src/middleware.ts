@@ -32,12 +32,14 @@ export async function middleware(req: NextRequest) {
   const host = req.headers.get("host");
   const subdomain = getValidSubdomain(host);
 
-  if (subdomain) {
-    // Subdomain available, rewriting
+  // TODO: fix this
+  if (subdomain !== "jedwal") {
     console.log(
       `>>> Rewriting: ${url.pathname} to /${subdomain}${url.pathname}`
     );
     url.pathname = `/${subdomain}${url.pathname}`;
+  } else {
+    console.log(">>> not rewriting homepage");
   }
 
   return NextResponse.rewrite(url);

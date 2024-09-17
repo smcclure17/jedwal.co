@@ -1,31 +1,28 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const url = request.nextUrl.clone();
-  const { pathname, host } = url;
+  const hostname = request.headers.get("host");
+  const pathname = request.nextUrl.pathname;
 
-  // Check if the host is app.jedwal.co
-  if (host === "app.jedwal.co") {
-    // If it is, we want to serve content from /app
-    url.pathname = `/app${pathname}`;
-    return NextResponse.rewrite(url);
+  // Check if the hostname matches 'app.jedwal.co'
+  if (hostname === 'app.jedwal.co') {
+    // Rewrite the URL to '/app' followed by the original pathname
+
+    const url = request.nextUrl
+    if (url.pathname == "/app") {
+      url.host = "jedwal.co"
+      url.hostname = "jedwal.co"
+      return NextResponse.rewrite(url);
+    }
+
+    return NextResponse.rewrite(new URL(`/app${pathname}`, request.url));
   }
 
-  // Check if the pathname starts with /app and the host is jedwal.co
-  if (pathname.startsWith("/app") && host === "jedwal.co") {
-    // If it does, we want to redirect to app.jedwal.co
-    url.host = "app.jedwal.co";
-    url.pathname = pathname.replace(/^\/app/, "");
-    return NextResponse.redirect(url);
-  }
-
-  // For all other cases, continue with the request as is
   return NextResponse.next();
 }
 
+// Only run the middleware for specific paths (optional)
 export const config = {
-  matcher: [
-    // Match all paths
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

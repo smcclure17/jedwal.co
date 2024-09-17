@@ -35,17 +35,5 @@ export async function middleware(req: NextRequest) {
     url.pathname = `/${subdomain}${url.pathname}`;
   }
 
-  const response = NextResponse.rewrite(url);
-  response.headers.set("Access-Control-Allow-Origin", "https://api.jedwal.co");
-  response.headers.set("Access-Control-Allow-Credentials", "true");
-  response.headers.set(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  response.headers.set(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization"
-  );
-
-  return response;
+  return NextResponse.rewrite(url);
 }

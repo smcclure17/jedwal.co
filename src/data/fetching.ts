@@ -47,7 +47,8 @@ export const getUserSheets = async () => {
   });
 
   if (res.status === 401) return null;
-  if (res.status !== 200) throw new Error("Failed to fetch user sheets");
+  if (res.status !== 200)
+    throw new Error(`Failed to fetch user sheets. Error: ${res.statusText}`);
 
   const data = await res.json();
   return data as UserSheet[];

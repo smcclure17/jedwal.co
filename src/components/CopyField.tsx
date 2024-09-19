@@ -31,12 +31,12 @@ export const CopyField = ({
 
   return (
     <>
-      <form className="max-w-sm mx-auto">
+      <form className="flex flex-row space-x-2 items-center pb-1">
         <label
-          htmlFor="countries"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          htmlFor="worksheets"
+          className="text-sm font-medium text-gray-900"
         >
-          Select an option
+          Choose a worksheet
         </label>
         <select
           onChange={(e) =>
@@ -45,10 +45,12 @@ export const CopyField = ({
             )
           }
           id="worksheets"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-fit py-0.5 px-0.5"
         >
           {worksheets.map((sheet) => (
-            <option value={sheet}>{sheet}</option>
+            <option key={sheet} value={sheet}>
+              {sheet}
+            </option>
           ))}
         </select>
       </form>
@@ -60,17 +62,19 @@ export const CopyField = ({
           <input
             id="npm-install-copy-button"
             type="text"
-            className="col-span-6 bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="col-span-6 bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             value={`${text}${worksheet}`}
             readOnly
           />
           <button
             onClick={copyToClipboard}
-            className="absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md p-2 inline-flex items-center justify-center"
+            className={`absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 hover:bg-gray-100 rounded-md p-2 inline-flex items-center justify-center ${
+              copied ? "bg-gray-100" : ""
+            }`}
           >
             {copied ? (
               <svg
-                className="w-3.5 h-3.5 text-blue-700 dark:text-blue-500"
+                className="w-3.5 h-3.5 text-blue-700"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

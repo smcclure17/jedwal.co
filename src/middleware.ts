@@ -31,7 +31,7 @@ export async function middleware(req: NextRequest) {
   const subdomain = getValidSubdomain(host);
 
   // TODO: fix this
-  if (subdomain !== "jedwal") {
+  if (subdomain !== "jedwal" && subdomain !== null) {
     url.pathname = `/${subdomain}${url.pathname}`;
   }
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Patrick_Hand } from "next/font/google";
+import config from "@/config";
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -24,7 +25,7 @@ export const CreateApiForm = ({
     const form = e.currentTarget;
     const formData = new FormData(form);
     try {
-      const res = await fetch(`https://api.jedwal.co/create-api`, {
+      const res = await fetch(`${config.apiUrl}/create-api`, {
         method: "POST",
         body: formData,
         credentials: "include",

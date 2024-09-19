@@ -1,4 +1,4 @@
-const env = process.env.ENVIRONMENT ?? "PROD";
+const env = process.env.NEXT_PUBLIC_ENVIRONMENT ?? "PROD";
 
 export default {
   environment: env,

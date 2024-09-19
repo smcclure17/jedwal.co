@@ -8,7 +8,7 @@ export const LiteFooter = async ({}: LiteFooterProps) => {
   const isPremium = userData?.premium;
 
   return (
-    <div className="flex flex-row mx-auto space-x-6 mt-20 text-sm font-light">
+    <div className="flex flex-row mx-auto space-x-6 mt-20 text-sm font-light pb-4">
       <Link href="/privacy" className="text-gray-600 hover:text-gray-900">
         Privacy Policy
       </Link>

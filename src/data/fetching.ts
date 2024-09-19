@@ -34,7 +34,6 @@ export interface UserSheet {
 export const getUserSheets = async () => {
   const cookieStore = cookies();
   const allCookies = cookieStore.getAll();
-  console.log("getUserSheets Cookies: ", allCookies);
 
   const cookieHeader = allCookies
     .map((cookie) => `${cookie.name}=${cookie.value}`)
@@ -45,8 +44,6 @@ export const getUserSheets = async () => {
       Cookie: cookieHeader,
     },
   });
-
-  console.log("SENT FROM", res.headers);
 
   if (res.status === 401) return null;
   if (res.status !== 200)

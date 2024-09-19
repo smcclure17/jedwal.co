@@ -58,30 +58,30 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="flex justify-center">
-      <div className={`flex flex-col sm:w-3/4 px-4 pt-4`}>
-        <NavBar />
-        <main className="flex flex-col gap-2 row-start-2 items-center sm:items-start">
+    <main className="flex justify-center">
+      <div className={`flex flex-col sm:w-3/4 pt-4`}>
+        <div className="px-4 sm:px-0 pb-4">
+          <NavBar />
           <HeroText />
           <HeroButton />
-          <CardHolder>
-            <Card
-              title="Autoscaling"
-              description="We scale as you grow, no need to worry about infrastructure."
-            />
-            <Card
-              title="Near-Realtime Data"
-              description="Choose how often to refresh your data, up to once a second"
-            />
-            <Card
-              title="Analytics"
-              badge="Soon!"
-              description="Get insights into your API usage and data."
-            />
-          </CardHolder>
-          <LiteFooter />
-        </main>
+        </div>
+        <CardHolder>
+          <Card
+            title="Autoscaling"
+            description="We scale as you grow, no need to worry about infrastructure."
+          />
+          <Card
+            title="Near-Realtime Data"
+            description="Choose how often to refresh your data, up to once a second"
+          />
+          <Card
+            title="Analytics"
+            badge="Soon!"
+            description="Get insights into your API usage and data."
+          />
+        </CardHolder>
+        <LiteFooter />
       </div>
-    </div>
+    </main>
   );
 }

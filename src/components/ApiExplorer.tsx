@@ -3,6 +3,7 @@ import { CodeBlock } from "./CodeBlock";
 import { getApiData } from "@/data/fetching";
 import { CopyField } from "./CopyField";
 import { DeleteApiButton } from "./DeleteApiButton";
+import { ApiCopyLink } from "./ApiCopyLink";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -15,14 +16,12 @@ export interface ApiExplorerProps {
 
 export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
   const data = await getApiData(apiName);
-  if (!data) {
-    return <>error</>;
-  }
+  if (!data) return <>error</>;
 
   return (
     <div className="flex flex-col space-y-2">
       <h3 className={`${patrick.className} text-xl`}>Live API URL</h3>
-      <CopyField text={`https://api.jedwal.co/api/${data.api_name}`} />
+      <ApiCopyLink apiUrl={`${data.api_name}`} />
       <h3 className={`${patrick.className} text-xl`}>Use in code</h3>
       <CodeBlock apiName={data.api_name} />
       <h3 className={`${patrick.className} text-xl`}>Update Cadence</h3>

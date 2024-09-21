@@ -43,7 +43,7 @@ export const DeleteApiButton = ({ apiName }: DeleteApiButtonProps) => {
       className="w-32 py-0.5 shadow transition ease-in-out duration-200 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center"
       onClick={() => handleDeleteApi()}
     >
-      {isDeleting ? "Delete Api" : "Deleting..."}
+      {isDeleting ? "Deleting..." : "Delete API"}
     </button>
   );
 };

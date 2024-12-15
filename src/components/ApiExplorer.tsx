@@ -21,7 +21,8 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
   return (
     <div className="flex flex-col space-y-5 w-full bg-white p-5 rounded-lg shadow-sm">
       <div>
-        <h2 className="text-2xl">/api/{apiName}</h2>
+        <h1 className="text-2xl font-medium">{data.spreadsheet_name}</h1>
+        <h2 className="text-xl">/api/{apiName}</h2>
         <Link
           href={`https://docs.google.com/spreadsheets/d/${data.sheet_id}`}
           target="_blank"

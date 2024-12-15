@@ -43,7 +43,7 @@ export default async function App({ children }: { children: React.ReactNode }) {
         <main className="sm:block flex flex-col mx-auto px-10 pt-4">
           <NavBar mode="light" />
           <div className="mt-10">
-            <div className="p-5 bg-white rounded-lg">
+            <div className="p-5 bg-white rounded-lg shadow-sm">
               <CreateApiForm disabled={disableCreate} />
             </div>
             <div className="flex flex-row space-x-12 pt-8">

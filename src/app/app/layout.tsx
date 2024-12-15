@@ -39,7 +39,7 @@ export default async function App({ children }: { children: React.ReactNode }) {
       <div className="sm:hidden">
         <MobileDashboardPlaceholder />
       </div>
-      <div className="bg-gray-50 min-h-screen">
+      <div className="bg-gray-100 min-h-screen">
         <main className="sm:block flex flex-col mx-auto px-10 pt-4">
           <NavBar mode="light" />
           <div className="mt-10">

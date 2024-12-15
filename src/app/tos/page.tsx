@@ -1,12 +1,60 @@
 import { NavBar } from "@/components/NavBar";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Jedwal | Terms of Service",
+  description:
+    "Use Google Sheets as a database to power your website with REST APIs from spreadsheets.",
+  keywords: [
+    "REST API Generator",
+    "Spreadsheet to API",
+    "Spreadsheet to Database",
+    "No-code API creation",
+    "Google Sheets integration",
+    "Spreadsheet APIs",
+    "Spreadsheet backend for apps",
+    "Google Sheets app backend",
+  ],
+  openGraph: {
+    url: "https://jedwal.co",
+    type: "website",
+    title: "Jedwal Terms of Service | REST APIs from Google Sheets",
+    description:
+      "Use Google Sheets as a database to power your website with REST APIs from spreadsheets.",
+    images: [
+      {
+        url: "https://jedwal.co/og-image.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "jedwal",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jedwal Terms of Service | REST APIs from Google Sheets",
+    description:
+      "Use Google Sheets as a database to power your website with REST APIs from spreadsheet",
+    creator: "@seanmcclr",
+    site: "@seanmcclr",
+    images: [
+      {
+        url: "https://jedwal.co/og-image.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "jedwal",
+      },
+    ],
+  },
+};
 
 export default function PrivacyPage() {
   return (
-    <main className="space-y-14">
-      <div className="flex flex-col px-48 pt-4 pb-24">
+    <main className="flex justify-center">
+      <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>
         <NavBar />
-        <div className="max-w-2xl mt-24">
+        <div className="">
           <Image
             src="/logo-cropped.svg"
             alt="Jedwal Logo"

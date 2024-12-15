@@ -2,6 +2,7 @@
 
 import config from "@/config";
 import React from "react";
+import { Button } from "./ui/button";
 
 export interface DeleteApiButtonProps {
   apiName: string;
@@ -38,12 +39,13 @@ export const DeleteApiButton = ({ apiName }: DeleteApiButtonProps) => {
   };
 
   return (
-    <button
+    <Button
       type="button"
-      className="w-32 py-0.5 shadow transition ease-in-out duration-200 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center"
+      className="bg-red-500 hover:bg-red-900 transition ease-in-out"
+      // className="w-32 py-0.5 shadow  duration-200 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center"
       onClick={() => handleDeleteApi()}
     >
       {isDeleting ? "Deleting..." : "Delete API"}
-    </button>
+    </Button>
   );
 };

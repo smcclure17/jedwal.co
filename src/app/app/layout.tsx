@@ -39,25 +39,29 @@ export default async function App({ children }: { children: React.ReactNode }) {
       <div className="sm:hidden">
         <MobileDashboardPlaceholder />
       </div>
-      <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
-        <NavBar mode="light" />
-        <div className="mt-10">
-          <CreateApiForm disabled={disableCreate} />
-          <div className="flex flex-row space-x-12 pt-16">
-            <div>
-              <UserSheetsContainer>
-                {userSheets.map((sheet) => (
-                  <ApiCard key={sheet.sheet_id} apiData={sheet} />
-                ))}
-                {!userData?.premium && userData?.api_count == 2 && (
-                  <PremiumApiCard />
-                )}
-              </UserSheetsContainer>
+      <div className="bg-gray-50">
+        <main className="sm:block flex flex-col mx-auto px-10 pt-4">
+          <NavBar mode="light" />
+          <div className="mt-10">
+            <div className="p-5 bg-white rounded-lg">
+              <CreateApiForm disabled={disableCreate} />
             </div>
-            {children}
+            <div className="flex flex-row space-x-12 pt-8">
+              <div>
+                <UserSheetsContainer>
+                  {userSheets.map((sheet) => (
+                    <ApiCard key={sheet.sheet_id} apiData={sheet} />
+                  ))}
+                  {!userData?.premium && userData?.api_count == 2 && (
+                    <PremiumApiCard />
+                  )}
+                </UserSheetsContainer>
+              </div>
+              {children}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </>
   );
 }

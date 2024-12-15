@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { Patrick_Hand } from "next/font/google";
 import config from "@/config";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -49,23 +51,19 @@ export const CreateApiForm = ({
   };
 
   return (
-    <div className="w-full max-w-2xl">
+    <div className="w-full">
       <form className="w-full" onSubmit={onSubmit}>
         {label && (
-          <label htmlFor="create" className={`${patrick.className} text-2xl`}>
+          <label htmlFor="create" className={`${patrick.className} text-2xl font-extrabold`}>
             Create a new API
           </label>
         )}
-        <div className={`relative ${patrick.className} text-xl pt-2`}>
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <Icon />
-          </div>
-          <input
+        <div className={`relative ${patrick.className} text-xl pt-4 flex flex-row space-x-2`}>
+          <Input
             disabled={disabled}
             type="text"
             name="sheet_id"
             id="create-api"
-            className="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-[#005430]-500 focus:border-[#005430]"
             placeholder={
               disabled
                 ? "Upgrade to premium create more APIs"
@@ -73,21 +71,9 @@ export const CreateApiForm = ({
             }
             required
           />
-          <div className="absolute inset-y-0 end-0 flex items-center pe-3">
-            {!isLoading ? (
-              <button
-                disabled={disabled}
-                type="submit"
-                className={`text-white absolute end-2 bottom-2 bg-[#005430] focus:ring-4 focus:outline-none focus:ring-slate-200 font-medium rounded-md text-sm px-5 py-1.5 ${
-                  disabled ? "" : "hover:bg-[#00331d]"
-                }`}
-              >
-                Create
-              </button>
-            ) : (
-              <Spinner />
-            )}
-          </div>
+          <Button disabled={disabled} type="submit" size={"default"} className="px-5">
+            Create
+          </Button>
         </div>
       </form>
     </div>

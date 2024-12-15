@@ -19,7 +19,7 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
   if (!data) return <>error</>;
 
   return (
-    <div className="flex flex-col space-y-5 w-full">
+    <div className="flex flex-col space-y-5 w-full bg-white p-5 rounded-lg">
       <div>
         <h2 className="text-2xl">/api/{apiName}</h2>
         <Link
@@ -48,7 +48,7 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
           seconds.
         </span>
       </div>
-      <div className="pt-2 pb-4">
+      <div className="pt-2">
         <DeleteApiButton apiName={apiName} />
       </div>
     </div>

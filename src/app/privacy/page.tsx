@@ -1,6 +1,54 @@
 import { NavBar } from "@/components/NavBar";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jedwal | Privacy Policy",
+  description:
+    "Use Google Sheets as a database to power your website with REST APIs from spreadsheets.",
+  keywords: [
+    "REST API Generator",
+    "Spreadsheet to API",
+    "Spreadsheet to Database",
+    "No-code API creation",
+    "Google Sheets integration",
+    "Spreadsheet APIs",
+    "Spreadsheet backend for apps",
+    "Google Sheets app backend",
+  ],
+  openGraph: {
+    url: "https://jedwal.co",
+    type: "website",
+    title: "Jedwal Privacy Policy | REST APIs from Google Sheets",
+    description:
+      "Use Google Sheets as a database to power your website with REST APIs from spreadsheets.",
+    images: [
+      {
+        url: "https://jedwal.co/og-image.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "jedwal",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jedwal Privacy Policy | REST APIs from Google Sheets",
+    description:
+      "Use Google Sheets as a database to power your website with REST APIs from spreadsheet",
+    creator: "@seanmcclr",
+    site: "@seanmcclr",
+    images: [
+      {
+        url: "https://jedwal.co/og-image.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "jedwal",
+      },
+    ],
+  },
+};
 
 export default function PrivacyPage() {
   return (

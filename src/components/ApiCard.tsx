@@ -1,8 +1,7 @@
-"use client";
-import { UserSheet } from "@/data/fetching";
+// "use client";
+import { ApiData } from "@/data/fetching";
 import { Patrick_Hand } from "next/font/google";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -10,19 +9,17 @@ const patrick = Patrick_Hand({
 });
 
 export interface ApiCardProps {
-  apiData: UserSheet;
+  apiData: ApiData;
+  isSelected: boolean;
 }
 
-export const ApiCard = ({ apiData }: ApiCardProps) => {
+export const ApiCard = ({ apiData, isSelected}: ApiCardProps) => {
   const { api_name, sheet_id, spreadsheet_name } = apiData;
-  const params = useParams();
-  const selected = params.api === api_name;
-
   return (
     <Link
       href={`/${apiData.api_name}`}
       className={`px-2 bg-white hover:bg-slate-100 py-1 ${
-        selected ? "border border-green-300 bg-slate-50" : "border border-white"
+        isSelected ? "border border-green-300 bg-slate-50" : "border border-white"
       }`}
     >
       <div className="flex flex-col overflow-hidden">

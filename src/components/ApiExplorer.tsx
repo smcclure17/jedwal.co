@@ -1,6 +1,6 @@
 import { Patrick_Hand } from "next/font/google";
 import { CodeBlock } from "./CodeBlock";
-import { getApiData } from "@/data/fetching";
+import { ApiData, getApiData } from "@/data/fetching";
 import { DeleteApiButton } from "./DeleteApiButton";
 import { ApiCopyLink } from "./ApiCopyLink";
 import Link from "next/link";
@@ -11,18 +11,17 @@ const patrick = Patrick_Hand({
 });
 
 export interface ApiExplorerProps {
-  apiName: string;
+  data: ApiData;
 }
 
-export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
-  const data = await getApiData(apiName);
+export const ApiExplorer = async ({ data }: ApiExplorerProps) => {
   if (!data) return <>error</>;
 
   return (
     <div className="flex flex-col space-y-5 w-full bg-white p-5 rounded-lg shadow-sm">
       <div>
         <h1 className="text-2xl font-medium">{data.spreadsheet_name}</h1>
-        <h2 className="text-xl">/api/{apiName}</h2>
+        <h2 className="text-xl">/api/{data.api_name}</h2>
         <Link
           href={`https://docs.google.com/spreadsheets/d/${data.sheet_id}`}
           target="_blank"
@@ -33,7 +32,7 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Live API URL</h3>
-        <ApiCopyLink apiUrl={`${data.api_name}`} />
+        <ApiCopyLink apiUrl={data.api_name} worksheets={data.worksheets} />
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Use in code</h3>
@@ -50,7 +49,7 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
         </span>
       </div>
       <div className="pt-2">
-        <DeleteApiButton apiName={apiName} />
+        <DeleteApiButton apiName={data.api_name} />
       </div>
     </div>
   );

@@ -24,13 +24,6 @@ export interface DataOrError<T> {
   error?: Error;
 }
 
-export interface UserSheet {
-  api_name: string;
-  spreadsheet_name: string;
-  sheet_id: string;
-  frozen: boolean;
-}
-
 export const getUserSheets = async () => {
   const cookieStore = cookies();
   const allCookies = cookieStore.getAll();
@@ -50,7 +43,7 @@ export const getUserSheets = async () => {
     throw new Error(`Failed to fetch user sheets. Error: ${res.statusText}`);
 
   const data = await res.json();
-  return data as UserSheet[];
+  return data as ApiData[];
 };
 
 export const getApiData = async (apiName: string | null) => {

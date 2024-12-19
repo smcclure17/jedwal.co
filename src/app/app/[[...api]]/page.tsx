@@ -5,22 +5,21 @@ import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlacehol
 import { NavBar } from "@/components/NavBar";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
+import { ApiExplorerDefaultSelector } from "@/components/ApiExplorerDefaultSelector";
+import { ApiExplorer } from "@/components/ApiExplorer";
 import config from "@/config";
 import { getUserData, getUserSheets } from "@/data/fetching";
 import React from "react";
 
-// TODO: This should maybe just be a part of the page?
-export default async function App({ children }: { children: React.ReactNode }) {
+export default async function App({ params }: { params?: { api?: string } }) {
   const [userSheets, user] = await Promise.all([
     getUserSheets(),
     getUserData(),
   ]);
   const { userData } = user;
+  const selectedProjectId = params?.api?.[0]
 
-  if (userSheets === null) {
-    return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;
-  }
-  if (userData === null) {
+  if (!userSheets || !userData) {
     return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;
   }
 
@@ -34,6 +33,9 @@ export default async function App({ children }: { children: React.ReactNode }) {
   }
 
   const disableCreate = !userData.premium && userSheets.length >= 2;
+  const selectedProject = selectedProjectId
+    ? userSheets.find((sheet) => sheet.api_name === selectedProjectId)
+    : null;
   return (
     <>
       <div className="sm:hidden">
@@ -50,14 +52,22 @@ export default async function App({ children }: { children: React.ReactNode }) {
               <div>
                 <UserSheetsContainer>
                   {userSheets.map((sheet) => (
-                    <ApiCard key={sheet.sheet_id} apiData={sheet} />
+                    <ApiCard
+                      key={sheet.sheet_id}
+                      apiData={sheet}
+                      isSelected={sheet.api_name === selectedProjectId}
+                    />
                   ))}
                   {!userData?.premium && userData?.api_count == 2 && (
                     <PremiumApiCard />
                   )}
                 </UserSheetsContainer>
               </div>
-              {children}
+              {selectedProject ? (
+                <ApiExplorer data={selectedProject} />
+              ) : (
+                <ApiExplorerDefaultSelector />
+              )}
             </div>
           </div>
         </main>

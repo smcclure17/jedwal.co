@@ -1,10 +1,12 @@
 import { Card } from "@/components/Card";
 import { CardHolder } from "@/components/CardHolder";
+import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { HeroButton } from "@/components/HeroButton";
 import { HeroText } from "@/components/HeroText";
 import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Jedwal | REST APIs from Google Sheets",
@@ -63,7 +65,9 @@ export default function Home() {
         <div className="px-4 sm:px-0 pb-4">
           <NavBar />
           <HeroText />
-          <HeroButton />
+          <Suspense fallback={<div className="mt-4"><GoogleSignInButton /></div>}>
+            <HeroButton />
+          </Suspense>
         </div>
         <CardHolder>
           <Card

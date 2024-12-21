@@ -5,6 +5,7 @@ import { HeroButton } from "@/components/HeroButton";
 import { HeroText } from "@/components/HeroText";
 import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
+import { NavLoading } from "@/components/NavLoading";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -63,9 +64,17 @@ export default function Home() {
     <main className="flex justify-center">
       <div className={`flex flex-col sm:w-3/4 pt-4`}>
         <div className="px-4 sm:px-0 pb-4">
-          <NavBar />
+          <Suspense fallback={<NavLoading />}>
+            <NavBar />
+          </Suspense>
           <HeroText />
-          <Suspense fallback={<div className="mt-4"><GoogleSignInButton /></div>}>
+          <Suspense
+            fallback={
+              <div className="mt-4">
+                <GoogleSignInButton />
+              </div>
+            }
+          >
             <HeroButton />
           </Suspense>
         </div>

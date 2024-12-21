@@ -11,13 +11,20 @@ import config from "@/config";
 import { getUserData, getUserSheets } from "@/data/fetching";
 import React from "react";
 
-export default async function App({ params }: { params?: { api?: string } }) {
+interface PageProps {
+  params: Promise<{
+    api?: string;
+  }>;
+}
+
+export default async function App({ params }: PageProps) {
   const [userSheets, user] = await Promise.all([
     getUserSheets(),
     getUserData(),
   ]);
   const { userData } = user;
-  const selectedProjectId = params?.api?.[0]
+  const { api } = await params;
+  const selectedProjectId = api?.[0]; // since we use a catch-all route ([[...api]]) this is an array
 
   if (!userSheets || !userData) {
     return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;

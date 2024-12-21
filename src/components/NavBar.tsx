@@ -2,11 +2,26 @@ import { getUserData } from "@/data/fetching";
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 import { GetPremiumLink } from "./GetPremiumLink";
+import { Suspense } from "react";
 
 const tenor = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
 });
+
+const delay = async (sec: number) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("waiting...");
+      resolve(undefined);
+    }, sec * 1000);
+  });
+};
+
+async function getUserData2() {
+  await delay(10);
+  return getUserData();
+}
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -29,7 +44,7 @@ const DashBoardButton = () => {
 };
 
 export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
-  const { userData } = await getUserData();
+  const { userData } = await getUserData2();
 
   const SignButton = ({ name, mode }: { name: string; mode: string }) => {
     return (

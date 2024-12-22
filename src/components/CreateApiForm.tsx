@@ -58,7 +58,7 @@ export const CreateApiForm = ({
             Create a new API
           </label>
         )}
-        <div className={`relative ${patrick.className} text-xl pt-4 flex flex-row space-x-2`}>
+        <div className={`relative ${patrick.className} text-xl pt-2 flex flex-row space-x-2`}>
           <Input
             disabled={disabled}
             type="text"
@@ -71,7 +71,7 @@ export const CreateApiForm = ({
             }
             required
           />
-          <Button disabled={disabled} type="submit" size={"default"} className="px-5">
+          <Button disabled={disabled} type="submit" size={"default"} className="px-5 bg-[#005430]" >
             {isLoading ? <Spinner/> : 'Create'}
           </Button>
         </div>

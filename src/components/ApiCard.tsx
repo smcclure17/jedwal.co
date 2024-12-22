@@ -23,15 +23,15 @@ export const ApiCard = ({ apiData, isSelected}: ApiCardProps) => {
       }`}
     >
       <div className="flex flex-col overflow-hidden">
-        <div className="flex items-center space-x-2">
-          <h5 className={`text-md tracking-tight text-black`}>
+        <div className="flex items-center justify-between">
+          <h5 className={`text-md text-black`}>
             {spreadsheet_name}
           </h5>
-          <p className={`text-md text-gray-600 ${patrick.className} mt-1`}>
+          <p className={`text-md text-gray-500 ${patrick.className} pb-1`}>
             /api/{api_name}
           </p>
         </div>
-        <p className={`text-sm ${patrick.className} text-slate-500`}>
+        <p className={`text-sm ${patrick.className} text-slate-400`}>
           https://docs.google.com/spreadsheet/d/{sheet_id}
         </p>
       </div>

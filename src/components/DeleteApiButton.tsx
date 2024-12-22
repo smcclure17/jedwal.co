@@ -2,7 +2,6 @@
 
 import config from "@/config";
 import React from "react";
-import { Button } from "./ui/button";
 
 export interface DeleteApiButtonProps {
   apiName: string;
@@ -35,17 +34,17 @@ export const DeleteApiButton = ({ apiName }: DeleteApiButtonProps) => {
         .catch(() => {
           alert("Failed to delete API. Please try again later.");
         });
+    } else {
+      setIsDeleting(false);
     }
   };
 
   return (
-    <Button
-      type="button"
-      className="bg-red-500 hover:bg-red-900 transition ease-in-out"
-      // className="w-32 py-0.5 shadow  duration-200 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center"
+    <button
+      className="underline text-red-600"
       onClick={() => handleDeleteApi()}
     >
       {isDeleting ? "Deleting..." : "Delete API"}
-    </Button>
+    </button>
   );
 };

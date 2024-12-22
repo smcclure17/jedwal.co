@@ -1,6 +1,6 @@
 import { Patrick_Hand } from "next/font/google";
 import { CodeBlock } from "./CodeBlock";
-import { ApiData, getApiData } from "@/data/fetching";
+import { getUserSheets } from "@/data/fetching";
 import { DeleteApiButton } from "./DeleteApiButton";
 import { ApiCopyLink } from "./ApiCopyLink";
 import Link from "next/link";
@@ -11,10 +11,12 @@ const patrick = Patrick_Hand({
 });
 
 export interface ApiExplorerProps {
-  data: ApiData;
+  apiName: string;
 }
 
-export const ApiExplorer = async ({ data }: ApiExplorerProps) => {
+export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
+  const allSheets = await getUserSheets();  // TODO: bring back individual sheet fetch API route
+  const data = allSheets?.find((sheet) => sheet.api_name === apiName);
   if (!data) return <>error</>;
 
   return (

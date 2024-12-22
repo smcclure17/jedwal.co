@@ -5,28 +5,22 @@ import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlacehol
 import { NavBar } from "@/components/NavBar";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
-import { ApiExplorerDefaultSelector } from "@/components/ApiExplorerDefaultSelector";
-import { ApiExplorer } from "@/components/ApiExplorer";
 import config from "@/config";
 import { getUserData, getUserSheets } from "@/data/fetching";
 import React from "react";
 
-interface PageProps {
-  params: Promise<{
-    api?: string;
-  }>;
-}
-
-export default async function App({ params }: PageProps) {
+// TODO: This should maybe just be a part of the page?
+export default async function App({ children }: { children: React.ReactNode }) {
   const [userSheets, user] = await Promise.all([
     getUserSheets(),
     getUserData(),
   ]);
   const { userData } = user;
-  const { api } = await params;
-  const selectedProjectId = api?.[0]; // since we use a catch-all route ([[...api]]) this is an array
 
-  if (!userSheets || !userData) {
+  if (userSheets === null) {
+    return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;
+  }
+  if (userData === null) {
     return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;
   }
 
@@ -40,9 +34,6 @@ export default async function App({ params }: PageProps) {
   }
 
   const disableCreate = !userData.premium && userSheets.length >= 2;
-  const selectedProject = selectedProjectId
-    ? userSheets.find((sheet) => sheet.api_name === selectedProjectId)
-    : null;
   return (
     <>
       <div className="sm:hidden">
@@ -59,22 +50,14 @@ export default async function App({ params }: PageProps) {
               <div>
                 <UserSheetsContainer>
                   {userSheets.map((sheet) => (
-                    <ApiCard
-                      key={sheet.sheet_id}
-                      apiData={sheet}
-                      isSelected={sheet.api_name === selectedProjectId}
-                    />
+                    <ApiCard key={sheet.sheet_id} apiData={sheet} />
                   ))}
                   {!userData?.premium && userData?.api_count == 2 && (
                     <PremiumApiCard />
                   )}
                 </UserSheetsContainer>
               </div>
-              {selectedProject ? (
-                <ApiExplorer data={selectedProject} />
-              ) : (
-                <ApiExplorerDefaultSelector />
-              )}
+              {children}
             </div>
           </div>
         </main>

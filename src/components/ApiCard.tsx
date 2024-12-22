@@ -19,7 +19,7 @@ export const ApiCard = ({ apiData }: ApiCardProps) => {
   const selected = params.api === api_name;
   return (
     <Link
-      href={`/app/${apiData.api_name}`}
+      href={`/${apiData.api_name}`}
       className={`px-2 bg-white py-1 rounded-lg shadow-sm ${
         selected
           ? "border border-green-800 border-1.5"

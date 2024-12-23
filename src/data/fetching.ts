@@ -92,3 +92,32 @@ export async function getUserData(): Promise<{
   const userData = (await res.json()) as UserData;
   return { userData, status: userData === null ? "logged_out" : "logged_in" };
 }
+
+export async function getSheetAnalytics(apiName: string) {
+  const cookieStore = await cookies();
+  const allCookies = cookieStore.getAll();
+
+  const cookieHeader = allCookies
+    .map((cookie) => `${cookie.name}=${cookie.value}`)
+    .join("; ");
+
+  const startTime = new Date();
+  const thirtyDaysAgo = new Date(startTime);
+  thirtyDaysAgo.setDate(startTime.getDate() - 30);
+  const dateParam = thirtyDaysAgo.toISOString();
+
+  const res = await fetch(
+    `${config.apiUrl}/get-api-invocations?api_name=${apiName}&start_time=${dateParam}`,
+    {
+      headers: {
+        Cookie: cookieHeader,
+      },
+    }
+  );
+
+  if (res.status === 404) return null;
+  if (res.status !== 200) throw new Error("Failed to fetch API data");
+
+  const data = await res.json();
+  return data as any;
+}

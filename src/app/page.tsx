@@ -89,7 +89,7 @@ export default function Home() {
           />
           <Card
             title="Analytics"
-            badge="Soon!"
+            badge="Beta!"
             description="Get insights into your API usage and data."
           />
         </CardHolder>

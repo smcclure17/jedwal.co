@@ -4,6 +4,9 @@ import { getUserSheets } from "@/data/fetching";
 import { DeleteApiButton } from "./DeleteApiButton";
 import { ApiCopyLink } from "./ApiCopyLink";
 import Link from "next/link";
+// import { Suspense } from "react";
+// import { AnalyticsChart } from "./AnalyticsChart";
+import { ApiExplorerNotFound } from "./ApiExplorerDefaultSelector";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -15,9 +18,10 @@ export interface ApiExplorerProps {
 }
 
 export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
-  const allSheets = await getUserSheets();  // TODO: bring back individual sheet fetch API route
+  // TODO: bring back individual sheet fetch API route
+  const allSheets = await getUserSheets();
   const data = allSheets?.find((sheet) => sheet.api_name === apiName);
-  if (!data) return <>error</>;
+  if (!data) return <ApiExplorerNotFound/>
 
   return (
     <div className="flex flex-col space-y-5 w-full bg-white p-5 rounded-lg shadow-sm">
@@ -39,6 +43,11 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
       <div>
         <h3 className={`${patrick.className} text-xl`}>Use in code</h3>
         <CodeBlock apiName={data.api_name} />
+      </div>
+      <div>
+        {/* <Suspense fallback={<>loading...</>}>
+          <AnalyticsChart apiName={apiName} />
+        </Suspense> */}
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Update Cadence</h3>

@@ -46,7 +46,7 @@ export default async function App({ children }: { children: React.ReactNode }) {
             <div className="p-5 bg-white rounded-lg shadow-sm">
               <CreateApiForm disabled={disableCreate} />
             </div>
-            <div className="flex flex-row space-x-12 pt-8">
+            <div className="flex flex-row space-x-8 pt-8">
               <div>
                 <UserSheetsContainer>
                   {userSheets.map((sheet) => (

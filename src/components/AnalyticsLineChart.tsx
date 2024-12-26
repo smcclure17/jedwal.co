@@ -7,6 +7,7 @@ import { extent, max } from "d3-array";
 import { curveMonotoneX } from "@visx/curve";
 import { voronoi } from "@visx/voronoi";
 import { localPoint } from "@visx/event";
+import { AxisBottom, AxisLeft } from "@visx/axis";
 
 export interface AnalyticsLineChartProps {
   data: Array<DataPoint>;
@@ -67,7 +68,7 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
 
   const width = 500;
   const height = 200;
-  const margin = { top: 20, right: 20, bottom: 40, left: 20 };
+  const margin = { top: 20, right: 20, bottom: 40, left: 30 };
 
   const xScale = scaleTime({
     domain: extent(groupedData, (d) => d.date) as [Date, Date],
@@ -78,6 +79,11 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
     domain: [0, max(groupedData, (d) => d.count) || 0],
     range: [height - margin.bottom, margin.top],
   });
+
+  const [startDate, endDate] = xScale.domain();
+
+  // Get the min and max values for y-axis ticks
+  const [minY, maxY] = yScale.domain();
 
   const voronoiDiagram = voronoi({
     x: (d: DailyPoint) => xScale(d.date) ?? 0,
@@ -135,20 +141,29 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
           x={(d) => xScale(d.date)!}
           y={(d) => yScale(d.count)!}
           stroke="#439773"
-          strokeWidth={4}
-          curve={curveMonotoneX}
+          strokeWidth={2}
+          // curve={curveMonotoneX}
         />
         {groupedData.map((d, i) => (
           <g key={i}>
             <circle
               cx={xScale(d.date)}
               cy={yScale(d.count)}
-              r={hoveredPoint === i ? 6 : 4}
+              r={hoveredPoint === i ? 4 : 0}
               fill="#439773"
               className="transition-all duration-200"
             />
             {hoveredPoint === i && (
               <g>
+                <line
+                  x1={xScale(d.date)}
+                  x2={xScale(d.date)}
+                  y1={yScale(minY)}
+                  y2={yScale(maxY)}
+                  width={1}
+                  stroke="gray"
+                  strokeDasharray="4"
+                ></line>
                 <rect
                   x={xScale(d.date) - 50}
                   y={yScale(d.count) - 40}
@@ -173,6 +188,35 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
             )}
           </g>
         ))}
+        <AxisBottom
+          scale={xScale}
+          top={height - margin.bottom + 5}
+          tickFormat={formatDate}
+          tickValues={[startDate, endDate]}
+          tickLength={0}
+          stroke="gray"
+          tickStroke="gray"
+          tickLabelProps={(_value, index) => ({
+            fill: "#333",
+            fontSize: 12,
+            textAnchor: index === 0 ? "start" : "end",
+            dy: "0.25em",
+          })}
+        />
+        <AxisLeft
+          scale={yScale}
+          left={margin.left - 5}
+          tickValues={[minY, maxY]}
+          stroke="#333"
+          tickLength={0}
+          tickStroke="#333"
+          tickLabelProps={() => ({
+            fill: "#333",
+            fontSize: 12,
+            textAnchor: "end",
+            dx: "-0.25em",
+          })}
+        />
       </svg>
     </div>
   );

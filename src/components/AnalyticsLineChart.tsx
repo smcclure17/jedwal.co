@@ -4,7 +4,6 @@ import React from "react";
 import { LinePath } from "@visx/shape";
 import { scaleTime, scaleLinear } from "@visx/scale";
 import { extent, max } from "d3-array";
-import { curveMonotoneX } from "@visx/curve";
 import { voronoi } from "@visx/voronoi";
 import { localPoint } from "@visx/event";
 import { AxisBottom, AxisLeft } from "@visx/axis";
@@ -142,7 +141,6 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
           y={(d) => yScale(d.count)!}
           stroke="#439773"
           strokeWidth={2}
-          // curve={curveMonotoneX}
         />
         {groupedData.map((d, i) => (
           <g key={i}>
@@ -191,6 +189,7 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
         <AxisBottom
           scale={xScale}
           top={height - margin.bottom + 5}
+          // @ts-ignore idk how to get TickFormatter to be here
           tickFormat={formatDate}
           tickValues={[startDate, endDate]}
           tickLength={0}

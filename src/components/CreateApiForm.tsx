@@ -34,6 +34,12 @@ export const CreateApiForm = ({
         credentials: "include",
       });
 
+      if (res.status === 415) {
+        throw new Error(
+          "File type not supported. Only Google Sheets are supported. Make sure your file is not an Excel File (xlsx)"
+        );
+      }
+
       if (!res.ok) {
         throw new Error(
           `Request returned status ${res.status}: ${res.statusText}`

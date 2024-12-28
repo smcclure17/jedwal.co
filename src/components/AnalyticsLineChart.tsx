@@ -142,6 +142,36 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
           stroke="#439773"
           strokeWidth={2}
         />
+        <AxisBottom
+          scale={xScale}
+          top={height - margin.bottom + 5}
+          // @ts-ignore idk how to get TickFormatter to be here
+          tickFormat={formatDate}
+          tickValues={[startDate, endDate]}
+          tickLength={0}
+          stroke="gray"
+          tickStroke="gray"
+          tickLabelProps={(_value, index) => ({
+            fill: "#333",
+            fontSize: 12,
+            textAnchor: index === 0 ? "start" : "end",
+            dy: "0.25em",
+          })}
+        />
+        <AxisLeft
+          scale={yScale}
+          left={margin.left - 5}
+          tickValues={[minY, maxY]}
+          stroke="#333"
+          tickLength={0}
+          tickStroke="#333"
+          tickLabelProps={() => ({
+            fill: "#333",
+            fontSize: 12,
+            textAnchor: "end",
+            dx: "-0.25em",
+          })}
+        />
         {groupedData.map((d, i) => (
           <g key={i}>
             <circle
@@ -186,36 +216,6 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
             )}
           </g>
         ))}
-        <AxisBottom
-          scale={xScale}
-          top={height - margin.bottom + 5}
-          // @ts-ignore idk how to get TickFormatter to be here
-          tickFormat={formatDate}
-          tickValues={[startDate, endDate]}
-          tickLength={0}
-          stroke="gray"
-          tickStroke="gray"
-          tickLabelProps={(_value, index) => ({
-            fill: "#333",
-            fontSize: 12,
-            textAnchor: index === 0 ? "start" : "end",
-            dy: "0.25em",
-          })}
-        />
-        <AxisLeft
-          scale={yScale}
-          left={margin.left - 5}
-          tickValues={[minY, maxY]}
-          stroke="#333"
-          tickLength={0}
-          tickStroke="#333"
-          tickLabelProps={() => ({
-            fill: "#333",
-            fontSize: 12,
-            textAnchor: "end",
-            dx: "-0.25em",
-          })}
-        />
       </svg>
     </div>
   );

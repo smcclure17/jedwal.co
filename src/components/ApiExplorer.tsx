@@ -1,12 +1,13 @@
 import { Patrick_Hand } from "next/font/google";
 import { CodeBlock } from "./CodeBlock";
-import { getUserSheets } from "@/data/fetching";
+import { getUserData, getUserSheets } from "@/data/fetching";
 import { DeleteApiButton } from "./DeleteApiButton";
 import { ApiCopyLink } from "./ApiCopyLink";
 import Link from "next/link";
 import { Suspense } from "react";
 import { AnalyticsPreview } from "./AnalyticsPreview";
 import { ApiExplorerNotFound } from "./ApiExplorerDefaultSelector";
+import { CacheInput } from "./CacheInput";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -18,8 +19,10 @@ export interface ApiExplorerProps {
 }
 
 export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
-  // TODO: bring back individual sheet fetch API route
-  const allSheets = await getUserSheets();
+  const [allSheets, userData] = await Promise.all([
+    getUserSheets(), // TODO: bring back individual sheet fetch API route so we don't fetch all all the time
+    getUserData(), // TODO: can we use a context to expose this user data at all levels?
+  ]);
   const data = allSheets?.find((sheet) => sheet.api_name === apiName);
   if (!data) return <ApiExplorerNotFound />;
 
@@ -52,13 +55,11 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Update Cadence</h3>
-        <span>
-          Refresh data every{" "}
-          <b className="border p-0.5 px-1 cursor-default rounded-lg bg-gray-50">
-            {data.cdn_ttl}
-          </b>{" "}
-          seconds.
-        </span>
+        <CacheInput
+          defaultTtl={data.cdn_ttl}
+          name={data.api_name}
+          isPremiumUser={userData.userData?.premium}
+        />
       </div>
       <div className="pt-2">
         <DeleteApiButton apiName={data.api_name} />

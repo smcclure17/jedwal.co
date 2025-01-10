@@ -6,9 +6,9 @@ export interface CardProps {
 
 export const Card = ({ title, description, badge }: CardProps) => {
   return (
-    <div className="w-sm px-6 py-3 sm:rounded-md bg-gray-50 border border-gray-100">
+    <div className="w-sm px-6 py-3 sm:rounded-md bg-gray-50 border border-gray-100 shadow-sm">
       <div className="flex items-center space-x-2 mb-2">
-        <h5 className="text-2xl font-semibold tracking-tight text-gray-900">
+        <h5 className="text-2xl font-normal tracking-tight text-gray-900">
           {title}
         </h5>
         {badge && (

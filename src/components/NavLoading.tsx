@@ -18,7 +18,7 @@ export const NavLoading = async () => {
         <span className={`${patrick.className} text-3xl text-[#005430]`}>
           Jedwal.
         </span>
-        <span className={`${tenor.className} text-xl text-[#005430]`}>co</span>
+        <span className={`${tenor.className} text-xl text-[#005430]`}>com</span>
       </Link>
       <div className="space-x-2">
         <Link

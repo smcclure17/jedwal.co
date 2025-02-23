@@ -8,6 +8,7 @@ import { NavBar } from "@/components/NavBar";
 import { NavLoading } from "@/components/NavLoading";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Jedwal | REST APIs from Google Sheets",
@@ -62,8 +63,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="flex justify-center">
-      <div className={`flex flex-col sm:w-3/4 pt-4`}>
-        <div className="px-4 sm:px-0 pb-4">
+      <div className={`flex flex-col sm:w-3/4 pt-4 space-y-12`}>
+        <div className="px-4 sm:px-0">
           <Suspense fallback={<NavLoading />}>
             <NavBar />
           </Suspense>
@@ -93,6 +94,21 @@ export default function Home() {
             description="Get insights into your API usage and data."
           />
         </CardHolder>
+        <div className="pt-6">
+          <Image
+            src="/splash.png"
+            alt="demo of SaaS dashboard"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{
+              width: "90%",
+              height: "auto",
+              margin: "auto",
+              // border: "1px solid red",
+            }}
+          />
+        </div>
         <LiteFooter />
       </div>
     </main>

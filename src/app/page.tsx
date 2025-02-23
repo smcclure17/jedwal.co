@@ -7,8 +7,11 @@ import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
 import { NavLoading } from "@/components/NavLoading";
 import { Metadata } from "next";
-import { Suspense } from "react";
 import Image from "next/image";
+import { Suspense } from "react";
+import { Patrick_Hand } from "next/font/google";
+
+const patrick = Patrick_Hand({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Jedwal | REST APIs from Google Sheets",
@@ -94,19 +97,48 @@ export default function Home() {
             description="Get insights into your API usage and data."
           />
         </CardHolder>
-        <div className="pt-6">
+        <div className="flex flex-row justify-between mt-16">
+          <div className="">
+            <div className="py-6">
+              <h3
+                className={`text-4xl ${patrick.className} pb-2 text-[#005430]`}
+              >
+                It starts with your spreadsheets
+              </h3>
+              <p>
+                Use the tool your team already knows. Your Google Sheets
+                transform into a flexible database that anyone can update.
+              </p>
+            </div>
+            <div className="py-6">
+              <h3
+                className={`text-4xl ${patrick.className} pb-2 text-[#005430]`}
+              >
+                Create an API in one click
+              </h3>
+              <p>
+                No infrastructure, no deployment hassles. Your spreadsheet
+                becomes a production-ready REST API instantly.
+              </p>
+            </div>
+            <div className="py-6">
+              <h3
+                className={`text-4xl ${patrick.className} pb-2 text-[#005430]`}
+              >
+                Integrate with your project
+              </h3>
+              <p>
+                Whether you need a CMS, feature flags, or app configurations,
+                every spreadsheet is an API endpoint <br /> ready to use.
+              </p>
+            </div>
+          </div>
           <Image
             src="/splash.png"
-            alt="demo of SaaS dashboard"
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{
-              width: "90%",
-              height: "auto",
-              margin: "auto",
-              // border: "1px solid red",
-            }}
+            width={670}
+            height={670}
+            alt="demo"
+            className=""
           />
         </div>
         <LiteFooter />

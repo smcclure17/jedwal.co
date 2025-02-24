@@ -10,7 +10,7 @@ const tenor = Patrick_Hand({
 
 export const MobileDashboardPlaceholder = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-4 pb-32 overflow-hidden">
+    (<div className="flex flex-col items-center justify-center h-screen space-y-4 pb-32 overflow-hidden">
       {/* TODO: Fix routing to static content (in /public/ from subdomain (app.domain.co)) */}
       <h1 className={`text-3xl text-[#005430] ${tenor.className}`}>
         Sorry, we&apos;re not there yet :(
@@ -20,11 +20,14 @@ export const MobileDashboardPlaceholder = () => {
         width={150}
         height={150}
         alt="loading logo"
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
       <h2 className="text-l text-gray-500 font-light text-center w-3/4">
         We&apos;re still working on the dashboard for mobile. In the meantime,
         please visit your dashboard on a desktop browser.
       </h2>
-    </div>
+    </div>)
   );
 };

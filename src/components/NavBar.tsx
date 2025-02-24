@@ -45,7 +45,7 @@ export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
   };
 
   return (
-    <nav className="flex justify-between">
+    (<nav className="flex justify-between">
       <Link href="/">
         <div className="flex flex-row space-x-1">
           <Image
@@ -53,7 +53,10 @@ export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
             height={30}
             width={30}
             alt="logo with stars"
-          ></Image>
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }}></Image>
           <div className="items-center">
             <span className={`${patrick.className} text-3xl text-[#005430]`}>
               Jedwal.
@@ -64,7 +67,6 @@ export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
           </div>
         </div>
       </Link>
-
       <div className="space-x-2">
         {mode === "dark" && userData && <DashBoardButton />}
         {userData && !userData.premium && (
@@ -73,6 +75,6 @@ export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
         {!userData && <SignButton name="Sign In" mode="login" />}
         {userData && <SignButton name="Sign Out" mode="logout" />}
       </div>
-    </nav>
+    </nav>)
   );
 };

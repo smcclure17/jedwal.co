@@ -14,7 +14,7 @@ const patrick = Patrick_Hand({
 
 export const NavLoading = async () => {
   return (
-    <nav className="flex justify-between items-center">
+    (<nav className="flex justify-between items-center">
       <Link href="/">
         <div className="flex flex-row space-x-1">
           <Image
@@ -22,7 +22,10 @@ export const NavLoading = async () => {
             height={30}
             width={30}
             alt="logo with stars"
-          ></Image>
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }}></Image>
           <div className="items-center">
             <span className={`${patrick.className} text-3xl text-[#005430]`}>
               Jedwal.
@@ -41,6 +44,6 @@ export const NavLoading = async () => {
           Sign In
         </Link>
       </div>
-    </nav>
+    </nav>)
   );
 };

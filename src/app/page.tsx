@@ -98,49 +98,18 @@ export default function Home() {
           />
         </CardHolder>
         <div className="flex flex-row justify-between mt-16">
-          {/* <div className="">
-            <div className="py-6">
-              <h3
-                className={`text-4xl ${patrick.className} pb-2 text-[#005430]`}
-              >
-                It starts with your spreadsheets
-              </h3>
-              <p>
-                Use the tool your team already knows. Your Google Sheets
-                transform into a flexible database that anyone can update.
-              </p>
-            </div>
-            <div className="py-6">
-              <h3
-                className={`text-4xl ${patrick.className} pb-2 text-[#005430]`}
-              >
-                Create an API in one click
-              </h3>
-              <p>
-                No infrastructure, no deployment hassles. Your spreadsheet
-                becomes a production-ready REST API instantly.
-              </p>
-            </div>
-            <div className="py-6">
-              <h3
-                className={`text-4xl ${patrick.className} pb-2 text-[#005430]`}
-              >
-                Integrate with your project
-              </h3>
-              <p>
-                Whether you need a CMS, feature flags, or app configurations,
-                every spreadsheet is an API endpoint <br /> ready to use.
-              </p>
-            </div>
-          </div> */}
           <Image
             src="/splash.png"
-            layout="responsive"
-            width={16}  // Aspect ratio width
-            height={9}  // Aspect ratio height
+            width={16}
+            height={9}
             className="object-cover"
             alt="demo"
-            objectFit="contain"
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "contain",
+            }}
           />
         </div>
         <LiteFooter />

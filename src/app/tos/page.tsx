@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="flex justify-center">
+    (<main className="flex justify-center">
       <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>
         <NavBar />
         <div className="">
@@ -60,7 +60,10 @@ export default function PrivacyPage() {
             alt="Jedwal Logo"
             width={100}
             height={100}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
           <h1 className="text-4xl font-bold mt-8">Terms of Service</h1>
           <h2 className="text-2xl font-bold mt-8">Introduction</h2>
           <p className="mt-1">
@@ -172,6 +175,6 @@ export default function PrivacyPage() {
           <p className="mt-1">Effective Date: 2024-08-01</p>
         </div>
       </div>
-    </main>
+    </main>)
   );
 }

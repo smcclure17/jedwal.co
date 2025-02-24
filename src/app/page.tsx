@@ -9,9 +9,7 @@ import { NavLoading } from "@/components/NavLoading";
 import { Metadata } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
-import { Patrick_Hand } from "next/font/google";
 
-const patrick = Patrick_Hand({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Jedwal | REST APIs from Google Sheets",

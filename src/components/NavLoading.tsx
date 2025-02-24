@@ -1,5 +1,6 @@
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 
 const tenor = Bebas_Neue({
   weight: "400",
@@ -15,10 +16,22 @@ export const NavLoading = async () => {
   return (
     <nav className="flex justify-between items-center">
       <Link href="/">
-        <span className={`${patrick.className} text-3xl text-[#005430]`}>
-          Jedwal.
-        </span>
-        <span className={`${tenor.className} text-xl text-[#005430]`}>com</span>
+        <div className="flex flex-row space-x-1">
+          <Image
+            src="/logo-cropped.svg"
+            height={30}
+            width={30}
+            alt="logo with stars"
+          ></Image>
+          <div className="items-center">
+            <span className={`${patrick.className} text-3xl text-[#005430]`}>
+              Jedwal.
+            </span>
+            <span className={`${tenor.className} text-xl text-[#005430]`}>
+              co
+            </span>
+          </div>
+        </div>
       </Link>
       <div className="space-x-2">
         <Link

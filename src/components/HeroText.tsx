@@ -15,8 +15,7 @@ export const HeroText = () => {
           </h1>
         </div>
         <h2 className="text-gray-600 sm:max-w-lg font-light text-md sm:text-2xl">
-          Jedwal create's REST APIs from your Google Sheets to turn
-          spreadsheets into a powerful database.
+          Jedwal turns your Google Sheets into powerful REST APIs to make your development easy.
         </h2>
       </div>
     </>

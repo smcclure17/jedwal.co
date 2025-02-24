@@ -98,7 +98,7 @@ export default function Home() {
           />
         </CardHolder>
         <div className="flex flex-row justify-between mt-16">
-          <div className="">
+          {/* <div className="">
             <div className="py-6">
               <h3
                 className={`text-4xl ${patrick.className} pb-2 text-[#005430]`}
@@ -132,13 +132,15 @@ export default function Home() {
                 every spreadsheet is an API endpoint <br /> ready to use.
               </p>
             </div>
-          </div>
+          </div> */}
           <Image
             src="/splash.png"
-            width={670}
-            height={670}
+            layout="responsive"
+            width={16}  // Aspect ratio width
+            height={9}  // Aspect ratio height
+            className="object-cover"
             alt="demo"
-            className=""
+            objectFit="contain"
           />
         </div>
         <LiteFooter />

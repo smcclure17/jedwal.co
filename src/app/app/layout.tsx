@@ -16,6 +16,7 @@ export default async function App({ children }: { children: React.ReactNode }) {
     getUserData(),
   ]);
   const { userData } = user;
+  console.log(user, userSheets);
 
   if (userSheets === null) {
     return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;

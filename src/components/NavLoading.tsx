@@ -1,6 +1,7 @@
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import config from "@/config";
 
 const tenor = Bebas_Neue({
   weight: "400",
@@ -14,7 +15,7 @@ const patrick = Patrick_Hand({
 
 export const NavLoading = async () => {
   return (
-    (<nav className="flex justify-between items-center">
+    <nav className="flex justify-between items-center">
       <Link href="/">
         <div className="flex flex-row space-x-1">
           <Image
@@ -24,8 +25,9 @@ export const NavLoading = async () => {
             alt="logo with stars"
             style={{
               maxWidth: "100%",
-              height: "auto"
-            }}></Image>
+              height: "auto",
+            }}
+          ></Image>
           <div className="items-center">
             <span className={`${patrick.className} text-3xl text-[#005430]`}>
               Jedwal.
@@ -38,12 +40,12 @@ export const NavLoading = async () => {
       </Link>
       <div className="space-x-2">
         <Link
-          href={`https://api.jedwal.co/login`}
+          href={`${config.apiUrl}/login`}
           className={`text-sm font-medium text-gray-500 hover:text-gray-400 transition ease-in-out duration-200`}
         >
           Sign In
         </Link>
       </div>
-    </nav>)
+    </nav>
   );
 };

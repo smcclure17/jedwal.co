@@ -32,7 +32,7 @@ export const getUserSheets = async () => {
     .map((cookie) => `${cookie.name}=${cookie.value}`)
     .join("; ");
 
-  console.log("COOKIES", cookieHeader)
+  console.log("COOKIES", JSON.stringify(allCookies));
 
   const res = await fetch(`${config.apiUrl}/get-user-sheets`, {
     headers: {

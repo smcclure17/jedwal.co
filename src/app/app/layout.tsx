@@ -22,7 +22,7 @@ export default async function App({ children }: { children: React.ReactNode }) {
     return (
       <>
         <a href={`${config.apiUrl}/login`}>Please login to continue</a>
-        {JSON.stringify(user)} {JSON.stringify(userData)}
+        {JSON.stringify(userSheets)} {JSON.stringify(userData)}
       </>
     );
   }

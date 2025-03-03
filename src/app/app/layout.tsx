@@ -16,13 +16,15 @@ export default async function App({ children }: { children: React.ReactNode }) {
     getUserData(),
   ]);
   const { userData } = user;
-  console.log(user, userSheets);
+  console.log(user, userSheets, "data");
 
-  if (userSheets === null) {
-    return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;
-  }
-  if (userData === null) {
-    return <a href={`${config.apiUrl}/login`}>Please login to continue</a>;
+  if (userSheets === null || userData === null) {
+    return (
+      <>
+        <a href={`${config.apiUrl}/login`}>Please login to continue</a>
+        {JSON.stringify(user)} {JSON.stringify(userData)}
+      </>
+    );
   }
 
   if (userSheets.length === 0) {

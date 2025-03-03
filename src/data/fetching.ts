@@ -32,6 +32,8 @@ export const getUserSheets = async () => {
     .map((cookie) => `${cookie.name}=${cookie.value}`)
     .join("; ");
 
+  console.log("COOKIES", cookieHeader)
+
   const res = await fetch(`${config.apiUrl}/get-user-sheets`, {
     headers: {
       Cookie: cookieHeader,

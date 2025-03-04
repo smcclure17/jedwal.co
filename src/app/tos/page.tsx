@@ -54,7 +54,7 @@ export default function PrivacyPage() {
     (<main className="flex justify-center">
       <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>
         <NavBar />
-        <div className="">
+        <div className="max-w-2xl mt-24">
           <Image
             src="/logo-cropped.svg"
             alt="Jedwal Logo"

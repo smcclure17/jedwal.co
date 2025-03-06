@@ -1,9 +1,10 @@
-import { getUserData } from "@/data/fetching";
+import { getUserData, getUserOrgs } from "@/data/fetching";
 import config from "../config";
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 import { GetPremiumLink } from "./GetPremiumLink";
 import Image from "next/image";
+import { UserMenu } from "./UserMenu";
 
 const tenor = Bebas_Neue({
   weight: "400",
@@ -23,7 +24,7 @@ const DashBoardButton = () => {
   return (
     <Link
       href="https://app.jedwal.co"
-      className="text-gray-900 bg-white focus:outline-none hover:bg-gray-100 focus:ring-gray-100 font-medium rounded-full text-sm px-3 py-1 me-2 mb-2 border border-gray-300"
+      className="text-gray-900 bg-white focus:outline-hidden hover:bg-gray-100 focus:ring-gray-100 font-medium rounded-full text-sm px-3 py-1 me-2 mb-2 border border-gray-300"
     >
       Dashboard
     </Link>
@@ -31,7 +32,8 @@ const DashBoardButton = () => {
 };
 
 export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
-  const { userData } = await getUserData();
+  const [user, orgs] = await Promise.all([getUserData(), getUserOrgs()]);
+  const { userData } = user;
 
   const SignButton = ({ name, mode }: { name: string; mode: string }) => {
     return (
@@ -74,7 +76,7 @@ export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
           <GetPremiumLink email={userData.email} />
         )}
         {!userData && <SignButton name="Sign In" mode="login" />}
-        {userData && <SignButton name="Sign Out" mode="logout" />}
+        {userData && <UserMenu orgs={orgs} user={userData} />}
       </div>
     </nav>
   );

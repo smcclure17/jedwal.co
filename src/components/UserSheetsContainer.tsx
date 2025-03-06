@@ -12,7 +12,7 @@ export interface UserSheetsListProps {
 export const UserSheetsContainer = ({ children }: UserSheetsListProps) => {
   return (
     <div className="flex flex-col">
-      <div className={`font-light text-2xl ${patrick.className} space-y-2`}>
+      <div className={`font-light text-2xl ${patrick.className} space-y-2 min-w-72`}>
         Your APIs
       </div>
       <div className="flex flex-col overflow-y-auto border-gray-300 py-2 max-h-96 max-w-sm space-y-4">

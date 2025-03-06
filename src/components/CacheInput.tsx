@@ -28,6 +28,7 @@ export const postTtlUpdate = async (apiName: string, ttl: number) => {
   const res = await fetch(`${config.apiUrl}/update-api-ttl`, {
     method: "POST",
     credentials: "include",
+    headers: { "Content-Type": "application/json;charset=UTF-8" },
     body: JSON.stringify({
       name: apiName,
       cdn_ttl: ttl,

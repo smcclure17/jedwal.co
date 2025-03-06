@@ -2,6 +2,7 @@ import config from "@/config";
 import { cookies } from "next/headers";
 
 export interface UserData {
+  id: string
   name: string;
   email: string;
   api_count: number;
@@ -31,8 +32,6 @@ export const getUserSheets = async () => {
   const cookieHeader = allCookies
     .map((cookie) => `${cookie.name}=${cookie.value}`)
     .join("; ");
-
-  console.log("COOKIES", JSON.stringify(allCookies));
 
   const res = await fetch(`${config.apiUrl}/get-user-sheets`, {
     headers: {
@@ -123,3 +122,64 @@ export async function getSheetAnalytics(apiName: string) {
   const data = await res.json();
   return data as any;
 }
+
+export async function getOrgData(orgId: string) {
+  const cookieStore = await cookies();
+  const allCookies = cookieStore.getAll();
+
+  const cookieHeader = allCookies
+    .map((cookie) => `${cookie.name}=${cookie.value}`)
+    .join("; ");
+
+  const res = await fetch(`${config.apiUrl}/organization/${orgId}`, {
+    headers: {
+      Cookie: cookieHeader,
+    },
+  });
+
+  if (res.status === 401) return null;
+  if (res.status !== 200) throw new Error("Failed to fetch user data");
+
+  return res.json();
+}
+
+export const getOrgSheets = async (orgId: string) => {
+  const cookieStore = await cookies();
+  const allCookies = cookieStore.getAll();
+
+  const cookieHeader = allCookies
+    .map((cookie) => `${cookie.name}=${cookie.value}`)
+    .join("; ");
+
+  const res = await fetch(`${config.apiUrl}/get-organization-sheets/${orgId}`, {
+    headers: {
+      Cookie: cookieHeader,
+    },
+  });
+
+  if (res.status === 401) return null;
+  if (res.status !== 200)
+    throw new Error(`Failed to fetch user sheets. Error: ${res.statusText}`);
+
+  return res.json();
+};
+
+export const getUserOrgs = async (): Promise<any[]> => {
+  const cookieStore = await cookies();
+  const allCookies = cookieStore.getAll();
+
+  const cookieHeader = allCookies
+    .map((cookie) => `${cookie.name}=${cookie.value}`)
+    .join("; ");
+
+  const res = await fetch(`${config.apiUrl}/organizations`, {
+    headers: {
+      Cookie: cookieHeader,
+    },
+  });
+
+  if (res.status !== 200)
+    throw new Error(`Failed to fetch user orgs. Error: ${res.statusText}`);
+
+  return res.json();
+};

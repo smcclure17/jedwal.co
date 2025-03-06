@@ -10,13 +10,18 @@ import { getUserData, getUserSheets } from "@/data/fetching";
 import React from "react";
 
 // TODO: This should maybe just be a part of the page?
-export default async function App({ children }: { children: React.ReactNode }) {
+export default async function App({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ org: string }>;
+}) {
   const [userSheets, user] = await Promise.all([
     getUserSheets(),
     getUserData(),
   ]);
   const { userData } = user;
-  console.log(user, userSheets, "data");
 
   if (userSheets === null || userData === null) {
     return (
@@ -46,7 +51,7 @@ export default async function App({ children }: { children: React.ReactNode }) {
         <main className="sm:block flex flex-col mx-auto px-10 pt-4">
           <NavBar mode="light" />
           <div className="mt-10">
-            <div className="p-5 bg-white rounded-lg shadow-sm">
+            <div className="p-5 bg-white rounded-lg shadow-xs">
               <CreateApiForm disabled={disableCreate} />
             </div>
             <div className="flex flex-row space-x-8 pt-8">

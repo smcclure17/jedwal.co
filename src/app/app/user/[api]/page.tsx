@@ -1,11 +1,11 @@
 import { ApiExplorer } from "@/components/ApiExplorer";
 
 type PageProps = {
-  params: Promise<{ api: string, user: string }>;
+  params: Promise<{ api: string; org: string }>;
 };
 
 export default async function Page({ params }: PageProps) {
-  const { api, user } = await params;
-  console.log(user)
+  const { api, org } = await params;
+  console.log(org);
   return <ApiExplorer apiName={api} />;
 }

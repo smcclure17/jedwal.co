@@ -1,6 +1,7 @@
 "use client";
 
 import config from "@/config";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export interface DeleteApiButtonProps {
@@ -19,6 +20,8 @@ export const deleteApi = async (apiName: string) => {
 
 export const DeleteApiButton = ({ apiName }: DeleteApiButtonProps) => {
   const [isDeleting, setIsDeleting] = React.useState(false);
+  const apiPathName = usePathname();
+  const pathName = apiPathName.split("/").slice(0, -1).join("/");
 
   const handleDeleteApi = () => {
     setIsDeleting(true);
@@ -29,7 +32,7 @@ export const DeleteApiButton = ({ apiName }: DeleteApiButtonProps) => {
     if (isConfirmed) {
       deleteApi(apiName)
         .then(() => {
-          window.location.href = "/app";
+          window.location.href = `${pathName}`;
         })
         .catch(() => {
           alert("Failed to delete API. Please try again later.");

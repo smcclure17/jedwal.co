@@ -5,6 +5,7 @@ import config from "@/config";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Spinner } from "./Spinner";
+import { useParams, usePathname } from "next/navigation";
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -21,12 +22,19 @@ export const CreateApiForm = ({
   disabled = false,
 }: CreateApiFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { org } = useParams();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     const form = e.currentTarget;
     const formData = new FormData(form);
+
+    // Create API for the organization if we're on the org dashboard
+    if (org !== undefined) {
+      formData.append("org_id", org as string);
+    }
+
     try {
       const res = await fetch(`${config.apiUrl}/create-api`, {
         method: "POST",
@@ -48,7 +56,10 @@ export const CreateApiForm = ({
 
       const data = await res.json();
       // NOTE: can't use router.push here b/c we need to reload the whole layout.
-      window.location.href = `/${data.api_name}`;
+      const location = org
+        ? `${config.dashUrl}/org/${org}`
+        : `${config.dashUrl}/user`;
+      window.location.href = `${location}/${data.api_name}`;
       form.reset();
       setIsLoading(false);
     } catch (error) {

@@ -2,7 +2,7 @@
 import { ApiData } from "@/data/fetching";
 import { Patrick_Hand } from "next/font/google";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -16,10 +16,11 @@ export interface ApiCardProps {
 export const ApiCard = ({ apiData }: ApiCardProps) => {
   const { api_name, sheet_id, spreadsheet_name } = apiData;
   const params = useParams();
+  const path = usePathname();
   const selected = params.api === api_name;
   return (
     <Link
-      href={`/${apiData.api_name}`}
+      href={`${path}/${apiData.api_name}`}
       className={`px-2 bg-white py-1 rounded-lg shadow-sm ${
         selected
           ? "border border-green-800 border-1.5"

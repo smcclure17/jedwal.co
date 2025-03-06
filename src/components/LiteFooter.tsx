@@ -1,3 +1,4 @@
+import config from "@/config";
 import { getUserData } from "@/data/fetching";
 import Link from "next/link";
 
@@ -23,7 +24,7 @@ export const LiteFooter = async ({}: LiteFooterProps) => {
       </Link>
       {isPremium && (
         <Link
-          href="https://billing.stripe.com/p/login/test_cN25oncgx0WN8fu7ss"
+          href={`https://billing.stripe.com/p/login/${config.stripeCustPortalId}`}
           className="text-gray-600 hover:text-gray-900"
         >
           Manage My Subscription

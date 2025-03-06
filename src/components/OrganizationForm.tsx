@@ -11,7 +11,7 @@ const sendCreateRequest = async (name: string) => {
   const formData = new FormData();
   formData.append("name", name);
 
-  const res = await fetch(`${config.apiUrl}/create-organization/`, {
+  const res = await fetch(`${config.apiUrl}/create-organization`, {
     method: "POST",
     body: formData,
     credentials: "include",

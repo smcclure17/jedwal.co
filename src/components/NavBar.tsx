@@ -76,7 +76,7 @@ export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
           <GetPremiumLink email={userData.email} />
         )}
         {!userData && <SignButton name="Sign In" mode="login" />}
-        {userData && <UserMenu orgs={orgs} user={userData} />}
+        {orgs && userData && <UserMenu orgs={orgs} user={userData} />}
       </div>
     </nav>
   );

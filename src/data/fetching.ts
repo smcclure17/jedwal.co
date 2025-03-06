@@ -2,7 +2,7 @@ import config from "@/config";
 import { cookies } from "next/headers";
 
 export interface UserData {
-  id: string
+  id: string;
   name: string;
   email: string;
   api_count: number;
@@ -164,7 +164,7 @@ export const getOrgSheets = async (orgId: string) => {
   return res.json();
 };
 
-export const getUserOrgs = async (): Promise<any[]> => {
+export const getUserOrgs = async (): Promise<any[] | null> => {
   const cookieStore = await cookies();
   const allCookies = cookieStore.getAll();
 
@@ -178,6 +178,7 @@ export const getUserOrgs = async (): Promise<any[]> => {
     },
   });
 
+  if (res.status === 401) return null;
   if (res.status !== 200)
     throw new Error(`Failed to fetch user orgs. Error: ${res.statusText}`);
 

@@ -16,7 +16,7 @@ export default async function CreateOrg() {
   const { userData, status } = user;
 
   // fix this stupid ass logic
-  if (status === "logged_out" || userData === null) {
+  if (status === "logged_out" || userData === null || userOrgs === null) {
     return <a href={`${config.apiUrl}/login`}>login</a>;
   }
 

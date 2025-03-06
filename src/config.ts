@@ -7,4 +7,6 @@ export default {
     env !== "DEV" ? "https://app.jedwal.co" : "http://localhost:3000/app",
   stripeCustPortalId:
     env !== "DEV" ? "dR65lQeDTar38xO9AA" : "test_cN25oncgx0WN8fu7ss",
+  stripeProductId:
+    env !== "DEV" ? "test_dR67vP7iT8dPbny7ss" : "14keWjajb5n29RCeUU",
 };

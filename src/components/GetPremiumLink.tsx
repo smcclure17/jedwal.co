@@ -1,9 +1,10 @@
 import Link from "next/link";
+import config from "@/config";
 
 export const GetPremiumLink = ({ email }: { email: string }) => {
   return (
     <Link
-      href={`https://buy.stripe.com/test_dR67vP7iT8dPbny7ss?prefilled_email=${email}`}
+      href={`https://buy.stripe.com/${config.stripeProductId}?prefilled_email=${email}`}
       target="_blank"
     >
       <button

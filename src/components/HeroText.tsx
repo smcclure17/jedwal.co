@@ -11,7 +11,7 @@ export const HeroText = () => {
           <h1
             className={`font-bold pb-3 ${inter.className} ${gradientText} text-5xl sm:text-7xl`}
           >
-            Power your website with spreadsheets
+            Power your website with Google Sheets
           </h1>
         </div>
         <h2 className="text-gray-600 sm:max-w-lg font-light text-md sm:text-2xl">

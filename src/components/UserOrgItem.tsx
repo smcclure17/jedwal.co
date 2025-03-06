@@ -30,7 +30,7 @@ export const UserOrgItem = ({
       deleteOrg(org.id)
         .then(() => {
           setIsDeleting(false);
-          window.location.href = "/app/my-orgs";
+          window.location.href = `${config.dashUrl}/my-orgs`;
         })
         .catch(() => {
           alert("Failed to delete API. Please try again later.");

@@ -35,5 +35,11 @@ export async function middleware(req: NextRequest) {
     url.pathname = `/${subdomain}${url.pathname}`;
   }
 
+  // Rewrite / to /user for app.jedwal.co
+  if (host === "app.jedwal.co" && url.pathname === "/") {
+    url.pathname = "/user";
+    return NextResponse.rewrite(url);
+  }
+
   return NextResponse.rewrite(url);
 }

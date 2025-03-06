@@ -7,18 +7,19 @@ import { CreateOrgSuccessScreen } from "./CreateOrgSuccessScreen";
 
 type UploadStatus = "success" | "failure" | "loading" | null;
 
-const sendCreateRequest = async (name: string, invitees: string[]) => {
-  console.log("sending");
+const sendCreateRequest = async (name: string) => {
+  const formData = new FormData();
+  formData.append("name", name);
+
   const res = await fetch(`${config.apiUrl}/create-organization/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json;charset=UTF-8" },
-    body: JSON.stringify({ name, invitees }),
+    body: formData,
     credentials: "include",
   });
 
   if (res.status !== 200) {
     console.log(res.statusText);
-    throw new Error(`Failed to delete API. ${res.statusText}`);
+    throw new Error(`Failed to Create org. ${res.statusText}`);
   }
   const data = await res.json();
   return data.id;
@@ -45,7 +46,7 @@ export const OrganizationForm = () => {
           e.preventDefault();
           setUploadStatus("loading");
 
-          sendCreateRequest(orgName, emails)
+          sendCreateRequest(orgName)
             .then((orgId) => {
               setUploadStatus("success");
               setOrgId(orgId);

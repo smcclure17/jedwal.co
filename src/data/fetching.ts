@@ -87,6 +87,7 @@ export async function getUserData(): Promise<{
     },
   });
 
+  if (res.status === 404) return { userData: null, status: "error" };
   if (res.status === 401) return { userData: null, status: "logged_out" };
   if (res.status !== 200) throw new Error("Failed to fetch user data");
 

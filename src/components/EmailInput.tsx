@@ -9,7 +9,7 @@ export interface TagInputProps {
   /**
    * A state function to update the tags
    */
-  setTags: React.Dispatch<React.SetStateAction<string[]>>;
+  setEmails: React.Dispatch<React.SetStateAction<string[]>>;
   /**
    * The maximum number of tags that can be added
    */
@@ -26,7 +26,7 @@ export interface TagInputProps {
 
 export const EmailInput = ({
   emails,
-  setTags,
+  setEmails,
   maxTags = 20,
 }: TagInputProps) => {
   const [input, setInput] = useState("");
@@ -55,8 +55,10 @@ export const EmailInput = ({
       !emails.includes(trimmedInput)
     ) {
       e.preventDefault();
-      setTags([...emails, trimmedInput]);
-      setInput("");
+      if (!emails.includes(trimmedInput)) {
+        setEmails([...emails, trimmedInput]);
+        setInput("");
+      }
     }
 
     // Remove the last tag if:
@@ -68,7 +70,7 @@ export const EmailInput = ({
       const poppedTag = tagsCopy.pop();
       if (poppedTag) {
         e.preventDefault();
-        setTags(tagsCopy);
+        setEmails(tagsCopy);
         setInput(poppedTag);
       }
     }
@@ -80,7 +82,7 @@ export const EmailInput = ({
   };
 
   return (
-    <>
+    <div className="flex flex-col w-full">
       <div>
         <label
           htmlFor="tag-input"
@@ -101,12 +103,14 @@ export const EmailInput = ({
         onKeyDown={onKeyDown}
         onChange={onChange}
       />
-      <div className="flex flex-row space-x-2 py-2">
+      <div className="flex flex-row space-x-2 pt-2 flex-wrap">
         {emails.map((email) => (
-          <ContentTag name={email} key={email} />
+          <div className="mb-1" key={email}>
+            <ContentTag name={email}/>
+          </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

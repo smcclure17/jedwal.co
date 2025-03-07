@@ -72,10 +72,7 @@ export const OrganizationForm = () => {
             />
           </div>
         </div>
-        <EmailInput
-          emails={emails}
-          setTags={(tags) => setEmails(tags as string[])}
-        />
+        <EmailInput emails={emails} setEmails={(emails) => setEmails(emails)} />
         <div className="flex justify-end">
           <button
             disabled={orgName === "" || uploadStatus === "loading"}

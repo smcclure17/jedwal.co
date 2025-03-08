@@ -11,7 +11,7 @@ export const HeroButton = async () => {
     <div className="flex flex-row space-x-4 mt-4 min-h-14">
       {status === "logged_in" && <DashboardButton />}
       {status === "logged_out" && <GoogleSignInButton />}
-      {status === "loading" || (status === "error" && <></>)}
+      {status === "error" && <></>}
     </div>
   );
 };

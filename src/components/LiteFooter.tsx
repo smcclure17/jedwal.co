@@ -2,10 +2,10 @@ import config from "@/config";
 import { getUserData } from "@/data/fetching";
 import Link from "next/link";
 
-export interface LiteFooterProps {}
-
-export const LiteFooter = async ({}: LiteFooterProps) => {
-  const { userData } = await getUserData();
+export const LiteFooter = async () => {
+  const userResponse = await getUserData();
+  const userData =
+    userResponse.status === "logged_in" ? userResponse.data : null;
   const isPremium = userData?.premium;
 
   return (

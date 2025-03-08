@@ -1,10 +1,16 @@
-import { getUserData, getUserOrgs } from "@/data/fetching";
+import {
+  getUserData,
+  getUserDataWithOrgs,
+  getUserOrgs,
+  UserData,
+} from "@/data/fetching";
 import config from "../config";
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 import { GetPremiumLink } from "./GetPremiumLink";
 import Image from "next/image";
 import { UserMenu } from "./UserMenu";
+import { NavBarNoUser } from "./NavLoading";
 
 const tenor = Bebas_Neue({
   weight: "400",
@@ -17,7 +23,7 @@ const patrick = Patrick_Hand({
 });
 
 interface NavBarProps {
-  mode?: "light" | "dark";
+  showDashboardButton?: boolean;
 }
 
 const DashBoardButton = () => {
@@ -31,21 +37,13 @@ const DashBoardButton = () => {
   );
 };
 
-export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
-  const [user, orgs] = await Promise.all([getUserData(), getUserOrgs()]);
-  const { userData } = user;
+export const NavBar = async ({ showDashboardButton }: NavBarProps) => {
+  const userWithOrgs = await getUserDataWithOrgs();
+  if (userWithOrgs.status !== "logged_in") {
+    return <NavBarNoUser showSignIn={userWithOrgs.status === "logged_out"} />;
+  }
 
-  const SignButton = ({ name, mode }: { name: string; mode: string }) => {
-    return (
-      <Link
-        href={`${config.apiUrl}/${mode}`}
-        className={`text-sm font-medium text-gray-500 hover:text-gray-400 transition ease-in-out duration-200`}
-      >
-        {name}
-      </Link>
-    );
-  };
-
+  const { userData, orgs } = userWithOrgs.data;
   return (
     <nav className="flex justify-between">
       <Link href="/">
@@ -71,12 +69,9 @@ export const NavBar = async ({ mode = "dark" }: NavBarProps) => {
         </div>
       </Link>
       <div className="space-x-2">
-        {mode === "dark" && userData && <DashBoardButton />}
-        {userData && !userData.premium && (
-          <GetPremiumLink email={userData.email} />
-        )}
-        {!userData && <SignButton name="Sign In" mode="login" />}
-        {orgs && userData && <UserMenu orgs={orgs} user={userData} />}
+        {showDashboardButton && <DashBoardButton />}
+        {!userData.premium && <GetPremiumLink email={userData.email} />}
+        <UserMenu orgs={orgs} user={userData} />
       </div>
     </nav>
   );

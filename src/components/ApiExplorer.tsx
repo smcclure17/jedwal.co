@@ -1,11 +1,6 @@
 import { Patrick_Hand } from "next/font/google";
 import { CodeBlock } from "./CodeBlock";
-import {
-  getOrgData,
-  getOrgSheets,
-  getUserData,
-  getUserSheets,
-} from "@/data/fetching";
+import { getOrgSheets, getUserDataWithSheets } from "@/data/fetching";
 import { DeleteApiButton } from "./DeleteApiButton";
 import { ApiCopyLink } from "./ApiCopyLink";
 import Link from "next/link";
@@ -13,6 +8,8 @@ import { Suspense } from "react";
 import { AnalyticsPreview } from "./AnalyticsPreview";
 import { ApiExplorerNotFound } from "./ApiExplorerDefaultSelector";
 import { CacheInput } from "./CacheInput";
+import { NotLoggedInScreen } from "./NotLoggedInScreen";
+import { ErrorScreen } from "./ErrorScreen";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -29,18 +26,19 @@ export interface DashboardApiExplorerProps {
 }
 
 export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
-  const [allSheets, userData] = await Promise.all([
-    getUserSheets(), // TODO: bring back individual sheet fetch API route so we don't fetch all all the time
-    getUserData(), // TODO: can we use a context to expose this user data at all levels?
-  ]);
-  const data = allSheets?.find((sheet) => sheet.api_name === apiName);
+  const userWithSheets = await getUserDataWithSheets();
+  if (userWithSheets.status === "error") return <ErrorScreen />;
+  if (userWithSheets.status === "logged_out") return <NotLoggedInScreen />;
+  const { userData, sheets } = userWithSheets.data;
+
+  const data = sheets.find((sheet) => sheet.api_name === apiName);
   if (!data) return <ApiExplorerNotFound />;
 
   return (
     <div className="flex flex-col space-y-5 w-full bg-white p-5 rounded-lg shadow-xs">
       <div>
         <h1 className="text-2xl font-medium">{data.spreadsheet_name}</h1>
-        <h2 className="text-xl">/api/{data.api_name}</h2>
+        <h2 className="text-xl">/api/{data.api_name_formatted}</h2>
         <Link
           href={`https://docs.google.com/spreadsheets/d/${data.sheet_id}`}
           target="_blank"
@@ -51,11 +49,14 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Live API URL</h3>
-        <ApiCopyLink apiUrl={data.api_name} worksheets={data.worksheets} />
+        <ApiCopyLink
+          apiUrl={data.api_name_formatted}
+          worksheets={data.worksheets}
+        />
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Use in code</h3>
-        <CodeBlock apiName={data.api_name} />
+        <CodeBlock apiName={data.api_name_formatted} />
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Analytics</h3>
@@ -68,7 +69,7 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
         <CacheInput
           defaultTtl={data.cdn_ttl}
           name={data.api_name}
-          isPremiumUser={userData.userData?.premium}
+          isPremiumUser={userData.premium}
         />
       </div>
       <div className="pt-2">
@@ -78,19 +79,22 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
   );
 };
 
-export const DashboardApiExplorer = async ({
+export const OrganizationsApiExplorer = async ({
   apiName,
   org,
 }: DashboardApiExplorerProps) => {
-  const allSheets = await getOrgSheets(org);
-  const data = allSheets?.find((sheet: any) => sheet.api_name === apiName);
+  const orgSheets = await getOrgSheets(org);
+  if (orgSheets.status === "error") return <ErrorScreen />;
+  if (orgSheets.status === "logged_out") return <NotLoggedInScreen />;
+
+  const data = orgSheets.data.find((sheet: any) => sheet.api_name === apiName);
   if (!data) return <ApiExplorerNotFound />;
 
   return (
     <div className="flex flex-col space-y-5 w-full bg-white p-5 rounded-lg shadow-xs">
       <div>
         <h1 className="text-2xl font-medium">{data.spreadsheet_name}</h1>
-        <h2 className="text-xl">/api/{data.api_name}</h2>
+        <h2 className="text-xl">/api/{data.api_name_formatted}</h2>
         <Link
           href={`https://docs.google.com/spreadsheets/d/${data.sheet_id}`}
           target="_blank"
@@ -101,11 +105,14 @@ export const DashboardApiExplorer = async ({
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Live API URL</h3>
-        <ApiCopyLink apiUrl={data.api_name} worksheets={data.worksheets} />
+        <ApiCopyLink
+          apiUrl={data.api_name_formatted}
+          worksheets={data.worksheets}
+        />
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Use in code</h3>
-        <CodeBlock apiName={data.api_name} />
+        <CodeBlock apiName={data.api_name_formatted} />
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Analytics</h3>

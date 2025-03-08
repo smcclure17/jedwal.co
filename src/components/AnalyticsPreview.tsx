@@ -8,10 +8,11 @@ export interface AnalyticsPreviewProps {
 
 export const AnalyticsPreview = ({ apiName }: AnalyticsPreviewProps) => {
   const data = use(getSheetAnalytics(apiName));
+  if (data.status !== "logged_in") return <></>;
   return (
     <div className="rounded-md border w-[510px] bg-gray-50 mt-2 text-gray-600">
       <p className="px-4 py-2">API Traffic over the last 7 days</p>
-      <AnalyticsLineChart data={data} />
+      <AnalyticsLineChart data={data.data} />
     </div>
   );
 };

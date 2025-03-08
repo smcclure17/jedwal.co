@@ -1,4 +1,4 @@
-import { DashboardApiExplorer } from "@/components/ApiExplorer";
+import { OrganizationsApiExplorer } from "@/components/ApiExplorer";
 
 type PageProps = {
   params: Promise<{ api: string; org: string }>;
@@ -6,5 +6,5 @@ type PageProps = {
 
 export default async function OrgPage({ params }: PageProps) {
   const { api, org } = await params;
-  return <DashboardApiExplorer apiName={api} org={org} />;
+  return <OrganizationsApiExplorer apiName={api} org={org} />;
 }

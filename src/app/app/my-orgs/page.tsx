@@ -1,10 +1,12 @@
 import { NavBar } from "@/components/NavBar";
 
 import { Patrick_Hand } from "next/font/google";
-import { getUserData, getUserOrgs } from "@/data/fetching";
+import { getUserDataWithOrgs } from "@/data/fetching";
 import config from "@/config";
 import { UserOrgItem } from "@/components/UserOrgItem";
 import Link from "next/link";
+import { ErrorScreen } from "@/components/ErrorScreen";
+import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -12,13 +14,10 @@ const patrick = Patrick_Hand({
 });
 
 export default async function CreateOrg() {
-  const [userOrgs, user] = await Promise.all([getUserOrgs(), getUserData()]);
-  const { userData, status } = user;
-
-  // fix this stupid ass logic
-  if (status === "logged_out" || userData === null || userOrgs === null) {
-    return <a href={`${config.apiUrl}/login`}>login</a>;
-  }
+  const userWithOrgs = await getUserDataWithOrgs();
+  if (userWithOrgs.status === "logged_out") return <NotLoggedInScreen />;
+  if (userWithOrgs.status === "error") return <ErrorScreen />;
+  const { orgs, userData } = userWithOrgs.data;
 
   return (
     <main className="flex justify-center">
@@ -29,7 +28,7 @@ export default async function CreateOrg() {
             My organizations
           </h1>
           <div className="mt-6">
-            {userOrgs.length === 0 && (
+            {orgs.length === 0 && (
               <div className="flex flex-row space-x-1">
                 <span className="text-l">
                   You don't belong to any organizations.
@@ -42,13 +41,14 @@ export default async function CreateOrg() {
                 </Link>
               </div>
             )}
-            {userOrgs.map((org) => {
+            {orgs.map((org) => {
               return (
                 // TODO: any "admin" should be able to delete an org. But
                 // getUserOrgs doesn't tell us if a user is admin. We can
                 // check if the user created the org. So, for now, only the
                 // creator can delete the org.
                 <UserOrgItem
+                  key={org.id}
                   org={org}
                   deletable={userData.id === org.created_by}
                 />

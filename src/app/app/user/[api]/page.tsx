@@ -5,7 +5,6 @@ type PageProps = {
 };
 
 export default async function Page({ params }: PageProps) {
-  const { api, org } = await params;
-  console.log(org);
+  const { api } = await params;
   return <ApiExplorer apiName={api} />;
 }

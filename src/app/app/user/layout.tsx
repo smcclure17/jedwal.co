@@ -1,12 +1,13 @@
 import { ApiCard } from "@/components/ApiCard";
 import { CreateApiForm } from "@/components/CreateApiForm";
+import { ErrorScreen } from "@/components/ErrorScreen";
 import { FirstApiSplash } from "@/components/FirstApiSplash";
 import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlaceholder";
 import { NavBar } from "@/components/NavBar";
+import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
-import config from "@/config";
-import { getUserData, getUserSheets } from "@/data/fetching";
+import { getUserDataWithSheets } from "@/data/fetching";
 import React from "react";
 
 // TODO: This should maybe just be a part of the page?
@@ -17,31 +18,21 @@ export default async function App({
   children: React.ReactNode;
   params: Promise<{ org: string }>;
 }) {
-  const [userSheets, user] = await Promise.all([
-    getUserSheets(),
-    getUserData(),
-  ]);
-  const { userData } = user;
+  const userWithOrgs = await getUserDataWithSheets();
+  if (userWithOrgs.status === "logged_out") return <NotLoggedInScreen />;
+  if (userWithOrgs.status === "error") return <ErrorScreen />;
+  const { userData, sheets } = userWithOrgs.data;
 
-  if (userSheets === null || userData === null) {
-    return (
-      <>
-        <a href={`${config.apiUrl}/login`}>Please login to continue</a>
-        {JSON.stringify(userSheets)} {JSON.stringify(userData)}
-      </>
-    );
-  }
-
-  if (userSheets.length === 0) {
+  if (sheets.length === 0) {
     return (
       <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
-        <NavBar mode="light" />
+        <NavBar showDashboardButton={false} />
         <FirstApiSplash />
       </main>
     );
   }
 
-  const disableCreate = !userData.premium && userSheets.length >= 2;
+  const disableCreate = !userData.premium && sheets.length >= 2;
   return (
     <>
       <div className="sm:hidden">
@@ -49,7 +40,7 @@ export default async function App({
       </div>
       <div className="bg-gray-100 min-h-screen">
         <main className="sm:block flex flex-col mx-auto px-10 pt-4">
-          <NavBar mode="light" />
+          <NavBar showDashboardButton={false} />
           <div className="mt-10">
             <div className="p-5 bg-white rounded-lg shadow-xs">
               <CreateApiForm disabled={disableCreate} />
@@ -57,7 +48,7 @@ export default async function App({
             <div className="flex flex-row space-x-8 pt-8">
               <div>
                 <UserSheetsContainer>
-                  {userSheets.map((sheet) => (
+                  {sheets.map((sheet) => (
                     <ApiCard key={sheet.sheet_id} apiData={sheet} />
                   ))}
                   {!userData?.premium && userData?.api_count == 2 && (

@@ -16,8 +16,7 @@ const sendCreateRequest = async (name: string, invitees: string[]) => {
   });
 
   if (res.status !== 200) {
-    console.log(res.statusText);
-    throw new Error(`Failed to delete API. ${res.statusText}`);
+    throw new Error(`Failed to create org. ${res.statusText}`);
   }
   const data = await res.json();
   return data.id;

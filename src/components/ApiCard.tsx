@@ -14,7 +14,7 @@ export interface ApiCardProps {
 }
 
 export const ApiCard = ({ apiData }: ApiCardProps) => {
-  const { api_name, sheet_id, spreadsheet_name } = apiData;
+  const { api_name_formatted, api_name, sheet_id, spreadsheet_name } = apiData;
   const params = useParams();
   const path = usePathname();
   const selected = params.api === api_name;
@@ -31,7 +31,7 @@ export const ApiCard = ({ apiData }: ApiCardProps) => {
         <div className="flex items-center justify-between">
           <h5 className={`text-md text-black`}>{spreadsheet_name}</h5>
           <p className={`text-md text-gray-500 ${patrick.className} pb-1`}>
-            /api/{api_name}
+            /api/{api_name_formatted}
           </p>
         </div>
         <p className={`text-sm ${patrick.className} text-slate-400`}>

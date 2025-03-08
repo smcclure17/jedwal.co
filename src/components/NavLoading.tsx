@@ -13,7 +13,8 @@ const patrick = Patrick_Hand({
   subsets: ["latin"],
 });
 
-export const NavLoading = async () => {
+export const NavBarNoUser = async ({ showSignIn }: { showSignIn: boolean }) => {
+  console.log(showSignIn);
   return (
     <nav className="flex justify-between items-center">
       <Link href="/">
@@ -38,6 +39,16 @@ export const NavLoading = async () => {
           </div>
         </div>
       </Link>
+      {showSignIn && (
+        <div className="space-x-2">
+          <Link
+            href={`${config.apiUrl}/login`}
+            className={`text-sm font-medium text-gray-500 hover:text-gray-400 transition ease-in-out duration-200`}
+          >
+            Sign In
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };

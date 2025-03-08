@@ -11,15 +11,14 @@ const patrick = Patrick_Hand({
 export interface FirstApiSplashProps {}
 
 export const FirstApiSplash = async ({}: FirstApiSplashProps) => {
-  // TODO: userData should never be null due to parent component filtering/handling.
-  // But not sure what to do about that here.
-  const { userData } = await getUserData();
+  const userResponse = await getUserData();
+  if (userResponse.status !== "logged_in") return <>Something went wrong!</>;
 
   return (
     <div className="flex margin-auto mt-24 rounded-lg w-fit ">
       <div className="flex flex-col">
         <h1 className={`${patrick.className} text-4xl text-[#005430]`}>
-          Welcome to Jedwal, {userData?.name}!
+          Welcome to Jedwal, {userResponse.data.name}!
         </h1>
         <p>
           Jedwal takes your Google Sheets and turns them into

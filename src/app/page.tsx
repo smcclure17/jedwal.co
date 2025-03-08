@@ -5,11 +5,10 @@ import { HeroButton } from "@/components/HeroButton";
 import { HeroText } from "@/components/HeroText";
 import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
-import { NavLoading } from "@/components/NavLoading";
+import { NavBarNoUser } from "@/components/NavLoading";
 import { Metadata } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
-
 
 export const metadata: Metadata = {
   title: "Jedwal | REST APIs from Google Sheets",
@@ -66,7 +65,7 @@ export default function Home() {
     <main className="flex justify-center">
       <div className={`flex flex-col sm:w-3/4 pt-4 space-y-12`}>
         <div className="px-4 sm:px-0">
-          <Suspense fallback={<NavLoading />}>
+          <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
             <NavBar />
           </Suspense>
           <HeroText />

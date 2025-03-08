@@ -4,6 +4,8 @@ import { Patrick_Hand } from "next/font/google";
 import { getUserData } from "@/data/fetching";
 import config from "@/config";
 import { OrganizationForm } from "@/components/OrganizationForm";
+import { ErrorScreen } from "@/components/ErrorScreen";
+import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -11,13 +13,11 @@ const patrick = Patrick_Hand({
 });
 
 export default async function CreateOrg() {
-  const { userData } = await getUserData();
+  const userResult = await getUserData();
+  if (userResult.status === "logged_out") return <NotLoggedInScreen />;
+  if (userResult.status === "error") return <ErrorScreen />;
 
-  if (userData === null) {
-    return <a href={`${config.apiUrl}/login`}>login</a>;
-  }
-
-  if (userData.premium === false) {
+  if (userResult.data.premium === false) {
     return (
       <main className="flex justify-center">
         <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>

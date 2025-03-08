@@ -1,5 +1,15 @@
 import config from "@/config";
-import { cookies } from "next/headers";
+import { AuthResult, withAuth, createAuthFetcher } from "./auth";
+
+export interface UserDataWithOrgs {
+  userData: UserData;
+  orgs: any[];
+}
+
+export interface UserDataWithSheets {
+  userData: UserData;
+  sheets: ApiData[];
+}
 
 export interface UserData {
   id: string;
@@ -11,6 +21,7 @@ export interface UserData {
 
 export interface ApiData {
   api_name: string;
+  api_name_formatted: string; // user/api-name not user_api-name
   sheet_id: string;
   cdn_ttl: number;
   worksheets: string[];
@@ -18,170 +29,81 @@ export interface ApiData {
   frozen: boolean;
 }
 
-export type UserStatus = "logged_in" | "logged_out" | "loading" | "error";
-
-export interface DataOrError<T> {
-  data?: T;
-  error?: Error;
-}
-
 export const getUserSheets = async () => {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-
-  const cookieHeader = allCookies
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join("; ");
-
-  const res = await fetch(`${config.apiUrl}/get-user-sheets`, {
-    headers: {
-      Cookie: cookieHeader,
-    },
-  });
-
-  if (res.status === 401) return null;
-  if (res.status !== 200)
-    throw new Error(`Failed to fetch user sheets. Error: ${res.statusText}`);
-
-  const data = await res.json();
-  return data as ApiData[];
+  return withAuth(createAuthFetcher<ApiData[]>(`/get-user-sheets`));
 };
 
-export const getApiData = async (apiName: string | null) => {
-  if (!apiName) return null;
-
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-
-  const cookieHeader = allCookies
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join("; ");
-
-  const res = await fetch(`${config.apiUrl}/get-api-info?name=${apiName}`, {
-    headers: {
-      Cookie: cookieHeader,
-    },
-  });
-
-  if (res.status === 404) return null;
-  if (res.status !== 200) throw new Error("Failed to fetch API data");
-
-  const data = await res.json();
-  return data as ApiData;
-};
-
-export async function getUserData(): Promise<{
-  userData: UserData | null;
-  status: UserStatus;
-}> {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-
-  const cookieHeader = allCookies
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join("; ");
-
-  const res = await fetch(`${config.apiUrl}/get-user-data`, {
-    headers: {
-      Cookie: cookieHeader,
-    },
-  });
-
-  if (res.status === 404) return { userData: null, status: "error" };
-  if (res.status === 401) return { userData: null, status: "logged_out" };
-  if (res.status !== 200) throw new Error("Failed to fetch user data");
-
-  const userData = (await res.json()) as UserData;
-  return { userData, status: userData === null ? "logged_out" : "logged_in" };
+export async function getUserData(): Promise<AuthResult<UserData>> {
+  return withAuth(createAuthFetcher<UserData>("/get-user-data"));
 }
+
+export async function getUserDataWithOrgs(): Promise<
+  AuthResult<UserDataWithOrgs>
+> {
+  const [user, orgs] = await Promise.all([getUserData(), getUserOrgs()]);
+
+  if (user.status === "error" || orgs.status === "error") {
+    const errors = [user, orgs]
+      .filter(
+        (result): result is { status: "error"; error: string } =>
+          result.status === "error"
+      )
+      .map((result) => result.error);
+    return { status: "error", error: errors.join(" ") };
+  }
+
+  if (user.status === "logged_out" || orgs.status === "logged_out") {
+    return { status: "logged_out", data: null };
+  }
+
+  return {
+    status: "logged_in",
+    data: { userData: user.data, orgs: orgs.data },
+  };
+}
+
+export const getOrgSheets = async (orgId: string) => {
+  return withAuth(createAuthFetcher<any>(`/get-organization-sheets/${orgId}`));
+};
+
+export const getUserOrgs = async () => {
+  return withAuth(createAuthFetcher<any[]>("/organizations"));
+};
 
 export async function getSheetAnalytics(apiName: string) {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-
-  const cookieHeader = allCookies
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join("; ");
-
   const startTime = new Date();
   const thirtyDaysAgo = new Date(startTime);
   thirtyDaysAgo.setDate(startTime.getDate() - 30);
   const dateParam = thirtyDaysAgo.toISOString();
 
-  const res = await fetch(
-    `${config.apiUrl}/get-api-invocations?api_name=${apiName}&start_time=${dateParam}`,
-    {
-      headers: {
-        Cookie: cookieHeader,
-      },
-    }
+  return withAuth(
+    createAuthFetcher<any>(
+      `/get-api-invocations?api_name=${apiName}&start_time=${dateParam}`
+    )
   );
-
-  if (res.status === 404) return null;
-  if (res.status !== 200) throw new Error("Failed to fetch API data");
-
-  const data = await res.json();
-  return data as any;
 }
 
-export async function getOrgData(orgId: string) {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
+export async function getUserDataWithSheets(): Promise<
+  AuthResult<UserDataWithSheets>
+> {
+  const [user, sheets] = await Promise.all([getUserData(), getUserSheets()]);
 
-  const cookieHeader = allCookies
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join("; ");
+  if (user.status === "error" || sheets.status === "error") {
+    const errors = [user, sheets]
+      .filter(
+        (result): result is { status: "error"; error: string } =>
+          result.status === "error"
+      )
+      .map((result) => result.error);
+    return { status: "error", error: errors.join(" ") };
+  }
 
-  const res = await fetch(`${config.apiUrl}/organization/${orgId}`, {
-    headers: {
-      Cookie: cookieHeader,
-    },
-  });
+  if (user.status === "logged_out" || sheets.status === "logged_out") {
+    return { status: "logged_out", data: null };
+  }
 
-  if (res.status === 401) return null;
-  if (res.status !== 200) throw new Error("Failed to fetch user data");
-
-  return res.json();
+  return {
+    status: "logged_in",
+    data: { userData: user.data, sheets: sheets.data },
+  };
 }
-
-export const getOrgSheets = async (orgId: string) => {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-
-  const cookieHeader = allCookies
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join("; ");
-
-  const res = await fetch(`${config.apiUrl}/get-organization-sheets/${orgId}`, {
-    headers: {
-      Cookie: cookieHeader,
-    },
-  });
-
-  if (res.status === 401) return null;
-  if (res.status !== 200)
-    throw new Error(`Failed to fetch user sheets. Error: ${res.statusText}`);
-
-  return res.json();
-};
-
-export const getUserOrgs = async (): Promise<any[] | null> => {
-  const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll();
-
-  const cookieHeader = allCookies
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join("; ");
-
-  const res = await fetch(`${config.apiUrl}/organizations`, {
-    headers: {
-      Cookie: cookieHeader,
-    },
-  });
-
-  if (res.status === 401) return null;
-  if (res.status !== 200)
-    throw new Error(`Failed to fetch user orgs. Error: ${res.statusText}`);
-
-  return res.json();
-};

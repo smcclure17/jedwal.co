@@ -37,7 +37,7 @@ export default async function App({
               <div>
                 <UserSheetsContainer>
                   {orgSheets.data.map((sheet: any) => (
-                    <ApiCard key={sheet.sheet_id} apiData={sheet} />
+                    <ApiCard key={sheet.sheet_id} apiData={sheet} orgId={org} />
                   ))}
                 </UserSheetsContainer>
               </div>

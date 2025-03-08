@@ -10,14 +10,7 @@ import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { getUserDataWithSheets } from "@/data/fetching";
 import React from "react";
 
-// TODO: This should maybe just be a part of the page?
-export default async function App({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ org: string }>;
-}) {
+export default async function App({ children }: { children: React.ReactNode }) {
   const userWithOrgs = await getUserDataWithSheets();
   if (userWithOrgs.status === "logged_out") return <NotLoggedInScreen />;
   if (userWithOrgs.status === "error") return <ErrorScreen />;

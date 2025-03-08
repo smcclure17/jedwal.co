@@ -1,8 +1,9 @@
 "use client";
+import config from "@/config";
 import { ApiData } from "@/data/fetching";
 import { Patrick_Hand } from "next/font/google";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -11,16 +12,18 @@ const patrick = Patrick_Hand({
 
 export interface ApiCardProps {
   apiData: ApiData;
+  orgId?: string; // present if we're on the org dashboard
 }
 
-export const ApiCard = ({ apiData }: ApiCardProps) => {
+export const ApiCard = ({ apiData, orgId }: ApiCardProps) => {
   const { api_name_formatted, api_name, sheet_id, spreadsheet_name } = apiData;
   const params = useParams();
-  const path = usePathname();
+  const urlMap = orgId !== undefined ? `/org/${orgId}` : "/user";
+
   const selected = params.api === api_name;
   return (
     <Link
-      href={`${path}/${apiData.api_name}`}
+      href={`${config.dashUrl}/${urlMap}/${apiData.api_name}`}
       className={`px-2 bg-white py-1 rounded-lg shadow-sm ${
         selected
           ? "border border-green-800 border-1.5"

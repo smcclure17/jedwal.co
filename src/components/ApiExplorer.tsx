@@ -61,7 +61,7 @@ export const ApiExplorer = async ({ apiName }: ApiExplorerProps) => {
       <div>
         <h3 className={`${patrick.className} text-xl`}>Analytics</h3>
         <Suspense fallback={<>loading...</>}>
-          <AnalyticsPreview apiName={apiName} />
+          <AnalyticsPreview sheetApiId={data.uuid} />
         </Suspense>
       </div>
       <div>
@@ -117,7 +117,7 @@ export const OrganizationsApiExplorer = async ({
       <div>
         <h3 className={`${patrick.className} text-xl`}>Analytics</h3>
         <Suspense fallback={<>loading...</>}>
-          <AnalyticsPreview apiName={apiName} />
+          <AnalyticsPreview sheetApiId={data.uuid} />
         </Suspense>
       </div>
       <div>

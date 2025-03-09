@@ -21,6 +21,7 @@ export interface UserData {
 
 export interface ApiData {
   api_name: string;
+  uuid: string;
   api_name_formatted: string; // user/api-name not user_api-name
   sheet_id: string;
   cdn_ttl: number;
@@ -78,7 +79,7 @@ export async function getSheetAnalytics(apiName: string) {
 
   return withAuth(
     createAuthFetcher<any>(
-      `/get-api-invocations?api_name=${apiName}&start_time=${dateParam}`
+      `/get-api-invocations?sheet_api_id=${apiName}&start_time=${dateParam}`
     )
   );
 }

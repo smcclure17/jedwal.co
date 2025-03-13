@@ -1,4 +1,5 @@
 "use client";
+import config from "@/config";
 import { Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 
@@ -7,12 +8,14 @@ const patrick = Patrick_Hand({
   weight: "400",
 });
 
-export interface PremiumApiCardProps {}
+export interface PremiumApiCardProps {
+  email: string;
+}
 
-export const PremiumApiCard = ({}: PremiumApiCardProps) => {
+export const PremiumApiCard = ({ email }: PremiumApiCardProps) => {
   return (
     <Link
-      href="#"
+      href={`https://buy.stripe.com/${config.stripeProductId}?prefilled_email=${email}`}
       target="_blank"
       className={`px-2 bg-green-100 rounded-md py-1 relative overflow-hidden bg-gradient-to-br hover:opacity-90 from-[#005430] to-[#57A773] transition ease-in-out`}
     >

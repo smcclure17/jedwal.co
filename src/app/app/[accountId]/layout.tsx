@@ -60,12 +60,12 @@ export default async function App({
                 <UserSheetsContainer>
                   {sheets.map((sheet: any) => (
                     <ApiCard
-                      key={sheet.sheet_id}
+                      key={sheet.sheet_api_name}
                       apiData={sheet}
                       accountId={accountId}
                     />
                   ))}
-                  {disableCreate && <PremiumApiCard />}
+                  {disableCreate && <PremiumApiCard email={data.email} />}
                 </UserSheetsContainer>
               </div>
               {children}

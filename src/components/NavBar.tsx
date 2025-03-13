@@ -33,7 +33,6 @@ const DashBoardButton = () => {
 
 export const NavBar = async ({ showDashboardButton }: NavBarProps) => {
   const userData = await getUserData();
-  console.log(userData)
   if (userData.status !== "logged_in") {
     return <NavBarNoUser showSignIn={userData.status === "logged_out"} />;
   }
@@ -64,10 +63,10 @@ export const NavBar = async ({ showDashboardButton }: NavBarProps) => {
         </div>
       </Link>
       <div className="space-x-2">
-        {showDashboardButton && <DashBoardButton />}
         {data.account_status === "free" && (
           <GetPremiumLink email={data.email} />
         )}
+        {showDashboardButton && <DashBoardButton />}
         <UserMenu orgs={data.orgs} user={data} />
       </div>
     </nav>

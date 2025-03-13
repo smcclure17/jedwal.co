@@ -66,7 +66,7 @@ export default function Home() {
       <div className={`flex flex-col sm:w-3/4 pt-4 space-y-12`}>
         <div className="px-4 sm:px-0">
           <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
-            <NavBar />
+            <NavBar showDashboardButton/>
           </Suspense>
           <HeroText />
           <Suspense

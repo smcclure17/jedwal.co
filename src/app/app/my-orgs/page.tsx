@@ -1,7 +1,7 @@
 import { NavBar } from "@/components/NavBar";
 
 import { Patrick_Hand } from "next/font/google";
-import { getUserDataWithOrgs } from "@/data/fetching";
+import { getUserData } from "@/data/fetching";
 import config from "@/config";
 import { UserOrgItem } from "@/components/UserOrgItem";
 import Link from "next/link";
@@ -14,10 +14,11 @@ const patrick = Patrick_Hand({
 });
 
 export default async function CreateOrg() {
-  const userWithOrgs = await getUserDataWithOrgs();
+  const userWithOrgs = await getUserData();
   if (userWithOrgs.status === "logged_out") return <NotLoggedInScreen />;
   if (userWithOrgs.status === "error") return <ErrorScreen />;
-  const { orgs, userData } = userWithOrgs.data;
+  const { data } = userWithOrgs;
+  const { orgs } = data;
 
   return (
     <main className="flex justify-center">
@@ -41,16 +42,16 @@ export default async function CreateOrg() {
                 </Link>
               </div>
             )}
-            {orgs.map((org) => {
+            {orgs.map((org: any) => {
               return (
                 // TODO: any "admin" should be able to delete an org. But
                 // getUserOrgs doesn't tell us if a user is admin. We can
                 // check if the user created the org. So, for now, only the
                 // creator can delete the org.
                 <UserOrgItem
-                  key={org.id}
+                  key={org.account_id}
                   org={org}
-                  deletable={userData.id === org.created_by}
+                  deletable={data.id === org.created_by}
                 />
               );
             })}

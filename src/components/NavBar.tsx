@@ -1,10 +1,4 @@
-import {
-  getUserData,
-  getUserDataWithOrgs,
-  getUserOrgs,
-  UserData,
-} from "@/data/fetching";
-import config from "../config";
+import { getUserData } from "@/data/fetching";
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 import { GetPremiumLink } from "./GetPremiumLink";
@@ -38,12 +32,13 @@ const DashBoardButton = () => {
 };
 
 export const NavBar = async ({ showDashboardButton }: NavBarProps) => {
-  const userWithOrgs = await getUserDataWithOrgs();
-  if (userWithOrgs.status !== "logged_in") {
-    return <NavBarNoUser showSignIn={userWithOrgs.status === "logged_out"} />;
+  const userData = await getUserData();
+  console.log(userData)
+  if (userData.status !== "logged_in") {
+    return <NavBarNoUser showSignIn={userData.status === "logged_out"} />;
   }
 
-  const { userData, orgs } = userWithOrgs.data;
+  const { data } = userData;
   return (
     <nav className="flex justify-between">
       <Link href="/">
@@ -70,8 +65,10 @@ export const NavBar = async ({ showDashboardButton }: NavBarProps) => {
       </Link>
       <div className="space-x-2">
         {showDashboardButton && <DashBoardButton />}
-        {!userData.premium && <GetPremiumLink email={userData.email} />}
-        <UserMenu orgs={orgs} user={userData} />
+        {data.account_status === "free" && (
+          <GetPremiumLink email={data.email} />
+        )}
+        <UserMenu orgs={data.orgs} user={data} />
       </div>
     </nav>
   );

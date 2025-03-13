@@ -24,12 +24,12 @@ export const UserOrgItem = ({
   const [inviteModalOpen, setInviteModalOpen] = useState(false);
   const handleDeleteOrg = () => {
     const isConfirmed = confirm(
-      `Are you sure you want to delete org ${org.name} (${org.id})? This action cannot be undone.`
+      `Are you sure you want to delete org ${org.display_name} (${org.account_id})? This action cannot be undone.`
     );
 
     if (isConfirmed) {
       setIsDeleting(true);
-      deleteOrg(org.id)
+      deleteOrg(org.account_id)
         .then(() => {
           window.location.href = `${config.dashUrl}/my-orgs`;
         })
@@ -45,7 +45,7 @@ export const UserOrgItem = ({
     <div className="rounded-lg border">
       <div className="px-2 my-2 flex items-center justify-between">
         <div className="flex flex-col">
-          <span className="text-xl">{org.name}</span>
+          <span className="text-xl">{org.display_name}</span>
           <span className="text-sm text-gray-600">{org.id}</span>
           <span className="text-sm text-gray-500">
             <span className="italic">Created on </span>

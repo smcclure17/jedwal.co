@@ -27,7 +27,7 @@ export const CreateOrgSuccessScreen = ({ orgId }: UploadSuccessScreenProps) => {
         Your organization has been created.
       </p>
       <a
-        href={`${config.dashUrl}/org/${orgId}`}
+        href={`${config.dashUrl}/${orgId}`}
         className="mt-2 text-md text-[#005430] hover:underline"
       >
         Take me there!

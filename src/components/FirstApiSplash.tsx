@@ -8,9 +8,11 @@ const patrick = Patrick_Hand({
   subsets: ["latin"],
 });
 
-export interface FirstApiSplashProps {}
+export interface FirstApiSplashProps {
+  accountId: string;
+}
 
-export const FirstApiSplash = async ({}: FirstApiSplashProps) => {
+export const FirstApiSplash = async ({ accountId }: FirstApiSplashProps) => {
   const userResponse = await getUserData();
   if (userResponse.status !== "logged_in") return <>Something went wrong!</>;
 
@@ -18,7 +20,7 @@ export const FirstApiSplash = async ({}: FirstApiSplashProps) => {
     <div className="flex margin-auto mt-24 rounded-lg w-fit ">
       <div className="flex flex-col">
         <h1 className={`${patrick.className} text-4xl text-[#005430]`}>
-          Welcome to Jedwal, {userResponse.data.name}!
+          Welcome to Jedwal, {userResponse.data.display_name}!
         </h1>
         <p>
           Jedwal takes your Google Sheets and turns them into
@@ -52,7 +54,7 @@ export const FirstApiSplash = async ({}: FirstApiSplashProps) => {
           <li>
             <div className="flex flex-col space-y-1.5">
               <span>Copy the Google Sheet URL and create your API</span>
-              <CreateApiForm label={false} />
+              <CreateApiForm label={false} accountId={accountId} />
               <span className="max-w-96 text-xs text-gray-600">
                 Important: Once an API is created, the data in your Google Sheet
                 becomes publicly accessible.{" "}

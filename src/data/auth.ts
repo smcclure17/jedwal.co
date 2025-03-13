@@ -33,9 +33,12 @@ export async function withAuth<T>(
     const data = await fetcher();
     return { status: "logged_in", data };
   } catch (error) {
+    console.log("ERROR", error);
     // Check if this is an HTTP 401 error
     if (error instanceof HttpError && error.statusCode === 401) {
       return { status: "logged_out", data: null };
+    } else if (error instanceof HttpError && error.statusCode === 403) {
+      return { status: "error", error: "Not authorized for this account" };
     }
 
     console.error("Auth error:", error);
@@ -68,11 +71,13 @@ export function createAuthFetcher<T>(apiRoute: string) {
       });
 
       if (res.status === 401) throw new HttpError("Not authenticated", 401);
+      if (res.status === 403) throw new HttpError("Not Authorized", 403);
       if (res.status === 404) throw new Error("Resource not found");
       if (res.status !== 200) throw new Error(`HTTP Error: ${res.status}`);
 
       return (await res.json()) as T;
     } catch (error) {
+      if (error instanceof HttpError) throw error;
       throw new Error(`Unknown Error: ${error}`);
     }
   };

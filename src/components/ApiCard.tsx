@@ -12,18 +12,17 @@ const patrick = Patrick_Hand({
 
 export interface ApiCardProps {
   apiData: ApiData;
-  orgId?: string; // present if we're on the org dashboard
+  accountId: string;
 }
 
-export const ApiCard = ({ apiData, orgId }: ApiCardProps) => {
-  const { api_name_formatted, api_name, sheet_id, spreadsheet_name } = apiData;
+export const ApiCard = ({ apiData, accountId }: ApiCardProps) => {
+  const { sheet_api_name, google_sheet_id, spreadsheet_title } = apiData;
   const params = useParams();
-  const urlMap = orgId !== undefined ? `/org/${orgId}` : "/user";
 
-  const selected = params.api === api_name;
+  const selected = params.api === sheet_api_name;
   return (
     <Link
-      href={`${config.dashUrl}/${urlMap}/${apiData.api_name}`}
+      href={`${config.dashUrl}/${accountId}/${apiData.sheet_api_name}`}
       className={`px-2 bg-white py-1 rounded-lg shadow-sm ${
         selected
           ? "border border-green-800 border-1.5"
@@ -32,13 +31,13 @@ export const ApiCard = ({ apiData, orgId }: ApiCardProps) => {
     >
       <div className="flex flex-col overflow-hidden">
         <div className="flex items-center justify-between">
-          <h5 className={`text-md text-black`}>{spreadsheet_name}</h5>
+          <h5 className={`text-md text-black`}>{spreadsheet_title}</h5>
           <p className={`text-md text-gray-500 ${patrick.className} pb-1`}>
-            /api/{api_name_formatted}
+            /api/{sheet_api_name}
           </p>
         </div>
         <p className={`text-sm ${patrick.className} text-slate-400`}>
-          https://docs.google.com/spreadsheet/d/{sheet_id}
+          https://docs.google.com/spreadsheet/d/{google_sheet_id}
         </p>
       </div>
     </Link>

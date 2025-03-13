@@ -1,7 +1,6 @@
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { GoogleSignInButton } from "./GoogleSignInButton";
 
 const tenor = Patrick_Hand({
   weight: "400",

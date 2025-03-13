@@ -5,7 +5,6 @@ import config from "@/config";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Spinner } from "./Spinner";
-import { useParams, usePathname } from "next/navigation";
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -13,27 +12,24 @@ const patrick = Patrick_Hand({
 });
 
 export interface CreateApiFormProps {
+  accountId: string;
   label?: boolean;
   disabled?: boolean;
 }
 
 export const CreateApiForm = ({
+  accountId,
   label = true,
   disabled = false,
 }: CreateApiFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { org } = useParams();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     const form = e.currentTarget;
     const formData = new FormData(form);
-
-    // Create API for the organization if we're on the org dashboard
-    if (org !== undefined) {
-      formData.append("org_id", org as string);
-    }
+    formData.append("owner_id", accountId);
 
     try {
       const res = await fetch(`${config.apiUrl}/create-api`, {
@@ -56,10 +52,7 @@ export const CreateApiForm = ({
 
       const data = await res.json();
       // NOTE: can't use router.push here b/c we need to reload the whole layout.
-      const location = org
-        ? `${config.dashUrl}/org/${org}`
-        : `${config.dashUrl}/user`;
-      window.location.href = `${location}/${data.api_name}`;
+      window.location.href = `${config.dashUrl}/${accountId}/${data.api_name}`;
       form.reset();
       setIsLoading(false);
     } catch (error) {
@@ -85,7 +78,7 @@ export const CreateApiForm = ({
           <Input
             disabled={disabled}
             type="text"
-            name="sheet_id"
+            name="google_sheet_id"
             id="create-api"
             placeholder={
               disabled

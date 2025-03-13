@@ -14,8 +14,8 @@ export const UserMenu = ({ orgs, user }: UserMenuProps) => {
   const dropdownRef = useRef<any>(null);
   const menuRef = useRef(null);
 
-  const { org } = useParams();
-  const activeOrg = orgs.find((o) => o.id === org);
+  const { accountId } = useParams();
+  const activeOrg = orgs.find((o) => o.account_id === accountId);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -53,7 +53,7 @@ export const UserMenu = ({ orgs, user }: UserMenuProps) => {
         className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors focus:outline-none"
       >
         <span className="text-sm font-medium">
-          {user.name} {activeOrg ? `/ ${activeOrg.name}` : ""}
+          {user.display_name} {activeOrg ? `/ ${activeOrg.display_name}` : ""}
         </span>
         <DropDownArrow isOpen={isOpen} />
       </button>
@@ -67,7 +67,9 @@ export const UserMenu = ({ orgs, user }: UserMenuProps) => {
         >
           {/* User info header */}
           <div className="px-4 py-3 border-b border-gray-100">
-            <p className="text-sm font-medium text-gray-900">{user.name}</p>
+            <p className="text-sm font-medium text-gray-900">
+              {user.display_name}
+            </p>
             <p className="text-xs text-gray-500 truncate">{user.email}</p>
           </div>
 
@@ -78,15 +80,15 @@ export const UserMenu = ({ orgs, user }: UserMenuProps) => {
             </p>
 
             <OrganizationRow
-              url={`${config.dashUrl}/user`}
+              url={`${config.dashUrl}/${user.id}`}
               name="Personal"
               active={!activeOrg}
             />
             {orgs.map((org) => (
-              <div key={org.id}>
+              <div key={org.account_id}>
                 <OrganizationRow
-                  name={org.name}
-                  url={`${config.dashUrl}/org/${org.id}`}
+                  name={org.display_name}
+                  url={`${config.dashUrl}/${org.account_id}`}
                   active={activeOrg && org.id === activeOrg.id}
                 />
               </div>

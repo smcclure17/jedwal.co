@@ -14,16 +14,17 @@ const sourceCode = Source_Code_Pro({
 
 export interface CodeBlockProps {
   apiName: string;
+  accountId: string;
 }
 
 type Language = "python" | "javascript";
 
-export const CodeBlock = ({ apiName }: CodeBlockProps) => {
+export const CodeBlock = ({ accountId, apiName }: CodeBlockProps) => {
   const [copied, setCopied] = useState(false);
   const [language, setLanguage] = useState<Language>("python");
 
   const codeString = `import requests
-url = https://api.jedwal.co/api/${apiName}
+url = https://api.jedwal.co/api/${accountId}/${apiName}
 response = requests.get(url)
 response.raise_for_status()
 data = response.json()
@@ -31,7 +32,7 @@ data = response.json()
 `;
 
   const jsCodeString = `const fetchApi = async () => {
-  const url = https://api.jedwal.co/api/${apiName}
+  const url = https://api.jedwal.co/api/${accountId}/${apiName}
   const response = await fetch(url)
   if (!response.ok) throw new Error("HTTP Error!")
   const data = await response.json()

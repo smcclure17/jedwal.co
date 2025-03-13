@@ -7,25 +7,42 @@ import { NavBar } from "@/components/NavBar";
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
-import { getUserDataWithSheets } from "@/data/fetching";
+import { getUserData, getAccountApis } from "@/data/fetching";
 import React from "react";
 
-export default async function App({ children }: { children: React.ReactNode }) {
-  const userWithOrgs = await getUserDataWithSheets();
-  if (userWithOrgs.status === "logged_out") return <NotLoggedInScreen />;
-  if (userWithOrgs.status === "error") return <ErrorScreen />;
-  const { userData, sheets } = userWithOrgs.data;
+export default async function App({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ accountId: string }>;
+}) {
+  const { accountId } = await params;
 
-  if (sheets.length === 0) {
+  const [userResponse, apisResponse] = await Promise.all([
+    getUserData(accountId),
+    getAccountApis(accountId),
+  ]);
+
+  // TODO: dedup these somehow
+  if (userResponse.status === "logged_out") return <NotLoggedInScreen />;
+  if (userResponse.status === "error") return <ErrorScreen />;
+  if (apisResponse.status === "logged_out") return <NotLoggedInScreen />;
+  if (apisResponse.status === "error") return <ErrorScreen />;
+
+  const { data } = userResponse;
+  const { data: sheets } = apisResponse;
+
+  if (sheets.length == 0) {
     return (
       <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
         <NavBar showDashboardButton={false} />
-        <FirstApiSplash />
+        <FirstApiSplash accountId={accountId} />
       </main>
     );
   }
 
-  const disableCreate = !userData.premium && sheets.length >= 2;
+  const disableCreate = data.account_status === "free" && sheets.length >= 2;
   return (
     <>
       <div className="sm:hidden">
@@ -36,17 +53,19 @@ export default async function App({ children }: { children: React.ReactNode }) {
           <NavBar showDashboardButton={false} />
           <div className="mt-10">
             <div className="p-5 bg-white rounded-lg shadow-xs">
-              <CreateApiForm disabled={disableCreate} />
+              <CreateApiForm disabled={disableCreate} accountId={accountId} />
             </div>
             <div className="flex flex-row space-x-8 pt-8">
               <div>
                 <UserSheetsContainer>
-                  {sheets.map((sheet) => (
-                    <ApiCard key={sheet.sheet_id} apiData={sheet} />
+                  {sheets.map((sheet: any) => (
+                    <ApiCard
+                      key={sheet.sheet_id}
+                      apiData={sheet}
+                      accountId={accountId}
+                    />
                   ))}
-                  {!userData?.premium && userData?.api_count == 2 && (
-                    <PremiumApiCard />
-                  )}
+                  {disableCreate && <PremiumApiCard />}
                 </UserSheetsContainer>
               </div>
               {children}

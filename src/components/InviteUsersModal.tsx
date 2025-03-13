@@ -13,10 +13,10 @@ interface ModalProps {
 type SendingState = "sending" | "success" | "failed" | null;
 
 const submitEmails = async (org: any, emails: string[]) => {
-  const res = await fetch(`${config.apiUrl}/organization/invite/${org.id}`, {
+  const res = await fetch(`${config.apiUrl}/invite-users-to-organization`, {
     method: "POST",
     headers: { "Content-Type": "application/json;charset=UTF-8" },
-    body: JSON.stringify({ emails }),
+    body: JSON.stringify({ user_emails: emails, org_id: org.account_id }),
     credentials: "include",
   });
 

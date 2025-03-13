@@ -17,7 +17,7 @@ export default async function CreateOrg() {
   if (userResult.status === "logged_out") return <NotLoggedInScreen />;
   if (userResult.status === "error") return <ErrorScreen />;
 
-  if (userResult.data.premium === false) {
+  if (userResult.data.account_status === "free") {
     return (
       <main className="flex justify-center">
         <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>

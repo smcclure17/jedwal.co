@@ -25,11 +25,6 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const host = req.headers.get("host");
 
-  // Special case for app subdomain redirect
-  if (host === "app.jedwal.co" && url.pathname === "/") {
-    return NextResponse.redirect(new URL("/user", req.url));
-  }
-
   // Skip public files
   if (PUBLIC_FILE.test(url.pathname) || url.pathname.includes("_next")) return;
 

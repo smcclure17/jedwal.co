@@ -77,7 +77,7 @@ export const getUserOrgs = async () => {
   return withAuth(createAuthFetcher<any[]>("/organizations"));
 };
 
-export async function getSheetAnalytics(apiName: string) {
+export async function getSheetAnalytics(accountId: string, apiName: string) {
   const startTime = new Date();
   const thirtyDaysAgo = new Date(startTime);
   thirtyDaysAgo.setDate(startTime.getDate() - 30);
@@ -85,7 +85,7 @@ export async function getSheetAnalytics(apiName: string) {
 
   return withAuth(
     createAuthFetcher<any>(
-      `/get-api-invocations?sheet_api_id=${apiName}&start_time=${dateParam}`
+      `/get-api-invocations?sheet_api_name=${apiName}&account_id=${accountId}&start_time=${dateParam}`
     )
   );
 }

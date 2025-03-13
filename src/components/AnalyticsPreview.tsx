@@ -3,11 +3,15 @@ import { use } from "react";
 import { AnalyticsLineChart } from "./AnalyticsLineChart";
 
 export interface AnalyticsPreviewProps {
+  accountId: string;
   sheetApiId: string;
 }
 
-export const AnalyticsPreview = ({ sheetApiId }: AnalyticsPreviewProps) => {
-  const data = use(getSheetAnalytics(sheetApiId));
+export const AnalyticsPreview = ({
+  accountId,
+  sheetApiId,
+}: AnalyticsPreviewProps) => {
+  const data = use(getSheetAnalytics(accountId, sheetApiId));
   if (data.status !== "logged_in") return <></>;
   return (
     <div className="rounded-md border w-[510px] bg-gray-50 mt-2 text-gray-600">

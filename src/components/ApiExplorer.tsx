@@ -59,7 +59,10 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
       <div>
         <h3 className={`${patrick.className} text-xl`}>Analytics</h3>
         <Suspense fallback={<>loading...</>}>
-          <AnalyticsPreview sheetApiId={data.uuid} />
+          <AnalyticsPreview
+            sheetApiId={data.sheet_api_name}
+            accountId={accountId}
+          />
         </Suspense>
       </div>
       <div>

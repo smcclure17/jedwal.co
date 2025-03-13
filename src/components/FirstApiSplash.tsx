@@ -13,7 +13,7 @@ export interface FirstApiSplashProps {
 }
 
 export const FirstApiSplash = async ({ accountId }: FirstApiSplashProps) => {
-  const userResponse = await getUserData();
+  const userResponse = await getUserData(accountId);
   if (userResponse.status !== "logged_in") return <>Something went wrong!</>;
 
   return (

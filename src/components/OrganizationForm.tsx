@@ -76,7 +76,7 @@ export const OrganizationForm = () => {
           <button
             disabled={orgName === "" || uploadStatus === "loading"}
             type="submit"
-            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-[#005430] border border-transparent rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:opacity-50"
+            className="inline-flex items-center justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-[#005430] border border-transparent rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:opacity-50"
           >
             {uploadStatus === "loading" && <LoadingSpinner />}
             Create organization

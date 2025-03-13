@@ -27,7 +27,6 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
   if (apisResponse.status === "logged_out") return <NotLoggedInScreen />;
   const { data: sheets } = apisResponse;
 
-  console.log(sheets);
   const data = sheets.find((sheet: any) => sheet.sheet_api_name === apiName);
   if (!data) return <ApiExplorerNotFound />;
 

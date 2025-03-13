@@ -6,6 +6,7 @@ import config from "@/config";
 import { OrganizationForm } from "@/components/OrganizationForm";
 import { ErrorScreen } from "@/components/ErrorScreen";
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
+import { BetaDisclaimerBanner } from "@/components/BetaDisclaimerBanner";
 
 const patrick = Patrick_Hand({
   weight: "400",
@@ -20,9 +21,10 @@ export default async function CreateOrg() {
   if (userResult.data.account_status === "free") {
     return (
       <main className="flex justify-center">
-        <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>
+        <div className={`flex flex-col sm:w-3/4 pt-4`}>
           <NavBar />
-          <div className="max-w-2xl mt-24">
+          <div className="max-w-2xl mt-16">
+            <BetaDisclaimerBanner />
             <h1 className={`${patrick.className} text-4xl text-gray-500`}>
               Sorry, you must have premium to create an organization :(
             </h1>
@@ -34,9 +36,10 @@ export default async function CreateOrg() {
 
   return (
     <main className="flex justify-center">
-      <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>
+      <div className={`flex flex-col sm:w-3/4 pt-4`}>
         <NavBar />
-        <div className="max-w-2xl mt-24">
+        <div className="max-w-2xl mt-16">
+          <BetaDisclaimerBanner />
           <h1 className={`${patrick.className} text-4xl text-[#005430]`}>
             Create a new organization
           </h1>

@@ -1,4 +1,5 @@
 import { ApiCard } from "@/components/ApiCard";
+import { BetaDisclaimerBanner } from "@/components/BetaDisclaimerBanner";
 import { CreateApiForm } from "@/components/CreateApiForm";
 import { ErrorScreen } from "@/components/ErrorScreen";
 import { FirstApiSplash } from "@/components/FirstApiSplash";
@@ -43,6 +44,7 @@ export default async function App({
   }
 
   const disableCreate = data.account_status === "free" && sheets.length >= 2;
+  const isOrganization = data.type === "organization";
   return (
     <>
       <div className="sm:hidden">
@@ -52,6 +54,7 @@ export default async function App({
         <main className="sm:block flex flex-col mx-auto px-10 pt-4">
           <NavBar showDashboardButton={false} />
           <div className="mt-10">
+            {isOrganization && <BetaDisclaimerBanner />}
             <div className="p-5 bg-white rounded-lg shadow-xs">
               <CreateApiForm disabled={disableCreate} accountId={accountId} />
             </div>
@@ -65,7 +68,9 @@ export default async function App({
                       accountId={accountId}
                     />
                   ))}
-                  {disableCreate && <PremiumApiCard email={data.email} />}
+                  {disableCreate && !isOrganization && (
+                    <PremiumApiCard email={data.email} />
+                  )}
                 </UserSheetsContainer>
               </div>
               {children}

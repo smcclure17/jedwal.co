@@ -14,7 +14,6 @@ const patrick = Patrick_Hand({
 });
 
 export const NavBarNoUser = async ({ showSignIn }: { showSignIn: boolean }) => {
-  console.log(showSignIn);
   return (
     <nav className="flex justify-between items-center">
       <Link href="/">

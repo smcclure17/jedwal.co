@@ -66,7 +66,7 @@ export default function Home() {
       <div className={`flex flex-col sm:w-3/4 pt-4 space-y-12`}>
         <div className="px-4 sm:px-0">
           <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
-            <NavBar showDashboardButton/>
+            <NavBar showDashboardButton />
           </Suspense>
           <HeroText />
           <Suspense
@@ -85,13 +85,13 @@ export default function Home() {
             description="We scale as you grow, no need to worry about infrastructure."
           />
           <Card
-            title="Near-Realtime Data"
-            description="Choose how often to refresh your data, up to once a second"
+            title="Organizations"
+            badge="Beta!"
+            description="Collaborate by sharing APIs across your teams."
           />
           <Card
             title="Analytics"
-            badge="Beta!"
-            description="Get insights into your API usage and data."
+            description="Get insight into your API usage and traffic."
           />
         </CardHolder>
         <div className="flex flex-row justify-between mt-16">

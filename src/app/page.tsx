@@ -3,6 +3,7 @@ import { CardHolder } from "@/components/CardHolder";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { HeroButton } from "@/components/HeroButton";
 import { HeroText } from "@/components/HeroText";
+import { HomepageAlertWidget } from "@/components/HomepageAlertWidget";
 import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
 import { NavBarNoUser } from "@/components/NavLoading";
@@ -68,7 +69,11 @@ export default function Home() {
           <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
             <NavBar showDashboardButton />
           </Suspense>
-          <HeroText />
+          <div className="sm:mt-24 mt-16">
+            <HomepageAlertWidget />
+
+            <HeroText />
+          </div>
           <Suspense
             fallback={
               <div className="mt-4">

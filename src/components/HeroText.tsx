@@ -6,7 +6,7 @@ const gradientText = `bg-gradient-to-r from-[#005430] to-[#8C8A8A] bg-clip-text 
 export const HeroText = () => {
   return (
     <>
-      <div className="flex flex-col sm:mt-24 mt-16 md:w-[550px]">
+      <div className="flex flex-col md:w-[550px]">
         <div className="flex flex-row">
           <h1
             className={`font-bold pb-3 ${inter.className} ${gradientText} text-5xl sm:text-7xl`}

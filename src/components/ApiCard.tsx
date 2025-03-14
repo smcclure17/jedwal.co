@@ -33,7 +33,7 @@ export const ApiCard = ({ apiData, accountId }: ApiCardProps) => {
         <div className="flex items-center justify-between">
           <h5 className={`text-md text-black`}>{spreadsheet_title}</h5>
           <p className={`text-md text-gray-500 ${patrick.className} pb-1`}>
-            /api/{sheet_api_name}
+            /{sheet_api_name}
           </p>
         </div>
         <p className={`text-sm ${patrick.className} text-slate-400`}>

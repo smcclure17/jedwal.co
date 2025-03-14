@@ -89,3 +89,18 @@ export async function getSheetAnalytics(accountId: string, apiName: string) {
     )
   );
 }
+
+export async function getRoadmapItems() {
+  const fetcher = async () => {
+    try {
+      const res = await fetch(
+        "https://api.jedwal.co/api/117187395759203962885/energetic-flank?worksheet=Roadmap"
+      );
+      return res.json();
+    } catch {
+      throw new Error("Could not fetch roadmap items");
+    }
+  };
+
+  return withAuth(fetcher);
+}

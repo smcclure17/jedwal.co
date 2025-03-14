@@ -1,5 +1,33 @@
 import { RoadmapTimeline } from "@/components/RoadmapTimeline";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Release Notes and Roadmap | Jedwal",
+  description: "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
+  openGraph: {
+    title: "Release Notes and Roadmap | Jedwal",
+    description: "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
+    type: "article",
+    publishedTime: "2025-03-13T00:00:00Z",
+    authors: ["Sean McClure"],
+    tags: ["Updates", "Features", "Product", "Roadmap"],
+    images: [
+      {
+        url: "https://jedwal.co/og-image.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Jedwal - REST APIs from Google Sheets",
+      }
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Release Notes and Roadmap | Jedwal",
+    description: "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
+    images: ["https://jedwal.co/og-image.jpeg"],
+  },
+};
 
 const blogPost = {
   id: "1",

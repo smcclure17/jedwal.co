@@ -10,6 +10,32 @@ import { PremiumApiCard } from "@/components/PremiumApiCard";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { getUserData, getAccountApis } from "@/data/fetching";
 import React from "react";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { accountId: string };
+}): Promise<Metadata> {
+  try {
+    const { accountId } = params;
+    const userResponse = await getUserData(accountId);
+
+    if (userResponse.status === "logged_in" && userResponse.data) {
+      return {
+        title: `Jedwal — ${userResponse.data.display_name}`,
+      };
+    }
+
+    return {
+      title: "Jedwal Dashboard",
+    };
+  } catch (error) {
+    return {
+      title: "Jedwal Dashboard",
+    };
+  }
+}
 
 export default async function App({
   children,

@@ -15,10 +15,10 @@ import type { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: {
-  params: { accountId: string };
+  params: Promise<{ accountId: string }>;
 }): Promise<Metadata> {
   try {
-    const { accountId } = params;
+    const { accountId } = await params;
     const userResponse = await getUserData(accountId);
 
     if (userResponse.status === "logged_in" && userResponse.data) {

@@ -1,6 +1,6 @@
 import { Patrick_Hand } from "next/font/google";
 import { CodeBlock } from "./CodeBlock";
-import { getAccountApis } from "@/data/fetching";
+import { getAccountApis, getUserData } from "@/data/fetching";
 import { DeleteApiButton } from "./DeleteApiButton";
 import { ApiCopyLink } from "./ApiCopyLink";
 import Link from "next/link";
@@ -22,10 +22,16 @@ export interface ApiExplorerProps {
 }
 
 export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
-  const apisResponse = await getAccountApis(accountId);
+  const [apisResponse, userResponse] = await Promise.all([
+    getAccountApis(accountId),
+    getUserData(accountId),
+  ]);
   if (apisResponse.status === "error") return <ErrorScreen />;
   if (apisResponse.status === "logged_out") return <NotLoggedInScreen />;
+  if (userResponse.status === "error") return <ErrorScreen />; // TODO: dedup this somehow
+  if (userResponse.status === "logged_out") return <NotLoggedInScreen />;
   const { data: sheets } = apisResponse;
+  const { data: userData } = userResponse;
 
   const data = sheets.find((sheet: any) => sheet.sheet_api_name === apiName);
   if (!data) return <ApiExplorerNotFound />;
@@ -69,8 +75,8 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
         <CacheInput
           accountId={accountId}
           defaultTtl={data.cache_duration}
-          name={data.api_name}
-          isPremiumUser={true} // TODO get user data?
+          name={data.sheet_api_name}
+          isPremiumUser={userData.account_status === "premium"}
         />
       </div>
       <div className="pt-2">

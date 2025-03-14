@@ -24,14 +24,19 @@ const timeOptions = [
   { label: "12 hours", value: 43200, premiumOnly: false },
 ];
 
-export const postTtlUpdate = async (apiName: string, ttl: number) => {
-  const res = await fetch(`${config.apiUrl}/update-api-ttl`, {
+export const postTtlUpdate = async (
+  accountId: string,
+  apiName: string,
+  ttl: number
+) => {
+  const res = await fetch(`${config.apiUrl}/update-cache-duration`, {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json;charset=UTF-8" },
     body: JSON.stringify({
-      name: apiName,
-      cdn_ttl: ttl,
+      owner_id: accountId,
+      sheet_api_name: apiName,
+      cache_duration: ttl,
     }),
   });
 
@@ -40,12 +45,14 @@ export const postTtlUpdate = async (apiName: string, ttl: number) => {
 
 export interface CacheInputProps {
   defaultTtl: number;
+  accountId: string;
   name: string;
   isPremiumUser?: boolean;
 }
 
 export const CacheInput = ({
   defaultTtl,
+  accountId,
   name,
   isPremiumUser = false,
 }: CacheInputProps) => {
@@ -61,7 +68,7 @@ export const CacheInput = ({
 
     try {
       setTtl(newTtl);
-      await postTtlUpdate(name, newTtl);
+      await postTtlUpdate(accountId, name, newTtl);
       setSubmitStatus("success");
       setTimeout(() => setSubmitStatus("standby"), 3000); // reset
     } catch {

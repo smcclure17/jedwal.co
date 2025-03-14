@@ -67,7 +67,8 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
       <div>
         <h3 className={`${patrick.className} text-xl`}>Update Cadence</h3>
         <CacheInput
-          defaultTtl={data.cdn_ttl}
+          accountId={accountId}
+          defaultTtl={data.cache_duration}
           name={data.api_name}
           isPremiumUser={true} // TODO get user data?
         />

@@ -4,10 +4,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Release Notes and Roadmap | Jedwal",
-  description: "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
+  description:
+    "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
   openGraph: {
     title: "Release Notes and Roadmap | Jedwal",
-    description: "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
+    description:
+      "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
     type: "article",
     publishedTime: "2025-03-13T00:00:00Z",
     authors: ["Sean McClure"],
@@ -18,13 +20,14 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Jedwal - REST APIs from Google Sheets",
-      }
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Release Notes and Roadmap | Jedwal",
-    description: "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
+    description:
+      "Tracking our progress and upcoming features for Jedwal. See what we've delivered, what we're working on, and what's on our roadmap.",
     images: ["https://jedwal.co/og-image.jpeg"],
   },
 };
@@ -101,7 +104,6 @@ export default function RoadmapBlogPost() {
         <p className="mb-4">
           We have a lot to get done, but we're chipping away. Here's what we've
           delivered, what we're working on, and what to expect down the road.
-          Thanks for coming along for the ride!
         </p>
         <p className="mb-4">
           We love feedback--If you have any features you'd like to see, please{" "}
@@ -110,7 +112,7 @@ export default function RoadmapBlogPost() {
             target="_blank"
             href="https://docs.google.com/forms/d/e/1FAIpQLSf-XVMrOj9t6e-Tr4ECyR4jhob9nKlPP9inDbnf4uwxvd_Fsw/viewform"
           >
-            fill out our Google Form!
+            fill out our Google Form.
           </a>
         </p>
         <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#005430]">

@@ -70,8 +70,10 @@ export default function Home() {
             <NavBar showDashboardButton />
           </Suspense>
           <div className="sm:mt-24 mt-16">
-            <HomepageAlertWidget />
-
+            <HomepageAlertWidget
+              page="/blog/roadmap-and-release-notes"
+              text="New post: Roadmap and Release Notes"
+            />
             <HeroText />
           </div>
           <Suspense

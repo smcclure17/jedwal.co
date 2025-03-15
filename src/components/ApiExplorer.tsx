@@ -42,7 +42,7 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
         <h1 className="text-2xl font-medium">{data.spreadsheet_title}</h1>
         <h2 className="text-xl">/api/{data.sheet_api_name}</h2>
         <Link
-          href={`https://docs.google.com/spreadsheets/d/${data.sheet_id}`}
+          href={`https://docs.google.com/spreadsheets/d/${data.google_sheet_id}`}
           target="_blank"
           className="text-blue-500 text-sm hover:underline"
         >

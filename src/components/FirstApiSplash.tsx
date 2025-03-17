@@ -35,6 +35,11 @@ export const FirstApiSplash = async ({ accountId }: FirstApiSplashProps) => {
         </p>
         <ol className="list-decimal space-y-1 pl-4 pt-4">
           <li>
+            <div>
+              <CopySpreadsheetContentButton />
+            </div>
+          </li>
+          <li>
             <a
               href="https://sheets.new"
               target="_blank"
@@ -44,11 +49,6 @@ export const FirstApiSplash = async ({ accountId }: FirstApiSplashProps) => {
               <ArrowIcon />
               <GoogleSheetIcon />
             </a>
-          </li>
-          <li>
-            <div>
-              <CopySpreadsheetContentButton />
-            </div>
           </li>
           <li>Give your spreadsheet a name and paste the content into it</li>
           <li>

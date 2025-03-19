@@ -6,7 +6,7 @@ const gradientText = `bg-gradient-to-r from-[#005430] to-[#8C8A8A] bg-clip-text 
 export const HeroText = () => {
   return (
     <>
-      <div className="flex flex-col md:w-[550px]">
+      <div className="flex flex-col">
         <div className="flex flex-row">
           <h1
             className={`font-bold pb-3 ${inter.className} ${gradientText} text-5xl sm:text-7xl`}
@@ -14,8 +14,8 @@ export const HeroText = () => {
             Power your website with Google Sheets
           </h1>
         </div>
-        <h2 className="text-gray-600 sm:max-w-lg font-light text-md sm:text-2xl">
-          Jedwal turns Google Sheets into powerful REST APIs to make your development easy.
+        <h2 className="text-gray-600 font-light text-md sm:text-xl w-2/3 mx-auto">
+          Turn Google Sheets into JSON REST APIs instantly to save you time and money on development.
         </h2>
       </div>
     </>

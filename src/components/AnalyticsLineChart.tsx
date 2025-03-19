@@ -65,8 +65,8 @@ export const AnalyticsLineChart = ({ data }: AnalyticsLineChartProps) => {
   const [hoveredPoint, setHoveredPoint] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  const width = 500;
-  const height = 200;
+  const width = 585;
+  const height = 190;
   const margin = { top: 20, right: 20, bottom: 40, left: 30 };
 
   const xScale = scaleTime({

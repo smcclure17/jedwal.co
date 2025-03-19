@@ -14,7 +14,7 @@ export const AnalyticsPreview = ({
   const data = use(getSheetAnalytics(accountId, sheetApiId));
   if (data.status !== "logged_in") return <></>;
   return (
-    <div className="rounded-md border w-[510px] bg-gray-50 mt-2 text-gray-600">
+    <div className="rounded-md border w-[510px] bg-gray-50 mt-2 text-gray-600 w-full max-w-xl">
       <p className="px-4 py-2">API Traffic over the last 7 days</p>
       <AnalyticsLineChart data={data.data} />
     </div>

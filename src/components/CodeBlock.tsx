@@ -54,8 +54,8 @@ data = response.json()
   };
 
   return (
-    <>
-      <ul className="flex flex-wrap text-xs font-medium text-center text-gray-500 w-full pt-1">
+    <div>
+      <ul className="flex flex-wrap text-xs font-medium text-center text-gray-500 w-full">
         {["python", "javascript"].map((lang) => {
           return (
             <li className="me-2" key={lang}>
@@ -72,7 +72,7 @@ data = response.json()
           );
         })}
       </ul>
-      <div className="w-full max-w-lg">
+      <div className="w-full max-w-xl">
         <div className="mb-2 flex justify-between items-center"></div>
         <div className="relative bg-gray-50 border rounded-sm p-4 h-fit">
           <div className="overflow-scroll max-h-full">
@@ -135,6 +135,6 @@ data = response.json()
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

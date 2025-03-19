@@ -58,10 +58,6 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
         />
       </div>
       <div>
-        <h3 className={`${patrick.className} text-xl`}>Use in code</h3>
-        <CodeBlock apiName={data.sheet_api_name} accountId={accountId} />
-      </div>
-      <div>
         <h3 className={`${patrick.className} text-xl`}>Analytics</h3>
         <Suspense fallback={<>loading...</>}>
           <AnalyticsPreview
@@ -69,6 +65,10 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
             accountId={accountId}
           />
         </Suspense>
+      </div>
+      <div>
+        <h3 className={`${patrick.className} text-xl`}>Use in code</h3>
+        <CodeBlock apiName={data.sheet_api_name} accountId={accountId} />
       </div>
       <div>
         <h3 className={`${patrick.className} text-xl`}>Update Cadence</h3>

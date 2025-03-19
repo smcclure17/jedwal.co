@@ -54,7 +54,7 @@ export const CopyField = ({
           ))}
         </select>
       </form>
-      <div className={`w-full max-w-lg ${sourceCode.className}`}>
+      <div className={`w-full max-w-xl ${sourceCode.className}`}>
         <div className="relative">
           <label htmlFor="npm-install-copy-button" className="sr-only">
             Label
@@ -68,7 +68,7 @@ export const CopyField = ({
           />
           <button
             onClick={copyToClipboard}
-            className={`absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 hover:bg-gray-100 rounded-md p-2 inline-flex items-center justify-center ${
+            className={`bg-gray-50 absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 hover:bg-gray-100 rounded-md p-2 inline-flex items-center justify-center ${
               copied ? "bg-gray-100" : ""
             }`}
           >

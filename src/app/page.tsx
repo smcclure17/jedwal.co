@@ -8,8 +8,12 @@ import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
 import { NavBarNoUser } from "@/components/NavLoading";
 import { Metadata } from "next";
+import { Inter } from "next/font/google";
 import Image from "next/image";
 import { Suspense } from "react";
+
+const inter = Inter({ subsets: ["latin"], weight: "600" });
+
 
 export const metadata: Metadata = {
   title: "Jedwal | REST APIs from Google Sheets",
@@ -63,59 +67,64 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex justify-center">
-      <div className={`flex flex-col sm:w-3/4 pt-4 space-y-12`}>
-        <div className="px-4 sm:px-0">
+    <main className="flex justify-center bg-gradient-to-b from-white to-gray-50">
+      <div className="flex flex-col w-full max-w-7xl pt-4 space-y-20 px-4 lg:px-8">
+        <div>
           <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
             <NavBar showDashboardButton />
           </Suspense>
-          <div className="sm:mt-24 mt-16">
+          <div className="md:mt-24 mt-16 max-w-3xl mx-auto text-center">
             <HomepageAlertWidget
               page="/blog/roadmap-and-release-notes"
               text="New post: Roadmap and Release Notes"
             />
             <HeroText />
-          </div>
-          <Suspense
-            fallback={
-              <div className="mt-4">
-                <GoogleSignInButton />
+            <Suspense
+              fallback={
+                <div className="mt-4 inline-flex items-center">
+                  <GoogleSignInButton />
+                </div>
+              }
+            >
+              <div className="mt-4 inline-flex items-center">
+                <HeroButton />
               </div>
-            }
-          >
-            <HeroButton />
-          </Suspense>
+            </Suspense>
+          </div>
         </div>
-        <CardHolder>
-          <Card
-            title="Autoscaling"
-            description="We scale as you grow, no need to worry about infrastructure."
-          />
-          <Card
-            title="Organizations"
-            badge="Beta!"
-            description="Collaborate by sharing APIs across your teams."
-          />
-          <Card
-            title="Analytics"
-            description="Get insight into your API usage and traffic."
-          />
-        </CardHolder>
-        <div className="flex flex-row justify-between mt-16">
+
+        <section className="rounded-lg overflow-hidden shadow-md">
           <Image
-            src="/splash.png"
-            width={16}
-            height={9}
-            className="object-cover"
-            alt="demo"
-            sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-              objectFit: "contain",
-            }}
+            src="/demo-chrome.png"
+            width={1200}
+            height={675}
+            className="w-full object-cover"
+            alt="Jedwal dashboard preview"
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            priority
           />
-        </div>
+        </section>
+        
+        
+        <section className="py-2">
+          <h2 className={`text-5xl ${inter.className} text-medium text-center mb-10`}>Key Features</h2>
+          <CardHolder>
+            <Card
+              title="Autoscaling"
+              description="We scale as you grow, no need to worry about infrastructure."
+            />
+            <Card
+              title="Organizations"
+              badge="Beta!"
+              description="Collaborate by sharing APIs across your teams."
+            />
+            <Card
+              title="Analytics"
+              description="Get insight into your API usage and traffic."
+            />
+          </CardHolder>
+        </section>
+        
         <LiteFooter />
       </div>
     </main>

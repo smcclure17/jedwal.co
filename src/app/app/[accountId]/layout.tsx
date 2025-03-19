@@ -1,4 +1,4 @@
-import { ApiCard } from "@/components/ApiCard";
+import { ApiCard, FailureCard } from "@/components/ApiCard";
 import { BetaDisclaimerBanner } from "@/components/BetaDisclaimerBanner";
 import { CreateApiForm } from "@/components/CreateApiForm";
 import { ErrorScreen } from "@/components/ErrorScreen";
@@ -59,8 +59,10 @@ export default async function App({
 
   const { data } = userResponse;
   const { data: sheets } = apisResponse;
+  const { results, failures } = sheets;
+  console.log(results, failures);
 
-  if (sheets.length == 0) {
+  if (results.length == 0 && failures.length == 0) {
     return (
       <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
         <NavBar showDashboardButton={false} />
@@ -87,16 +89,21 @@ export default async function App({
             <div className="flex flex-row space-x-8 pt-8">
               <div>
                 <UserSheetsContainer>
-                  {sheets.map((sheet: any) => (
+                  {results.map((sheet: any) => (
                     <ApiCard
                       key={sheet.sheet_api_name}
                       apiData={sheet}
                       accountId={accountId}
                     />
                   ))}
-                  {disableCreate && !isOrganization && (
-                    <PremiumApiCard email={data.email} />
-                  )}
+                  {failures.map((failure: any) => (
+                    <FailureCard
+                      key={failure.sheet_api_name}
+                      google_sheet_id={failure.google_sheet_id}
+                      hint={failure.hint}
+                      sheet_api_name={failure.sheet_api_name}
+                    />
+                  ))}
                 </UserSheetsContainer>
               </div>
               {children}

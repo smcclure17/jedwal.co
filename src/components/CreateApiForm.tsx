@@ -39,9 +39,8 @@ export const CreateApiForm = ({
       });
 
       if (res.status === 415) {
-        throw new Error(
-          "File type not supported. Only Google Sheets are supported. Make sure your file is not an Excel File (xlsx)"
-        );
+        const message = await res.json()
+        throw new Error(message.detail);
       }
 
       if (!res.ok) {
@@ -57,7 +56,7 @@ export const CreateApiForm = ({
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      alert(`Failed to create API: ${error}`);
+      alert(`Failed to create API. ${error}`);
     }
   };
 

@@ -33,7 +33,7 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
   const { data: sheets } = apisResponse;
   const { data: userData } = userResponse;
 
-  const data = sheets.find((sheet: any) => sheet.sheet_api_name === apiName);
+  const data = sheets.results.find((sheet: any) => sheet.sheet_api_name === apiName);
   if (!data) return <ApiExplorerNotFound />;
 
   return (

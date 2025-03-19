@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="flex justify-center bg-gradient-to-b from-white to-gray-50">
-      <div className="flex flex-col w-full max-w-7xl pt-4 space-y-16 px-4 lg:px-8">
+      <div className="flex flex-col w-full max-w-7xl pt-4 space-y-12 px-4 lg:px-8">
         <div>
           <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
             <NavBar showDashboardButton />

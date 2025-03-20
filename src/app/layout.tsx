@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Suspense } from "react";
+import { NavBarNoUser } from "@/components/NavLoading";
+import { NavBar } from "@/components/NavBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

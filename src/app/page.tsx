@@ -14,7 +14,6 @@ import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"], weight: "600" });
 
-
 export const metadata: Metadata = {
   title: "Jedwal | REST APIs from Google Sheets",
   description:
@@ -81,12 +80,12 @@ export default function Home() {
             <HeroText />
             <Suspense
               fallback={
-                <div className="mt-4 inline-flex items-center">
+                <div className="mt-4 flex justify-center w-full">
                   <GoogleSignInButton />
                 </div>
               }
             >
-              <div className="mt-4 inline-flex items-center">
+              <div className="mt-4 w-full">
                 <HeroButton />
               </div>
             </Suspense>
@@ -106,8 +105,15 @@ export default function Home() {
         </section>
         
         
+        
+
+        
         <section className="py-2">
-          <h2 className={`text-5xl ${inter.className} text-medium text-center mb-10`}>Key Features</h2>
+          <h2
+            className={`text-5xl ${inter.className} text-medium text-center mb-10`}
+          >
+            Key Features
+          </h2>
           <CardHolder>
             <Card
               title="Autoscaling"
@@ -124,7 +130,7 @@ export default function Home() {
             />
           </CardHolder>
         </section>
-        
+
         <LiteFooter />
       </div>
     </main>

@@ -2,8 +2,8 @@ import Link from "next/link";
 import config from "@/config";
 
 export const GoogleSignInButton = () => (
-  <Link href={`${config.apiUrl}/login`}>
-    <button className="gsi-material-button" style={{ width: 20 }}>
+  <Link href={`${config.apiUrl}/login`} className="flex justify-center w-full mt-4">
+    <button className="gsi-material-button">
       <div className="gsi-material-button-state"></div>
       <div className="gsi-material-button-content-wrapper">
         <div className="gsi-material-button-icon">

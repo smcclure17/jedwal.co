@@ -8,7 +8,7 @@ export const HeroButton = async () => {
   const { status } = await getUserData();
 
   return (
-    <div className="flex flex-row space-x-4 mt-4 min-h-14">
+    <div className="flex justify-center w-full mt-4 min-h-14">
       {status === "logged_in" && <DashboardButton />}
       {status === "logged_out" && <GoogleSignInButton />}
       {status === "error" && <></>}

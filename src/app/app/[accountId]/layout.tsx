@@ -6,7 +6,6 @@ import { FirstApiSplash } from "@/components/FirstApiSplash";
 import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlaceholder";
 import { NavBar } from "@/components/NavBar";
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
-import { PremiumApiCard } from "@/components/PremiumApiCard";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { getUserData, getAccountApis } from "@/data/fetching";
 import React from "react";

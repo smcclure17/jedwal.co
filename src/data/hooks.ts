@@ -73,7 +73,7 @@ export function useUserSheets() {
   return useQuery({
     queryKey: ["userSheets"],
     queryFn: () => fetchWithAuth<ApiData[]>("/get-user-sheets"),
-    staleTime: 300 * 1000
+    staleTime: 300 * 1000,
   });
 }
 
@@ -86,7 +86,7 @@ export function useUserData(accountId?: string) {
   return useQuery({
     queryKey: ["userData", accountId],
     queryFn: () => fetchWithAuth<UserData>(`/get-account-data${query}`),
-    staleTime: 300 * 1000
+    staleTime: 300 * 1000,
   });
 }
 

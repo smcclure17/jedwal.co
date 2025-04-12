@@ -14,7 +14,7 @@ export interface UserData {
   id: string;
   display_name: string;
   email: string;
-  account_status: boolean;
+  account_status: string;
 }
 
 export interface ApiData {

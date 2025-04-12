@@ -5,6 +5,7 @@ import { GetPremiumLink } from "./GetPremiumLink";
 import Image from "next/image";
 import { UserMenu } from "./UserMenu";
 import { NavBarNoUser } from "./NavLoading";
+import { NavBarUserSection } from "./NavBarUserSection";
 
 const tenor = Bebas_Neue({
   weight: "400",
@@ -20,24 +21,12 @@ interface NavBarProps {
   showDashboardButton?: boolean;
 }
 
-const DashBoardButton = () => {
-  return (
-    <Link
-      href="https://app.jedwal.co"
-      className="text-gray-900 bg-white focus:outline-hidden hover:bg-gray-100 focus:ring-gray-100 font-medium rounded-full text-sm px-3 py-1 me-2 mb-2 border border-gray-300 transition ease-in-out duration-100"
-    >
-      Dashboard
-    </Link>
-  );
-};
-
-export const NavBar = async ({ showDashboardButton }: NavBarProps) => {
+export const NavBar = async ({ showDashboardButton = true }: NavBarProps) => {
   const userData = await getUserData();
   if (userData.status !== "logged_in") {
     return <NavBarNoUser showSignIn={userData.status === "logged_out"} />;
   }
 
-  const { data } = userData;
   return (
     <nav className="flex justify-between">
       <Link href="/">
@@ -63,11 +52,7 @@ export const NavBar = async ({ showDashboardButton }: NavBarProps) => {
         </div>
       </Link>
       <div className="space-x-2">
-        {data.account_status === "free" && (
-          <GetPremiumLink email={data.email} />
-        )}
-        {showDashboardButton && <DashBoardButton />}
-        <UserMenu orgs={data.orgs} user={data} />
+        <NavBarUserSection showDashboardButton={showDashboardButton}/>
       </div>
     </nav>
   );

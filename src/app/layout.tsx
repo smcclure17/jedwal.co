@@ -5,6 +5,17 @@ import "./globals.css";
 import { Suspense } from "react";
 import { NavBarNoUser } from "@/components/NavLoading";
 import { NavBar } from "@/components/NavBar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+
+export const queryClient = new QueryClient();
+
+export function QueryProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+}
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -165,8 +176,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <SpeedInsights />
+        <QueryProvider>
+          {children}
+          <SpeedInsights />
+        </QueryProvider>
       </body>
     </html>
   );

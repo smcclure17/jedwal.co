@@ -1,3 +1,5 @@
+"use client";
+
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,7 +15,7 @@ const patrick = Patrick_Hand({
   subsets: ["latin"],
 });
 
-export const NavBarNoUser = async ({ showSignIn }: { showSignIn: boolean }) => {
+export const NavBarNoUser = ({ showSignIn }: { showSignIn: boolean }) => {
   return (
     <nav className="flex justify-between items-center">
       <Link href="/">

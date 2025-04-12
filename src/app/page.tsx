@@ -69,9 +69,8 @@ export default function Home() {
     <main className="flex justify-center bg-gradient-to-b from-white to-gray-50">
       <div className="flex flex-col w-full max-w-7xl pt-4 space-y-12 px-4 lg:px-8">
         <div>
-          <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
-            <NavBar showDashboardButton />
-          </Suspense>
+          {/* Client-side NavBar, no Suspense needed */}
+          <NavBar showDashboardButton />
           <div className="md:mt-24 mt-16 max-w-3xl mx-auto text-center">
             <HomepageAlertWidget
               page="/blog/roadmap-and-release-notes"

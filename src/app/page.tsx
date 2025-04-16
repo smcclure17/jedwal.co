@@ -103,11 +103,7 @@ export default function Home() {
             priority
           />
         </section>
-        
-        
-        
 
-        
         <section className="py-2">
           <h2
             className={`text-5xl ${inter.className} text-medium text-center mb-10`}

@@ -1,5 +1,5 @@
 "use client";
-import { useUserData, useUserDataWithOrgs } from "@/data/hooks";
+import { useUserData } from "@/data/hooks";
 import { GetPremiumLink } from "./GetPremiumLink";
 import { UserMenu } from "./UserMenu";
 import Link from "next/link";
@@ -21,7 +21,6 @@ export const NavBarUserSection = ({
   showDashboardButton: boolean;
 }) => {
   const { data, error, isLoading } = useUserData();
-  const { data: userWithOrgsData } = useUserDataWithOrgs();
 
   if (isLoading || error || !data) {
     return <div></div>;
@@ -29,9 +28,9 @@ export const NavBarUserSection = ({
 
   return (
     <>
-      {data.account_status === "free" && <GetPremiumLink email={data.email} />}
+      {data.account_status === "free" && <GetPremiumLink />}
       {showDashboardButton && <DashBoardButton />}
-      <UserMenu orgs={userWithOrgsData?.orgs || []} user={data} />
+      <UserMenu orgs={data.orgs || []} user={data} />
     </>
   );
 };

@@ -1,9 +1,7 @@
 import { getUserData } from "@/data/fetching";
 import { Bebas_Neue, Patrick_Hand } from "next/font/google";
 import Link from "next/link";
-import { GetPremiumLink } from "./GetPremiumLink";
 import Image from "next/image";
-import { UserMenu } from "./UserMenu";
 import { NavBarNoUser } from "./NavLoading";
 import { NavBarUserSection } from "./NavBarUserSection";
 

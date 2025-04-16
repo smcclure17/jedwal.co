@@ -8,6 +8,7 @@ export interface UserData {
   display_name: string;
   email: string;
   account_status: string;
+  orgs: Array<any>
 }
 
 export interface ApiData {
@@ -86,7 +87,6 @@ export function useUserData(accountId?: string) {
   return useQuery({
     queryKey: ["userData", accountId],
     queryFn: () => fetchWithAuth<UserData>(`/get-account-data${query}`),
-    staleTime: 300 * 1000,
   });
 }
 
@@ -98,63 +98,6 @@ export function useAccountApis(ownerId: string) {
     queryKey: ["accountApis", ownerId],
     queryFn: () => fetchWithAuth<any>(`/get-all-sheets/${ownerId}`),
     enabled: !!ownerId, // Only run when ownerId is provided
-  });
-}
-
-/**
- * Get user organizations
- */
-export function useUserOrgs() {
-  return useQuery({
-    queryKey: ["userOrgs"],
-    queryFn: () => fetchWithAuth<any[]>("/organizations"),
-  });
-}
-
-/**
- * Get user data with organizations
- */
-export function useUserDataWithOrgs() {
-  // Use parallel queries
-  const results = useQueries({
-    queries: [
-      {
-        queryKey: ["userData"],
-        queryFn: () => fetchWithAuth<UserData>("/get-account-data"),
-      },
-      {
-        queryKey: ["userOrgs"],
-        queryFn: () => fetchWithAuth<any[]>("/organizations"),
-      },
-    ],
-  });
-
-  const [userDataQuery, userOrgsQuery] = results;
-
-  // Combine the results
-  return useQuery({
-    queryKey: ["userDataWithOrgs"],
-    queryFn: () => {
-      if (userDataQuery.data && userOrgsQuery.data) {
-        return {
-          userData: userDataQuery.data,
-          orgs: userOrgsQuery.data,
-        } as UserDataWithOrgs;
-      }
-      throw new Error("Failed to load user data or organizations");
-    },
-    enabled: Boolean(userDataQuery.data && userOrgsQuery.data),
-  });
-}
-
-/**
- * Get organization sheets
- */
-export function useOrgSheets(orgId: string) {
-  return useQuery({
-    queryKey: ["orgSheets", orgId],
-    queryFn: () => fetchWithAuth<any>(`/get-organization-sheets/${orgId}`),
-    enabled: !!orgId,
   });
 }
 

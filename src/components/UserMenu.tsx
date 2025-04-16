@@ -110,6 +110,17 @@ export const UserMenu = ({ orgs, user }: UserMenuProps) => {
             </a>
           </div>
 
+          {user.account_status === "premium" && (
+            <div className="border-t border-gray-100">
+              <a
+                href={`https://billing.stripe.com/p/login/${config.stripeCustPortalId}`}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                Manage my subscription
+              </a>
+            </div>
+          )}
+
           <div className="border-t border-gray-100">
             <a
               href={`${config.apiUrl}/logout`}

@@ -1,11 +1,11 @@
-export default function ReturnPage({
+export default async function ReturnPage({
   searchParams,
 }: {
-  searchParams: { session_id?: string };
+  searchParams: Promise<{ session_id?: string }>;
 }) {
-  const sessionId = searchParams.session_id;
+  const { session_id } = await searchParams;
 
-  if (!sessionId) {
+  if (!session_id) {
     return (
       <section>
         <h1>Error</h1>

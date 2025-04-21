@@ -1,5 +1,6 @@
 import { UpgradeButton } from "@/components/GetPremiumLink";
 import { NavBar } from "@/components/NavBar";
+import { PricingEstimator } from "@/components/PricingEstimator";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -159,9 +160,9 @@ export default function BillingPage() {
                   </div>
                 </div>
               </div>
-
               <UpgradeButton />
             </div>
+            <PricingEstimator />
           </div>
         </div>
       </div>

@@ -1,19 +1,6 @@
 "use client";
-import config from "@/config";
+import { createCheckout } from "@/lib/utils";
 
 export const CheckoutButton = () => {
-  const handleClick = async () => {
-    try {
-      const response = await fetch(`${config.apiUrl}/create-checkout`, {
-        method: "POST",
-        credentials: "include",
-      });
-      const { url } = await response.json();
-      window.location.href = url;
-    } catch (e) {
-      alert(e);
-    }
-  };
-
-  return <button onClick={() => handleClick()}>Checkout</button>;
+  return <button onClick={() => createCheckout()}>Checkout</button>;
 };

@@ -1,5 +1,3 @@
-import { Card } from "@/components/Card";
-import { CardHolder } from "@/components/CardHolder";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { HeroButton } from "@/components/HeroButton";
 import { HeroText } from "@/components/HeroText";
@@ -7,6 +5,10 @@ import { HomepageAlertWidget } from "@/components/HomepageAlertWidget";
 import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
 import { NavBarNoUser } from "@/components/NavLoading";
+import { FeaturesSection } from "@/components/sections/FeaturesSection";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { PricingSection } from "@/components/sections/PricingSection";
+import { UseCases } from "@/components/sections/UseCases";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
@@ -104,27 +106,11 @@ export default function Home() {
           />
         </section>
 
-        <section className="py-2">
-          <h2
-            className={`text-5xl ${inter.className} text-medium text-center mb-10`}
-          >
-            Key Features
-          </h2>
-          <CardHolder>
-            <Card
-              title="Autoscaling"
-              description="We scale as you grow, no need to worry about infrastructure."
-            />
-            <Card
-              title="Organizations"
-              badge="Beta!"
-              description="Collaborate by sharing APIs across your teams."
-            />
-            <Card
-              title="Analytics"
-              description="Get insight into your API usage and traffic."
-            />
-          </CardHolder>
+        <section className={`${inter.className}`}>
+          <HowItWorks />
+          <FeaturesSection />
+          <PricingSection />
+          <UseCases />
         </section>
 
         <LiteFooter />

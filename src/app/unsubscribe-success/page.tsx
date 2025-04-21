@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 
@@ -7,6 +8,11 @@ const tenor = Patrick_Hand({
   weight: "400",
   subsets: ["latin"],
 });
+
+export const metadata: Metadata = {
+  title: "Email Unsubscribe | Jedwal",
+  description: "The page you're looking for doesn't exist.",
+};
 
 export default function LoadingScreen() {
   return (
@@ -28,9 +34,7 @@ export default function LoadingScreen() {
       </h2>
 
       <div className="flex flex-col items-center">
-        <p>
-          You'll no longer receive emails from hello@jedwal.co
-        </p>
+        <p>You'll no longer receive emails from hello@jedwal.co</p>
       </div>
     </div>
   );

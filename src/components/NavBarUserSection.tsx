@@ -17,8 +17,10 @@ const DashBoardButton = () => {
 
 export const NavBarUserSection = ({
   showDashboardButton,
+  showUpgradeButton,
 }: {
   showDashboardButton: boolean;
+  showUpgradeButton: boolean;
 }) => {
   const { data, error, isLoading } = useUserData();
 
@@ -28,7 +30,9 @@ export const NavBarUserSection = ({
 
   return (
     <>
-      {data.account_status === "free" && <GetPremiumLink />}
+      {data.account_status === "free" && showUpgradeButton && (
+        <GetPremiumLink />
+      )}
       {showDashboardButton && <DashBoardButton />}
       <UserMenu orgs={data.orgs || []} user={data} />
     </>

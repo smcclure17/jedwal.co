@@ -17,9 +17,13 @@ const patrick = Patrick_Hand({
 
 interface NavBarProps {
   showDashboardButton?: boolean;
+  showUpgradeButton?: boolean;
 }
 
-export const NavBar = async ({ showDashboardButton = true }: NavBarProps) => {
+export const NavBar = async ({
+  showDashboardButton = true,
+  showUpgradeButton = true,
+}: NavBarProps) => {
   const userData = await getUserData();
   if (userData.status !== "logged_in") {
     return <NavBarNoUser showSignIn={userData.status === "logged_out"} />;
@@ -50,7 +54,7 @@ export const NavBar = async ({ showDashboardButton = true }: NavBarProps) => {
         </div>
       </Link>
       <div className="space-x-2">
-        <NavBarUserSection showDashboardButton={showDashboardButton}/>
+        <NavBarUserSection showDashboardButton={showDashboardButton} showUpgradeButton={showUpgradeButton} />
       </div>
     </nav>
   );

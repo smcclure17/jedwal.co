@@ -5,6 +5,7 @@ export default {
   apiUrl: env !== "DEV" ? "https://api.jedwal.co" : "http://localhost:8000",
   dashUrl:
     env !== "DEV" ? "https://app.jedwal.co" : "http://localhost:3000/app",
+  homeUrl: env !== "DEV" ? "https://jedwal.co" : "http://localhost:3000",
   stripeCustPortalId:
     env !== "DEV" ? "dR65lQeDTar38xO9AA" : "test_cN25oncgx0WN8fu7ss",
   stripeProductId:

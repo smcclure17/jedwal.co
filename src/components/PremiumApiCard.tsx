@@ -15,7 +15,7 @@ export interface PremiumApiCardProps {
 export const PremiumApiCard = ({ email }: PremiumApiCardProps) => {
   return (
     <Link
-      href={`https://buy.stripe.com/${config.stripeProductId}?prefilled_email=${email}`}
+      href={`${config.homeUrl}/pricing`}
       target="_blank"
       className={`px-2 bg-green-100 rounded-md py-1 relative overflow-hidden bg-gradient-to-br hover:opacity-90 from-[#005430] to-[#57A773] transition ease-in-out`}
     >

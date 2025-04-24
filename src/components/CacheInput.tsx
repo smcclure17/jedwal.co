@@ -8,20 +8,20 @@ import config from "@/config";
 // but the field can be anything in the backend (seconds).
 // Need to find a way to handle custom values
 const timeOptions = [
-  { label: "1 second", value: 1, premiumOnly: true },
-  { label: "5 seconds", value: 5, premiumOnly: true },
-  { label: "15 seconds", value: 15, premiumOnly: true },
-  { label: "30 seconds", value: 30, premiumOnly: true },
-  { label: "1 minute", value: 60, premiumOnly: false },
-  { label: "2 minutes", value: 120, premiumOnly: false },
-  { label: "5 minutes", value: 300, premiumOnly: false },
-  { label: "10 minutes", value: 600, premiumOnly: false },
-  { label: "30 minutes", value: 1800, premiumOnly: false },
-  { label: "45 minutes", value: 2700, premiumOnly: false },
-  { label: "1 hour", value: 3600, premiumOnly: false },
-  { label: "2 hours", value: 7200, premiumOnly: false },
-  { label: "8 hours", value: 28800, premiumOnly: false },
-  { label: "12 hours", value: 43200, premiumOnly: false },
+  { label: "1 second", value: 1 },
+  { label: "5 seconds", value: 5 },
+  { label: "15 seconds", value: 15 },
+  { label: "30 seconds", value: 30 },
+  { label: "1 minute", value: 60 },
+  { label: "2 minutes", value: 120 },
+  { label: "5 minutes", value: 300 },
+  { label: "10 minutes", value: 600 },
+  { label: "30 minutes", value: 1800 },
+  { label: "45 minutes", value: 2700 },
+  { label: "1 hour", value: 3600 },
+  { label: "2 hours", value: 7200 },
+  { label: "8 hours", value: 28800 },
+  { label: "12 hours", value: 43200 },
 ];
 
 export const postTtlUpdate = async (
@@ -88,11 +88,7 @@ export const CacheInput = ({
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-1 py-0.5"
           >
             {timeOptions.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-                disabled={!isPremiumUser && option.premiumOnly}
-              >
+              <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}

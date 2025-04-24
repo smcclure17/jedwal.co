@@ -87,7 +87,7 @@ export const HowItWorks = () => {
               <div>
                 <h4 className="font-semibold mb-1">Data refresh requests</h4>
                 <p className="text-gray-600 text-sm">
-                  When your data in Google Sheets changes or cache expires.{" "}
+                  Data fetched directly from your Google Sheet.{" "}
                   <span className="font-medium">5,000 free/month</span>, then
                   usage-based pricing.
                 </p>

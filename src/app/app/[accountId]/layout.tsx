@@ -10,6 +10,7 @@ import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { getUserData, getAccountApis } from "@/data/fetching";
 import React from "react";
 import type { Metadata } from "next";
+import { PremiumApiCard } from "@/components/PremiumApiCard";
 
 export async function generateMetadata({
   params,
@@ -59,7 +60,6 @@ export default async function App({
   const { data } = userResponse;
   const { data: sheets } = apisResponse;
   const { results, failures } = sheets;
-  console.log(results, failures);
 
   if (results.length == 0 && failures.length == 0) {
     return (
@@ -70,7 +70,8 @@ export default async function App({
     );
   }
 
-  const disableCreate = data.account_status === "free" && sheets.length >= 2;
+  const totalSheets = results.length + failures.length
+  const disableCreate = data.account_status === "free" && totalSheets >= 2;
   const isOrganization = data.type === "organization";
   return (
     <>
@@ -103,6 +104,7 @@ export default async function App({
                       sheet_api_name={failure.sheet_api_name}
                     />
                   ))}
+                  {disableCreate && <PremiumApiCard/>}
                 </UserSheetsContainer>
               </div>
               {children}

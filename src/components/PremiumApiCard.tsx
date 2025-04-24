@@ -8,11 +8,7 @@ const patrick = Patrick_Hand({
   weight: "400",
 });
 
-export interface PremiumApiCardProps {
-  email: string;
-}
-
-export const PremiumApiCard = ({ email }: PremiumApiCardProps) => {
+export const PremiumApiCard = () => {
   return (
     <Link
       href={`${config.homeUrl}/pricing`}

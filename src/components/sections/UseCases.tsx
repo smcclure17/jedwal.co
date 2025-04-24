@@ -44,7 +44,7 @@ export const UseCases = () => {
   return (
     <section className="py-20 px-6 max-w-5xl mx-auto">
       <h2 className="text-4xl font-bold text-center mb-4 gradient-text">
-        Perfect for teams of all sizes
+        Built for teams of all sizes
       </h2>
       <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
         Use the tools your team already knows. No need to train on complex

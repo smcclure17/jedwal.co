@@ -8,7 +8,7 @@ const DashBoardButton = () => {
   return (
     <Link
       href="https://app.jedwal.co"
-      className="text-gray-900 bg-white focus:outline-hidden hover:bg-gray-100 focus:ring-gray-100 font-medium rounded-full text-sm px-3 py-1 me-2 mb-2 border border-gray-300 transition ease-in-out duration-100"
+      className="hidden sm:inline-block text-gray-900 bg-white focus:outline-hidden hover:bg-gray-100 focus:ring-gray-100 font-medium rounded-full text-sm px-3 py-1 me-2 mb-2 border border-gray-300 transition ease-in-out duration-100"
     >
       Dashboard
     </Link>

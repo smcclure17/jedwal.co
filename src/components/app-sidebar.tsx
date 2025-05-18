@@ -32,7 +32,7 @@ export function AppSidebar({ ...props }: AppSideBarProps) {
     {
       name: userData.display_name,
       logo: GalleryVerticalEnd,
-      url: userData.id,
+      url: `${config.dashUrl}/${userData.id}`,
     },
   ];
 

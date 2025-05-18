@@ -23,7 +23,7 @@ export const ApiCard = ({ apiData, accountId }: ApiCardProps) => {
   const selected = params.api === sheet_api_name;
   return (
     <Link
-      href={`${config.dashUrl}${accountId}/apis/${apiData.sheet_api_name}`}
+      href={`${config.dashUrl}/${accountId}/apis/${apiData.sheet_api_name}`}
       className={`px-2 bg-white py-1 rounded-lg shadow-sm ${
         selected
           ? "border border-green-800 border-1.5"

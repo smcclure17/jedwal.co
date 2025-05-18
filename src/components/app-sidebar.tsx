@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useUserData } from "@/data/hooks";
 import { useParams } from "next/navigation";
+import config from "@/config";
 
 interface AppSideBarProps extends React.ComponentProps<typeof Sidebar> {}
 
@@ -46,12 +47,12 @@ export function AppSidebar({ ...props }: AppSideBarProps) {
     projects: [
       {
         name: "APIs",
-        url: `/${accountId ?? userData.id}/apis`,
+        url: `${config.dashUrl}/${accountId ?? userData.id}/apis`,
         icon: Terminal,
       },
       {
         name: "Posts",
-        url: `/${accountId ?? userData.id}/posts`,
+        url: `${config.dashUrl}/${accountId ?? userData.id}/posts`,
         icon: BookMarked,
       },
     ],

@@ -46,12 +46,12 @@ export function AppSidebar({ ...props }: AppSideBarProps) {
     projects: [
       {
         name: "APIs",
-        url: `/app/${accountId ?? userData.id}/apis`,
+        url: `/${accountId ?? userData.id}/apis`,
         icon: Terminal,
       },
       {
         name: "Posts",
-        url: `/app/${accountId ?? userData.id}/posts`,
+        url: `/${accountId ?? userData.id}/posts`,
         icon: BookMarked,
       },
     ],

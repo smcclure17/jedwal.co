@@ -82,12 +82,12 @@ export default function Home() {
             <HeroText />
             <Suspense
               fallback={
-                <div className="mt-4 flex justify-center w-full">
+                <div className="mt-8 flex justify-center w-full">
                   <GoogleSignInButton />
                 </div>
               }
             >
-              <div className="mt-4 w-full">
+              <div className="mt-8 w-full">
                 <HeroButton />
               </div>
             </Suspense>

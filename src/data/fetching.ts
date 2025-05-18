@@ -27,6 +27,17 @@ export interface ApiData {
   frozen: boolean;
 }
 
+export interface DocApiData {
+  doc_api_name: string;
+  owner_id: string;
+  google_doc_id: string;
+  frozen: boolean;
+  cache_duration: number;
+  created_at: string;
+  title: string;
+}
+
+
 export const getUserSheets = async () => {
   return withAuth(createAuthFetcher<ApiData[]>(`/get-user-sheets`));
 };
@@ -42,6 +53,12 @@ export async function getAccountApis(
   ownerId: string
 ): Promise<AuthResult<any>> {
   return withAuth(createAuthFetcher<any>(`/get-all-sheets/${ownerId}`));
+}
+
+export async function getAccountDocApis(
+  ownerId: string
+): Promise<AuthResult<any>> {
+  return withAuth(createAuthFetcher<any>(`/docs/metadata/${ownerId}`));
 }
 
 export async function getUserDataWithOrgs(): Promise<

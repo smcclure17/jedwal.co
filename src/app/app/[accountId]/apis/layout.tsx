@@ -4,13 +4,25 @@ import { CreateApiForm } from "@/components/CreateApiForm";
 import { ErrorScreen } from "@/components/ErrorScreen";
 import { FirstApiSplash } from "@/components/FirstApiSplash";
 import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlaceholder";
-import { NavBar } from "@/components/NavBar";
+import { LogoLink, NavBar } from "@/components/NavBar";
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
-import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { getUserData, getAccountApis } from "@/data/fetching";
 import React from "react";
 import type { Metadata } from "next";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { UserSheetsContainer } from "@/components/UserSheetsContainer";
+import { DashboardHeader } from "@/components/DashboardHeader";
 
 export async function generateMetadata({
   params,
@@ -63,14 +75,20 @@ export default async function App({
 
   if (results.length == 0 && failures.length == 0) {
     return (
-      <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
-        <NavBar showDashboardButton={false} />
-        <FirstApiSplash accountId={accountId} />
-      </main>
+      <>
+        <DashboardHeader
+          contentType="APIs"
+          displayName={data.display_name}
+        ></DashboardHeader>
+
+        <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
+          <FirstApiSplash accountId={accountId} />
+        </main>
+      </>
     );
   }
 
-  const totalSheets = results.length + failures.length
+  const totalSheets = results.length + failures.length;
   const disableCreate = data.account_status === "free" && totalSheets >= 2;
   const isOrganization = data.type === "organization";
   return (
@@ -78,10 +96,13 @@ export default async function App({
       <div className="sm:hidden">
         <MobileDashboardPlaceholder />
       </div>
+      <DashboardHeader
+        contentType="APIs"
+        displayName={data.display_name}
+      ></DashboardHeader>
       <div className="bg-gray-100 min-h-screen">
         <main className="sm:block flex flex-col mx-auto px-10 pt-4">
-          <NavBar showDashboardButton={false} />
-          <div className="mt-10">
+          <div>
             {isOrganization && <BetaDisclaimerBanner />}
             <div className="p-5 bg-white rounded-lg shadow-xs">
               <CreateApiForm disabled={disableCreate} accountId={accountId} />
@@ -104,7 +125,7 @@ export default async function App({
                       sheet_api_name={failure.sheet_api_name}
                     />
                   ))}
-                  {disableCreate && <PremiumApiCard/>}
+                  {disableCreate && <PremiumApiCard />}
                 </UserSheetsContainer>
               </div>
               {children}

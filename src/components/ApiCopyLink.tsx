@@ -1,15 +1,17 @@
+import config from "@/config";
 import { CopyField } from "./CopyField";
+import { DocCopyField } from "./DocCopyField";
 
 export interface ApiCopyLinkProps {
   apiUrl: string;
   accountId: string;
-  worksheets: string[];
+  worksheets?: string[];
 }
 
 export const ApiCopyLink = async ({
   accountId,
   apiUrl,
-  worksheets,
+  worksheets = [],
 }: ApiCopyLinkProps) => {
   return (
     <CopyField
@@ -17,4 +19,11 @@ export const ApiCopyLink = async ({
       worksheets={worksheets}
     />
   );
+};
+
+export const DocApiCopyLink = async ({
+  accountId,
+  apiUrl,
+}: ApiCopyLinkProps) => {
+  return <DocCopyField text={`${config.apiUrl}/doc/${accountId}/${apiUrl}`} />;
 };

@@ -17,25 +17,27 @@ export interface CreateApiFormProps {
   disabled?: boolean;
 }
 
-export const CreateApiForm = ({
+export const CreateDocApiForm = ({
   accountId,
   label = true,
   disabled = false,
 }: CreateApiFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [docId, setDocId] = useState("");
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    formData.append("owner_id", accountId);
 
     try {
-      const res = await fetch(`${config.apiUrl}/create-api`, {
+      const res = await fetch(`${config.apiUrl}/doc`, {
         method: "POST",
-        body: formData,
+        body: JSON.stringify({
+          doc_id: docId,
+          owner_id: accountId,
+        }),
         credentials: "include",
+        headers: {"Content-type": "application/json"}
       });
 
       if (res.status === 415) {
@@ -51,8 +53,8 @@ export const CreateApiForm = ({
 
       const data = await res.json();
       // NOTE: can't use router.push here b/c we need to reload the whole layout.
-      window.location.href = `${config.dashUrl}/${accountId}/apis/${data.api_name}`;
-      form.reset();
+      window.location.href = `${config.dashUrl}/${accountId}/posts/${data.api_name}`;
+      setDocId("")
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -68,7 +70,7 @@ export const CreateApiForm = ({
             htmlFor="create"
             className={`${patrick.className} text-2xl font-extrabold`}
           >
-            Create a new API
+            Create a new Post
           </label>
         )}
         <div
@@ -77,17 +79,16 @@ export const CreateApiForm = ({
           <Input
             disabled={disabled}
             type="text"
-            name="google_sheet_id"
-            id="create-api"
+            onChange={(e) => {setDocId(e.target.value)}}
             placeholder={
               disabled
                 ? "Upgrade to premium create more APIs"
-                : "Paste Google Sheet URL"
+                : "Paste Google Doc URL"
             }
             required
           />
           <Button
-            disabled={disabled}
+            disabled={disabled || docId === ""}
             type="submit"
             size={"default"}
             className="px-5 bg-[#005430]"

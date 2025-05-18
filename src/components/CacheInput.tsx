@@ -35,7 +35,7 @@ export const postTtlUpdate = async (
     headers: { "Content-Type": "application/json;charset=UTF-8" },
     body: JSON.stringify({
       owner_id: accountId,
-      sheet_api_name: apiName,
+      api_name: apiName,
       cache_duration: ttl,
     }),
   });

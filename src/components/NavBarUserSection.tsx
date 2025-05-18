@@ -3,11 +3,12 @@ import { useUserData } from "@/data/hooks";
 import { GetPremiumLink } from "./GetPremiumLink";
 import { UserMenu } from "./UserMenu";
 import Link from "next/link";
+import config from "@/config";
 
 const DashBoardButton = () => {
   return (
     <Link
-      href="https://app.jedwal.co"
+      href={`${config.dashUrl}`}
       className="hidden sm:inline-block text-gray-900 bg-white focus:outline-hidden hover:bg-gray-100 focus:ring-gray-100 font-medium rounded-full text-sm px-3 py-1 me-2 mb-2 border border-gray-300 transition ease-in-out duration-100"
     >
       Dashboard

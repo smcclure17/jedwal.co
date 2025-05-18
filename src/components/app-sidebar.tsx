@@ -39,7 +39,7 @@ export function AppSidebar({ ...props }: AppSideBarProps) {
   const userOrgs = userData.orgs.map((org) => ({
     name: org.display_name,
     logo: GalleryVerticalEnd,
-    url: org.account_id,
+    url: `${config.dashUrl}/${org.account_id}`,
   }));
   const orgs = [...personalOrg, ...userOrgs];
 

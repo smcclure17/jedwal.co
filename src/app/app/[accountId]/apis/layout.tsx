@@ -4,23 +4,11 @@ import { CreateApiForm } from "@/components/CreateApiForm";
 import { ErrorScreen } from "@/components/ErrorScreen";
 import { FirstApiSplash } from "@/components/FirstApiSplash";
 import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlaceholder";
-import { LogoLink, NavBar } from "@/components/NavBar";
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 import { getUserData, getAccountApis } from "@/data/fetching";
 import React from "react";
 import type { Metadata } from "next";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
-
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { DashboardHeader } from "@/components/DashboardHeader";
 

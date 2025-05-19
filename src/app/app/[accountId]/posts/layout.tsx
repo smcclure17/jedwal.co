@@ -1,30 +1,16 @@
-import { ApiCard, DocApiCard, FailureCard } from "@/components/ApiCard";
+import { DocApiCard } from "@/components/ApiCard";
 import { BetaDisclaimerBanner } from "@/components/BetaDisclaimerBanner";
-import { CreateApiForm } from "@/components/CreateApiForm";
 import { ErrorScreen } from "@/components/ErrorScreen";
-import { FirstApiSplash } from "@/components/FirstApiSplash";
 import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlaceholder";
-import { LogoLink, NavBar } from "@/components/NavBar";
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 import {
   getUserData,
-  getAccountApis,
   getAccountDocApis,
 } from "@/data/fetching";
 import React from "react";
 import type { Metadata } from "next";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { CreateDocApiForm } from "@/components/CreateDocApiForm";
 import { DashboardHeader } from "@/components/DashboardHeader";
@@ -114,7 +100,7 @@ export default async function App({
                 <UserSheetsContainer apiType="docs">
                   {apis.map((sheet: any) => (
                     <DocApiCard
-                      key={sheet.sheet_api_name}
+                      key={sheet.doc_api_name}
                       docApiData={sheet}
                       accountId={accountId}
                     />

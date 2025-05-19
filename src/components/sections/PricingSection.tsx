@@ -33,7 +33,7 @@ const plans = [
     items: [
       "Unlimited cached requests",
       "5,000 data refreshes/month",
-      "2 APIs",
+      "2 APIs and 2 Posts",
       "Basic analytics",
     ],
     button: <></>,
@@ -54,7 +54,7 @@ const plans = [
     items: [
       "Unlimited cached requests",
       "Unlimited data refreshes/month",
-      "Unlimited APIs",
+      "Unlimited APIs and Posts",
       "Organizations",
       "Priority support",
     ],

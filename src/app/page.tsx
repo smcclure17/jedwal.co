@@ -17,39 +17,43 @@ import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"], weight: "600" });
 
 export const metadata: Metadata = {
-  title: "Jedwal | REST APIs from Google Sheets",
+  title: "Jedwal | The CMS your team already knows - using Google Drive",
   description:
-    "Use Google Sheets as a database to power your website with REST APIs from spreadsheets.",
+    "Publish website content directly from Google Drive. Convert Docs to CMS pages and Sheets to REST APIs with zero coding required. Integrate with NextJS, WordPress, or any modern framework.",
   keywords: [
-    "REST API Generator",
+    "Google Drive CMS",
+    "Google Docs to website",
+    "Google Sheets API",
+    "No-code CMS",
+    "Content management system",
+    "Headless CMS",
+    "Build website from Google Sheets",
+    "Live data integration",
+    "Website content publishing",
+    "Document-based CMS",
     "Spreadsheet to API",
-    "Spreadsheet to Database",
-    "No-code API creation",
-    "Google Sheets integration",
-    "Spreadsheet APIs",
-    "Spreadsheet backend for apps",
-    "Google Sheets app backend",
+    "Collaborative CMS",
   ],
   openGraph: {
     url: "https://jedwal.co",
     type: "website",
-    title: "Jedwal | REST APIs from Google Sheets",
+    title: "Jedwal | The CMS your team already knows - using Google Drive",
     description:
-      "Use Google Sheets as a database to power your website with REST APIs from spreadsheets.",
+      "Publish website content directly from Google Drive. Transform Docs into CMS pages and Sheets into APIs with no coding required.",
     images: [
       {
         url: "https://jedwal.co/og-image.jpeg",
         width: 1200,
         height: 630,
-        alt: "jedwal",
+        alt: "Jedwal - Google Drive powered CMS",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jedwal | REST APIs from Google Sheets",
+    title: "Jedwal | The CMS your team already knows - using Google Drive",
     description:
-      "Use Google Sheets as a database to power your website with REST APIs from spreadsheet",
+      "Publish website content directly from Google Drive. Transform Docs into CMS pages and Sheets into APIs with no coding required.",
     creator: "@seanmcclr",
     site: "@seanmcclr",
     images: [
@@ -57,7 +61,7 @@ export const metadata: Metadata = {
         url: "https://jedwal.co/og-image.jpeg",
         width: 1200,
         height: 630,
-        alt: "jedwal",
+        alt: "Jedwal - Google Drive powered CMS",
       },
     ],
   },

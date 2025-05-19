@@ -27,7 +27,7 @@ export const FeaturesSection = () => {
         Key Features
       </h2>
       <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-        Everything you need to turn your Google Sheets into powerful APIs
+        Everything you need to turn your Google Drive into powerful CMS
         without complex infrastructure
       </p>
 

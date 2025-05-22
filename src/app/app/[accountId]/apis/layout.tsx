@@ -93,7 +93,11 @@ export default async function App({
           <div>
             {isOrganization && <BetaDisclaimerBanner />}
             <div className="p-5 bg-white rounded-lg shadow-xs">
-              <CreateApiForm disabled={disableCreate} accountId={accountId} />
+              <CreateApiForm
+                type="api"
+                disabled={disableCreate}
+                accountId={accountId}
+              />
             </div>
             <div className="flex flex-row space-x-8 pt-8">
               <div>

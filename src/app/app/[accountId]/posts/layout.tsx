@@ -3,17 +3,14 @@ import { BetaDisclaimerBanner } from "@/components/BetaDisclaimerBanner";
 import { ErrorScreen } from "@/components/ErrorScreen";
 import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlaceholder";
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
-import {
-  getUserData,
-  getAccountDocApis,
-} from "@/data/fetching";
+import { getUserData, getAccountDocApis } from "@/data/fetching";
 import React from "react";
 import type { Metadata } from "next";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
 
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
-import { CreateDocApiForm } from "@/components/CreateDocApiForm";
 import { DashboardHeader } from "@/components/DashboardHeader";
+import { CreateApiForm } from "@/components/CreateApiForm";
 
 export async function generateMetadata({
   params,
@@ -90,7 +87,8 @@ export default async function App({
           <div>
             {isOrganization && <BetaDisclaimerBanner />}
             <div className="p-5 bg-white rounded-lg shadow-xs">
-              <CreateDocApiForm
+              <CreateApiForm
+                type="doc"
                 disabled={disableCreate}
                 accountId={accountId}
               />

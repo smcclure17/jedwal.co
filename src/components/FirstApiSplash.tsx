@@ -54,7 +54,7 @@ export const FirstApiSplash = async ({ accountId }: FirstApiSplashProps) => {
           <li>
             <div className="flex flex-col space-y-1.5">
               <span>Copy the Google Sheet URL and create your API</span>
-              <CreateApiForm label={false} accountId={accountId} />
+              <CreateApiForm type="api" label={false} accountId={accountId} />
               <span className="max-w-96 text-xs text-gray-600">
                 Important: Once an API is created, the data in your Google Sheet
                 becomes publicly accessible.{" "}

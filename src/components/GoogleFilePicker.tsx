@@ -34,8 +34,8 @@ const GooglePickerClient = ({
 }: GooglePickerProps) => {
   const pickerRef = useRef<any>(null);
   const [isReady, setIsReady] = useState(false);
-  const viewMode = type === "doc" ? "DOCUMENTS" : "SHEETS";
-  const redirectSlug = type === "doc" ? "posts" : "apis";
+  const viewMode = type === "doc" ? "DOCUMENTS" : "SPREADSHEETS";
+  const redirectSlug = type === "doc" ? "posts" : "apis"
 
   // Load picker library
   useEffect(() => {

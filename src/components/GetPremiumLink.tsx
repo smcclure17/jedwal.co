@@ -17,7 +17,7 @@ export const UpgradeButton = () => {
   return (
     <button
       onClick={createCheckout}
-      className="w-full bg-[#005430] text-white py-3 px-6 rounded-lg text-base font-medium cursor-pointer mt-10 transition-colors hover:opacity-80"
+      className="w-full bg-[#005430] text-white px-6 rounded-lg text-base font-medium cursor-pointer mt-10 transition-colors hover:opacity-80"
     >
       Upgrade Now
     </button>

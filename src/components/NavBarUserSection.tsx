@@ -30,12 +30,16 @@ export const NavBarUserSection = ({
   }
 
   return (
-    <>
-      {data.account_status === "free" && showUpgradeButton && (
-        <GetPremiumLink />
-      )}
-      {showDashboardButton && <DashBoardButton />}
-      <UserMenu orgs={data.orgs || []} user={data} />
-    </>
+    <div className="flex items-center gap-3">
+      <div>
+        {data.account_status === "free" && showUpgradeButton && (
+          <GetPremiumLink />
+        )}
+      </div>
+      <div>{showDashboardButton && <DashBoardButton />}</div>
+      <div className="mb-2">
+        <UserMenu orgs={data.orgs || []} user={data} />
+      </div>
+    </div>
   );
 };

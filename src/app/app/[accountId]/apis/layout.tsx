@@ -67,6 +67,7 @@ export default async function App({
         <DashboardHeader
           contentType="APIs"
           displayName={data.display_name}
+          className="white"
         ></DashboardHeader>
 
         <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">

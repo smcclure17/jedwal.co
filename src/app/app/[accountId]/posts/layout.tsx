@@ -5,12 +5,13 @@ import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlacehol
 import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 import { getUserData, getAccountDocApis } from "@/data/fetching";
 import React from "react";
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { PremiumApiCard } from "@/components/PremiumApiCard";
 
 import { UserSheetsContainer } from "@/components/UserSheetsContainer";
 import { DashboardHeader } from "@/components/DashboardHeader";
 import { CreateApiForm } from "@/components/CreateApiForm";
+import { FirstDocSplash } from "@/components/FirstDocSplash";
 
 export async function generateMetadata({
   params,
@@ -61,14 +62,21 @@ export default async function App({
   const { data: sheets } = apisResponse;
   const { apis } = sheets;
 
-  // if (apis.length == 0) {
-  //   return (
-  //     <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
-  //       <NavBar showDashboardButton={false} />
-  //       <FirstApiSplash accountId={accountId} />
-  //     </main>
-  //   );
-  // }
+  if (apis.length == 0) {
+    return (
+      <>
+        <DashboardHeader
+          contentType="APIs"
+          displayName={data.display_name}
+          className="white"
+        ></DashboardHeader>
+
+        <main className="sm:block flex flex-col mx-auto sm:w-3/4 px-4 pt-4">
+          <FirstDocSplash accountId={accountId} />
+        </main>
+      </>
+    );
+  }
 
   const totalSheets = apis.length;
   const disableCreate = data.account_status === "free" && totalSheets >= 2;

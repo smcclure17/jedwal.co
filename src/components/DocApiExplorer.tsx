@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { AnalyticsPreview } from "./AnalyticsPreview";
 import { ApiExplorerNotFound } from "./ApiExplorerDefaultSelector";
-import { CacheInput } from "./CacheInput";
 import { NotLoggedInScreen } from "./NotLoggedInScreen";
 import { ErrorScreen } from "./ErrorScreen";
 import { DeleteDocApiButton } from "./DeleteDocApiButton";
@@ -35,9 +34,7 @@ export const DocApiExplorer = async ({
   if (userResponse.status === "error") return <ErrorScreen />; // TODO: dedup this somehow
   if (userResponse.status === "logged_out") return <NotLoggedInScreen />;
   const { data: sheets } = apisResponse;
-  const { data: userData } = userResponse;
 
-  console.log(sheets, "sheets");
   const data = sheets.apis.find((sheet: any) => sheet.doc_api_name === apiName);
   if (!data) return <ApiExplorerNotFound />;
 
@@ -47,18 +44,12 @@ export const DocApiExplorer = async ({
         <h1 className="text-2xl font-medium">{data.title}</h1>
         <h2 className="text-xl">/doc/{data.doc_api_name}</h2>
         <Link
-          href={`https://docs.google.com/documents/d/${data.google_doc_id}`}
+          href={`https://docs.google.com/document/d/${data.google_doc_id}`}
           target="_blank"
           className="text-blue-500 text-sm hover:underline"
         >
           View source Google Doc
         </Link>
-      </div>
-      <div className="flex flex-col space-y-2">
-        <h3 className={`${patrick.className} text-xl`}>
-          Live Post Content URL
-        </h3>
-        <DocApiCopyLink apiUrl={data.doc_api_name} accountId={accountId} />
       </div>
       <div className="flex flex-col space-y-2">
         <h3 className={`${patrick.className} text-xl`}>
@@ -68,6 +59,12 @@ export const DocApiExplorer = async ({
           accountId={accountId}
           apiName={apiName}
         ></DocApiPublishButton>
+      </div>
+      <div className="flex flex-col space-y-2">
+        <h3 className={`${patrick.className} text-xl`}>
+          Live Post Content URL
+        </h3>
+        <DocApiCopyLink apiUrl={data.doc_api_name} accountId={accountId} />
       </div>
       <div className="flex flex-col space-y-2">
         <h3 className={`${patrick.className} text-xl`}>Analytics</h3>

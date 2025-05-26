@@ -20,7 +20,7 @@ export const FirstApiSplash = async ({ accountId }: FirstApiSplashProps) => {
     <div className="flex margin-auto mt-24 rounded-lg w-fit ">
       <div className="flex flex-col">
         <h1 className={`${patrick.className} text-4xl text-[#005430]`}>
-          Welcome to Jedwal, {userResponse.data.display_name}!
+          Welcome to Jedwal APIs, {userResponse.data.display_name}!
         </h1>
         <p>
           Jedwal takes your Google Sheets and turns them into

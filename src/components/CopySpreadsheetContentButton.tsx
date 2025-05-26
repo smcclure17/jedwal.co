@@ -8,12 +8,16 @@ german shephard	6
 border collie	10
 `;
 
-export const CopySpreadsheetContentButton = () => {
+export const CopySpreadsheetContentButton = ({
+  content = copyContent,
+}: {
+  content?: string;
+}) => {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(copyContent);
+      await navigator.clipboard.writeText(content);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
     } catch (err) {
@@ -26,7 +30,7 @@ export const CopySpreadsheetContentButton = () => {
       onClick={copyToClipboard}
       className="underline decoration-dashed flex flex-row text-gray-500 space-x-1.5"
     >
-      <span>Click to copy sample spreadsheet content</span>
+      <span>Click to copy sample content</span>
       {copied ? <ClipboardIcon /> : <CheckmarkIcon />}
     </button>
   );

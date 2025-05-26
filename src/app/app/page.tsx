@@ -33,7 +33,7 @@ export default async function Redirect() {
       <h2
         className={`text-2xl text-[#005430] text-center ${patrick.className}`}
       >
-        Loading to your dashboard...
+        Loading your dashboard...
       </h2>
     </div>
   );

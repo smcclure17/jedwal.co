@@ -18,6 +18,7 @@ export interface GooglePickerProps {
   isOpen: boolean;
   onClose: () => void;
   onAuth: (event: any) => void;
+  fileId: string;
   accountId: string;
   type: "doc" | "api";
   token?: string;
@@ -28,13 +29,13 @@ const GooglePickerClient = ({
   type,
   accountId,
   isOpen,
+  fileId,
   onClose,
   token,
   onAuth,
 }: GooglePickerProps) => {
   const pickerRef = useRef<any>(null);
   const [isReady, setIsReady] = useState(false);
-  const viewMode = type === "doc" ? "DOCUMENTS" : "SPREADSHEETS";
   const redirectSlug = type === "doc" ? "posts" : "apis"
 
   // Load picker library
@@ -98,9 +99,8 @@ const GooglePickerClient = ({
       >
         {/* @ts-ignore */}
         <drive-picker-docs-view
-          view-id={viewMode}
           mode="LIST"
-          file-ids="1uSRnq-5lPW1XpbLPM82ZBLdlq_EErNWLiXHRHA2M46w"
+          file-ids={fileId}
         />
         {/* @ts-ignore */}
       </drive-picker>
@@ -110,11 +110,12 @@ const GooglePickerClient = ({
 
 export const GooglePicker = ({
   accountId,
+  fileId,
   type,
   disabled = false,
 }: {
-  url: string;
   accountId: string;
+  fileId: string;
   type: "doc" | "api";
   disabled?: boolean;
 }) => {
@@ -141,6 +142,7 @@ export const GooglePicker = ({
       <GooglePickerClient
         accountId={accountId}
         type={type}
+        fileId={fileId}
         isOpen={isOpen}
         onClose={handleClose}
         token={accessToken}

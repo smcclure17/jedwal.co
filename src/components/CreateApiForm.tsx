@@ -16,6 +16,12 @@ const patrick = Patrick_Hand({
   subsets: ["latin"],
 });
 
+function extractGoogleSheetId(url: string | null): string {
+  if (!url) return "";
+  const match = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  return match ? match[1] : "";
+}
+
 export interface CreateApiFormProps {
   accountId: string;
   label?: boolean;
@@ -32,7 +38,7 @@ export const CreateApiForm = ({
   const [sheetUrl, setSheetUrl] = useState("");
   return (
     <div className="w-full">
-      <form className="w-full">
+      <form className="w-full" onSubmit={(e) => e.preventDefault()}>
         {label && (
           <label
             htmlFor="create"
@@ -48,7 +54,7 @@ export const CreateApiForm = ({
             disabled={disabled}
             type="text"
             onChange={(e) => {
-              setSheetUrl(e.target.value);
+              setSheetUrl(extractGoogleSheetId(e.target.value));
             }}
             placeholder={
               disabled
@@ -60,9 +66,9 @@ export const CreateApiForm = ({
             required
           />
           <GooglePicker
-            url={sheetUrl}
             accountId={accountId}
             type={type}
+            fileId={sheetUrl}
             disabled={disabled}
           />
         </div>

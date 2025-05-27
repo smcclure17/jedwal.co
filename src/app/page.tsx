@@ -100,7 +100,7 @@ export default function Home() {
 
         <section className="rounded-lg overflow-hidden shadow-md">
           <Image
-            src="/demo-chrome.png"
+            src="/demo-new.png"
             width={1200}
             height={675}
             className="w-full object-cover"

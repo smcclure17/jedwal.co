@@ -135,7 +135,7 @@ export const GooglePicker = ({
       <Button
         className="px-5 bg-[#005430]"
         onClick={handleToggle}
-        disabled={disabled}
+        disabled={disabled || fileId === ""}
       >
         {isOpen ? <Spinner srText="Creating API..." /> : "Create"}
       </Button>

@@ -53,7 +53,7 @@ const GooglePickerClient = ({
       if (e.type === "picker:picked") {
         try {
           onClose();
-          const data = await createApi(e.detail.docs[0].id, type);
+          const data = await createApi(e.detail.docs[0].id, type, accountId);
           console.log("data", data);
           window.location.href = `${config.dashUrl}/${accountId}/${redirectSlug}/${data.api_name}`;
         } catch (error) {

@@ -19,10 +19,10 @@ export const createCheckout = async () => {
   }
 };
 
-export const createApi = async (googleId: string, type: "doc" | "api") => {
+export const createApi = async (googleId: string, type: "doc" | "api", accountId?: string) => {
   const res = await fetch(`${config.apiUrl}/${type}`, {
     method: "POST",
-    body: JSON.stringify({ google_id: googleId }),
+    body: JSON.stringify({ google_id: googleId, account_id: accountId }),
     credentials: "include",
     headers: { "Content-type": "application/json" },
   });

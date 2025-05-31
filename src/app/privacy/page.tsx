@@ -77,9 +77,8 @@ export default function PrivacyPage() {
           <ul className="list-disc list-inside space-y-1 mt-1">
             <li>
               <span className="font-bold">Google Sheets Access: </span>
-              For ease of integration, we require view access to all your Google
-              Sheets. However, we will only ever access the content of sheets
-              you have explicitly requested us to.
+              We can only ever access Google Sheets or Google Documents that you
+              explicitly grant the app access to.
             </li>
             <li>
               <span className="font-bold">Credentials: </span>
@@ -101,9 +100,10 @@ export default function PrivacyPage() {
             </li>
             <li>
               <span className="font-bold">Storing Data: </span>
-              The data from your Google Sheets is processed and provided to you
-              as JSON. We do not persist any of this data in long-term storage,
-              however, we may cache it temporarily to improve performance.
+              The data from your Google Sheets and Documents is processed and provided to you
+              as JSON. We may store the content of your files in persistent storage to decrease
+              response times. You can delete your files at any time, and we can only ever access
+              files you grant the app access to.
             </li>
           </ul>
 

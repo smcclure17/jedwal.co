@@ -40,10 +40,10 @@ export const HowItWorks = () => {
         <h2 className="text-4xl font-bold text-white text-center mb-8 gradient-text">
           How It Works
         </h2>
-        <Tabs defaultValue="apis" className="flex flex-col">
+        <Tabs defaultValue="posts" className="flex flex-col">
           <TabsList className="w-fit mx-auto mb-6">
-            <TabsTrigger value="apis">APIs (Google Sheets)</TabsTrigger>
             <TabsTrigger value="posts">Posts (Google Docs)</TabsTrigger>
+            <TabsTrigger value="apis">APIs (Google Sheets)</TabsTrigger>
           </TabsList>
 
           <TabsContent value="apis">
@@ -76,9 +76,8 @@ export const HowItWorks = () => {
             <h3
               className={`${interLight.className} text-white text-center mx-auto mb-10 max-w-3xl`}
             >
-              Create a CMS post from a Google Doc, preserving your formatting,
-              structure, and images. Great for blog posts or any content-driven
-              pages.
+              Turn a Google Doc into a CMS post with formatting, structure, and
+              images intact. Great for blog posts or any content-driven pages
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">

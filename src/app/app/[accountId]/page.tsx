@@ -5,8 +5,8 @@ export default function DashboardHome() {
     return (
       <>
         <DashboardHeader
-          contentType="APIs"
-          displayName={"data.display_name"}
+          contentType=""
+          displayName=""
           className="white"
         ></DashboardHeader>
 

@@ -142,7 +142,7 @@ export async function generateMetadata(): Promise<Metadata> {
       tags: post.tags,
       images: [
         {
-          url: "https://jedwal.co/og-image.jpeg",
+          url: "https://jedwal.co/jedwal-og.png",
           width: 1200,
           height: 630,
           alt: "Jedwal - REST APIs from Google Sheets",
@@ -153,7 +153,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: `${post.title} | Jedwal`,
       description: post.summary,
-      images: ["https://jedwal.co/og-image.jpeg"],
+      images: ["https://jedwal.co/jedwal-og.png"],
     },
   };
 }

@@ -123,11 +123,7 @@ async function getBlogPost(): Promise<BlogPost | null> {
 }
 
 // Generate metadata
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const post = await getBlogPost();
   if (!post) {
     return {

@@ -2,7 +2,7 @@ import config from "@/config";
 import { getUserData } from "@/data/fetching";
 import Link from "next/link";
 
-export const LiteFooter = async ({ mt = 20 }: { mt: number }) => {
+export const LiteFooter = async ({ mt = 20 }: { mt?: number }) => {
   const userResponse = await getUserData();
   const userData =
     userResponse.status === "logged_in" ? userResponse.data : null;

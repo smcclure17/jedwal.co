@@ -109,7 +109,7 @@ async function getBlogPost(): Promise<BlogPost | null> {
 
     return {
       title: "Google Drive as a Content Management System",
-      summary: "Maybe Google Drive can be a great, early-stage CMS?",
+      summary: "Maybe Google Drive can be a good, early-stage CMS?",
       date: "June 5th, 2025",
       author: "Sean McClure",
       readingTime: "3 min read",

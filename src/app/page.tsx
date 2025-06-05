@@ -17,32 +17,28 @@ import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"], weight: "600" });
 
 export const metadata: Metadata = {
-  title: "Jedwal | The CMS your team already knows - using Google Drive",
+  title: "Jedwal | The Google Drive-Powered CMS",
   description:
     "Publish website content directly from Google Drive. Convert Docs to CMS pages and Sheets to REST APIs with zero coding required. Integrate with NextJS, WordPress, or any modern framework.",
   keywords: [
+    "Google Docs CMS",
     "Google Drive CMS",
-    "Google Docs to website",
-    "Google Sheets API",
     "No-code CMS",
-    "Content management system",
     "Headless CMS",
-    "Build website from Google Sheets",
-    "Live data integration",
-    "Website content publishing",
-    "Document-based CMS",
+    "Content management system",
+    "Google Sheets API",
+    "Docs to website",
     "Spreadsheet to API",
-    "Collaborative CMS",
   ],
   openGraph: {
     url: "https://jedwal.co",
     type: "website",
-    title: "Jedwal | The CMS your team already knows - using Google Drive",
+    title: "Jedwal | The Google Drive-Powered CMS",
     description:
-      "Publish website content directly from Google Drive. Transform Docs into CMS pages and Sheets into APIs with no coding required.",
+      "Publish content from Google Docs and Sheets. Turn Docs into CMS pages and Sheets into APIs — no code needed.",
     images: [
       {
-        url: "https://jedwal.co/og-image.jpeg",
+        url: "https://jedwal.co/jedwal-og.png",
         width: 1200,
         height: 630,
         alt: "Jedwal - Google Drive powered CMS",
@@ -51,14 +47,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jedwal | The CMS your team already knows - using Google Drive",
+    title: "Jedwal | The Google Drive-Powered CMS",
     description:
-      "Publish website content directly from Google Drive. Transform Docs into CMS pages and Sheets into APIs with no coding required.",
+      "Publish content from Google Docs and Sheets. Turn Docs into CMS pages and Sheets into APIs — no code needed.",
     creator: "@seanmcclr",
     site: "@seanmcclr",
     images: [
       {
-        url: "https://jedwal.co/og-image.jpeg",
+        url: "https://jedwal.co/jedwal-og.png",
         width: 1200,
         height: 630,
         alt: "Jedwal - Google Drive powered CMS",

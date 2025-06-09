@@ -1,4 +1,3 @@
-// app/blog/[slug]/page.tsx
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -18,10 +17,8 @@ const patrick = Patrick_Hand({
   subsets: ["latin"],
 });
 
-const postUrl =
-  "https://api.jedwal.co/doc/117187395759203962885/tempered-actuary";
+const postUrl = "";
 
-// Custom components for markdown
 const markdownComponents = {
   h1: ({ children }: { children: React.ReactNode }) => (
     <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-6">
@@ -85,17 +82,7 @@ const markdownComponents = {
   ),
 };
 
-interface BlogPost {
-  title: string;
-  summary: string;
-  date: string;
-  author: string;
-  readingTime: string;
-  tags: string[];
-  content: string;
-}
-
-async function getBlogPost(): Promise<BlogPost | null> {
+async function getBlogPost() {
   try {
     const response = await fetch(postUrl, {
       next: { revalidate: 3600 },
@@ -120,42 +107,6 @@ async function getBlogPost(): Promise<BlogPost | null> {
     console.error("Error fetching blog post:", error);
     return null;
   }
-}
-
-// Generate metadata
-export async function generateMetadata(): Promise<Metadata> {
-  const post = await getBlogPost();
-  if (!post) {
-    return {
-      title: "Post Not Found | Jedwal",
-    };
-  }
-
-  return {
-    title: `${post.title} | Jedwal`,
-    description: post.summary,
-    openGraph: {
-      title: `${post.title} | Jedwal`,
-      description: post.summary,
-      type: "article",
-      authors: [post.author],
-      tags: post.tags,
-      images: [
-        {
-          url: "https://jedwal.co/jedwal-og.png",
-          width: 1200,
-          height: 630,
-          alt: "Jedwal - REST APIs from Google Sheets",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${post.title} | Jedwal`,
-      description: post.summary,
-      images: ["https://jedwal.co/jedwal-og.png"],
-    },
-  };
 }
 
 export default async function BlogPostPage() {
@@ -254,4 +205,39 @@ export default async function BlogPostPage() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const post = await getBlogPost();
+  if (!post) {
+    return {
+      title: "Post Not Found | Jedwal",
+    };
+  }
+
+  return {
+    title: `${post.title} | Jedwal`,
+    description: post.summary,
+    openGraph: {
+      title: `${post.title} | Jedwal`,
+      description: post.summary,
+      type: "article",
+      authors: [post.author],
+      tags: post.tags,
+      images: [
+        {
+          url: "https://jedwal.co/jedwal-og.png",
+          width: 1200,
+          height: 630,
+          alt: "Jedwal - REST APIs from Google Sheets",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Jedwal`,
+      description: post.summary,
+      images: ["https://jedwal.co/jedwal-og.png"],
+    },
+  };
 }

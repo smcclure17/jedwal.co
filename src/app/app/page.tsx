@@ -12,7 +12,7 @@ const patrick = Patrick_Hand({
 
 export default async function Redirect() {
   const user = await getUserData();
-  if (user.status === "logged_out") return <NotLoggedInScreen />;
+  if (user.status === "logged_out") return (<>redirect<NotLoggedInScreen /></>);
   if (user.status === "error") return <ErrorScreen />;
 
   return (

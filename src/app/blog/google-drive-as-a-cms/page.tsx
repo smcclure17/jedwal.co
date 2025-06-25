@@ -133,7 +133,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Maybe Google Drive can be a good, early-stage CMS?",
       type: "article",
       authors: [post.author],
-      tags: ["CMS", "Google Drive", "Development"],
+      tags: ["CMS", "Google Drive", "Development", "Google Drive as a CMS"],
       images: [
         {
           url: "https://jedwal.co/jedwal-og.png",

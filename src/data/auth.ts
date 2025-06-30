@@ -63,7 +63,6 @@ export function createAuthFetcher<T>(apiRoute: string) {
       .map((cookie) => `${cookie.name}=${cookie.value}`)
       .join("; ");
 
-    console.error(`COOKIES: ${cookieHeader}`)
 
     try {
       const res = await fetch(`${config.apiUrl}${apiRoute}`, {

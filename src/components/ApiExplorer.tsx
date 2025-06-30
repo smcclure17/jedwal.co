@@ -27,9 +27,9 @@ export const ApiExplorer = async ({ accountId, apiName }: ApiExplorerProps) => {
     getUserData(accountId),
   ]);
   if (apisResponse.status === "error") return <ErrorScreen />;
-  if (apisResponse.status === "logged_out") return (<>account apis<NotLoggedInScreen /></>);
+  if (apisResponse.status === "logged_out") return <NotLoggedInScreen />;
   if (userResponse.status === "error") return <ErrorScreen />; // TODO: dedup this somehow
-  if (userResponse.status === "logged_out") return (<>user res<NotLoggedInScreen /></>);
+  if (userResponse.status === "logged_out") return <NotLoggedInScreen />;
   const { data: sheets } = apisResponse;
   const { data: userData } = userResponse;
 

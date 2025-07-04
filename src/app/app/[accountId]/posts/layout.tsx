@@ -1,4 +1,3 @@
-import { DocApiCard } from "@/components/ApiCard";
 import { BetaDisclaimerBanner } from "@/components/BetaDisclaimerBanner";
 import { ErrorScreen } from "@/components/ErrorScreen";
 import { MobileDashboardPlaceholder } from "@/components/MobileDashboardPlaceholder";
@@ -6,9 +5,8 @@ import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 import { getUserData, getAccountDocApis } from "@/data/fetching";
 import React from "react";
 import { Metadata } from "next";
-import { PremiumApiCard } from "@/components/PremiumApiCard";
 
-import { UserSheetsContainer } from "@/components/UserSheetsContainer";
+import { FilterableUserSheets } from "@/components/UserSheetsContainer";
 import { DashboardHeader } from "@/components/DashboardHeader";
 import { CreateApiForm } from "@/components/CreateApiForm";
 import { FirstDocSplash } from "@/components/FirstDocSplash";
@@ -77,10 +75,12 @@ export default async function App({
       </>
     );
   }
+  console.log()
 
   const totalSheets = apis.length;
   const disableCreate = data.account_status === "free" && totalSheets >= 2;
   const isOrganization = data.type === "organization";
+
   return (
     <>
       <div className="sm:hidden">
@@ -103,16 +103,11 @@ export default async function App({
             </div>
             <div className="flex flex-row space-x-8 pt-8">
               <div>
-                <UserSheetsContainer apiType="docs">
-                  {apis.map((sheet: any) => (
-                    <DocApiCard
-                      key={sheet.doc_api_name}
-                      docApiData={sheet}
-                      accountId={accountId}
-                    />
-                  ))}
-                  {disableCreate && <PremiumApiCard />}
-                </UserSheetsContainer>
+                <FilterableUserSheets
+                  apis={apis}
+                  accountId={accountId}
+                  disableCreate={disableCreate}
+                />
               </div>
               {children}
             </div>

@@ -1,4 +1,3 @@
-import { ApiCard, FailureCard } from "@/components/ApiCard";
 import { BetaDisclaimerBanner } from "@/components/BetaDisclaimerBanner";
 import { CreateApiForm } from "@/components/CreateApiForm";
 import { ErrorScreen } from "@/components/ErrorScreen";
@@ -8,8 +7,7 @@ import { NotLoggedInScreen } from "@/components/NotLoggedInScreen";
 import { getUserData, getAccountApis } from "@/data/fetching";
 import React from "react";
 import type { Metadata } from "next";
-import { PremiumApiCard } from "@/components/PremiumApiCard";
-import { UserSheetsContainer } from "@/components/UserSheetsContainer";
+import { FilterableUserApis } from "@/components/UserSheetsContainer";
 import { DashboardHeader } from "@/components/DashboardHeader";
 
 export async function generateMetadata({
@@ -59,9 +57,9 @@ export default async function App({
 
   const { data } = userResponse;
   const { data: sheets } = apisResponse;
-  const { results, failures } = sheets;
+  const { results } = sheets;
 
-  if (results.length == 0 && failures.length == 0) {
+  if (results.length == 0) {
     return (
       <>
         <DashboardHeader
@@ -77,9 +75,10 @@ export default async function App({
     );
   }
 
-  const totalSheets = results.length + failures.length;
+  const totalSheets = results.length;
   const disableCreate = data.account_status === "free" && totalSheets >= 2;
   const isOrganization = data.type === "organization";
+  
   return (
     <>
       <div className="sm:hidden">
@@ -102,24 +101,11 @@ export default async function App({
             </div>
             <div className="flex flex-row space-x-8 pt-8">
               <div>
-                <UserSheetsContainer>
-                  {results.map((sheet: any) => (
-                    <ApiCard
-                      key={sheet.sheet_api_name}
-                      apiData={sheet}
-                      accountId={accountId}
-                    />
-                  ))}
-                  {failures.map((failure: any) => (
-                    <FailureCard
-                      key={failure.sheet_api_name}
-                      google_sheet_id={failure.google_sheet_id}
-                      hint={failure.hint}
-                      sheet_api_name={failure.sheet_api_name}
-                    />
-                  ))}
-                  {disableCreate && <PremiumApiCard />}
-                </UserSheetsContainer>
+                <FilterableUserApis
+                  apis={results}
+                  accountId={accountId}
+                  disableCreate={disableCreate}
+                />
               </div>
               {children}
             </div>

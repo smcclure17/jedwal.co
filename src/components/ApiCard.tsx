@@ -37,9 +37,6 @@ export const ApiCard = ({ apiData, accountId }: ApiCardProps) => {
             /{sheet_api_name}
           </p>
         </div>
-        <p className={`text-sm ${patrick.className} text-slate-400`}>
-          https://docs.google.com/spreadsheet/d/{google_sheet_id}
-        </p>
       </div>
     </Link>
   );
@@ -87,7 +84,7 @@ export interface DocApiCardProps {
 }
 
 export const DocApiCard = ({ docApiData, accountId }: DocApiCardProps) => {
-  const { doc_api_name, google_doc_id, title } = docApiData;
+  const { doc_api_name, title } = docApiData;
   const params = useParams();
 
   const selected = params.post === doc_api_name;
@@ -107,9 +104,6 @@ export const DocApiCard = ({ docApiData, accountId }: DocApiCardProps) => {
             /{doc_api_name}
           </p>
         </div>
-        <p className={`text-sm ${patrick.className} text-slate-400`}>
-          https://docs.google.com/documents/d/{google_doc_id}
-        </p>
       </div>
     </Link>
   );

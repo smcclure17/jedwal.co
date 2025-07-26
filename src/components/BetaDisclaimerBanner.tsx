@@ -8,8 +8,7 @@ export const BetaDisclaimerBanner = ({
         <div className="flex flex-col">
           <span className="font-semibold text-blue-700">{text}</span>
           <span className="text-xs text-slate-900 mt-1">
-            We'll be adding new features soon. For now, organizations are
-            limited to 2 APIs each.
+            There might be bugs, and we'll be adding new features soon!
           </span>
         </div>
       </div>

@@ -19,7 +19,7 @@ export const HeroText = () => {
         </div>
         <h2 className={`${interLight.className} text-gray-600 font-ultralight text-sm sm:text-xl w-3/4 mx-auto`}>
           {/* Turn Google Sheets into JSON REST APIs instantly to save you time and money on developm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ent. */}
-          Publish website content directly from Google Drive. Integrate instantly with Next.js or any
+          Publish website content directly from Google Docs and Sheets. Integrate instantly with Next.js or any
           modern framework.
         </h2>
       </div>

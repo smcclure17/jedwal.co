@@ -24,7 +24,7 @@ export const FeaturesSection = () => {
   return (
     <section className="py-20 px-6 max-w-6xl mx-auto">
       <h2 className="text-4xl font-bold text-center mb-4 gradient-text">
-        Google Drive as a CMS
+        Google Drive as a Content Management System
       </h2>
       <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
         Everything you need to turn your Google Drive into a simple, powerful CMS

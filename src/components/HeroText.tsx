@@ -14,7 +14,7 @@ export const HeroText = () => {
           >
             {/* Power your website with Google Sheets */}
             {/* The CMS your team already knows */}
-            Google Drive as your CMS 
+            Google Drive as your CMS
           </h1>
         </div>
         <h2 className={`${interLight.className} text-gray-600 font-ultralight text-sm sm:text-xl w-3/4 mx-auto`}>

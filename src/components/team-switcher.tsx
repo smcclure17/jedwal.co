@@ -92,7 +92,6 @@ export function TeamSwitcher({
                     <team.logo className="size-4 shrink-0" />
                   </div>
                   {team.name}
-                  <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
             ))}

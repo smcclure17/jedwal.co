@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { ChevronsUpDown, Plus } from "lucide-react";
+import { useParams } from "next/navigation";
 
 import {
   DropdownMenu,
@@ -31,7 +32,22 @@ export function TeamSwitcher({
   }[];
 }) {
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = React.useState(teams[0]);
+  const params = useParams();
+  const { accountId } = params;
+  
+  // Find the active team based on the current accountId in the URL
+  const getActiveTeam = () => {
+    if (!accountId) return teams[0];
+    return teams.find(team => team.url.includes(accountId as string)) || teams[0];
+  };
+  
+  const [activeTeam, setActiveTeam] = React.useState(getActiveTeam());
+  
+  // Update active team when URL changes
+  React.useEffect(() => {
+    setActiveTeam(getActiveTeam());
+  }, [accountId, teams]);
+
   if (!activeTeam) {
     return null;
   }
@@ -76,7 +92,6 @@ export function TeamSwitcher({
                     <team.logo className="size-4 shrink-0" />
                   </div>
                   {team.name}
-                  <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
             ))}

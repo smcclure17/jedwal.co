@@ -1,26 +1,28 @@
 import { Inter } from "next/font/google";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { Patrick_Hand } from "next/font/google";
 
+const pat = Patrick_Hand({weight: "400", subsets: ["latin"]})
 const interLight = Inter({ subsets: ["latin"], weight: "400" });
 
 const apiSteps = [
   {
-    title: "Connect your Google Sheet",
-    text: "Paste your Google Sheet URL to create an API, no code required.",
+    title: "Connect Google Sheet",
+    text: "Paste your Google Sheet URL to create an API.",
   },
   {
-    title: "Get your API endpoint",
-    text: "We generate a unique REST API that you can call from any application.",
+    title: "Get Endpoint",
+    text: "We generate a REST API endpoint you can call from any application.",
   },
   {
-    title: "Build with live data",
+    title: "Fetch in Your App",
     text: "Your API data refreshes based on your specified update cadence.",
   },
 ];
 
 const postSteps = [
   {
-    title: "Connect your Google Doc",
+    title: "Connect Google Doc",
     text: "Paste your Google Document URL to create a new post.",
   },
   {
@@ -37,7 +39,7 @@ export const HowItWorks = () => {
   return (
     <>
       <section className="py-20 px-6 max-w-5xl mx-auto rounded-2xl bg-gradient-to-br from-[#005430]/85 to-[#005430]/60">
-        <h2 className="text-4xl font-bold text-white text-center mb-8 gradient-text">
+        <h2 className={`text-6xl font-bold text-white text-center mb-8 gradient-text ${pat.className}`}>
           How It Works
         </h2>
         <Tabs defaultValue="posts" className="flex flex-col">
@@ -50,8 +52,7 @@ export const HowItWorks = () => {
             <h3
               className={`${interLight.className} text-white mx-auto text-center mb-10 max-w-3xl`}
             >
-              Convert a Google Sheet into a REST API. Great for feeding live
-              data to graphics, or for building custom components.
+              Convert a Google Sheet into a REST API.
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {apiSteps.map((item, idx) => {
@@ -76,8 +77,7 @@ export const HowItWorks = () => {
             <h3
               className={`${interLight.className} text-white text-center mx-auto mb-10 max-w-3xl`}
             >
-              Turn a Google Doc into a CMS post with formatting, structure, and
-              images intact. Great for blog posts or any content-driven pages
+              Create a CMS post from your Google Doc.
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">

@@ -109,7 +109,6 @@ export default function Home() {
         <section className={`${inter.className}`}>
           <HowItWorks />
           <FeaturesSection />
-          <PricingSection />
           <UseCases />
         </section>
 

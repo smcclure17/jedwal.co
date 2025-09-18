@@ -10,6 +10,7 @@ import { NotLoggedInScreen } from "./NotLoggedInScreen";
 import { ErrorScreen } from "./ErrorScreen";
 import { DeleteDocApiButton } from "./DeleteDocApiButton";
 import { DocApiPublishButton } from "./DocApiPublishButton";
+import { CategoryInput, CategoryList } from "./CategoryInput";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -74,6 +75,15 @@ export const DocApiExplorer = async ({
             accountId={accountId}
           />
         </Suspense>
+      </div>
+      <div className="flex flex-col space-y-2">
+        <h3 className={`${patrick.className} text-xl`}>Categories</h3>
+        <CategoryList
+          apiName={data.doc_api_name}
+          accountId={accountId}
+          categories={data.categories}
+        />
+        <CategoryInput apiName={data.doc_api_name} accountId={accountId} />
       </div>
       <div className="flex flex-col space-y-2">
         <h3 className={`${patrick.className} text-xl`}>Use in code</h3>

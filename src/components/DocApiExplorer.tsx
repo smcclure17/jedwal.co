@@ -11,6 +11,7 @@ import { ErrorScreen } from "./ErrorScreen";
 import { DeleteDocApiButton } from "./DeleteDocApiButton";
 import { DocApiPublishButton } from "./DocApiPublishButton";
 import { CategoryInput, CategoryList } from "./CategoryInput";
+import { DocApiSlugUpdater } from "./DocApiSlugUpdater";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -75,6 +76,10 @@ export const DocApiExplorer = async ({
             accountId={accountId}
           />
         </Suspense>
+      </div>
+      <div className="flex flex-col space-y-2">
+        <h3 className={`${patrick.className} text-xl`}>Post Slug</h3>
+        <DocApiSlugUpdater apiName={data.doc_api_name} accountId={accountId} defaultSlug={data.slug} />
       </div>
       <div className="flex flex-col space-y-2">
         <h3 className={`${patrick.className} text-xl`}>Categories</h3>

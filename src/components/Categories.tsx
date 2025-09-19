@@ -126,6 +126,7 @@ export const Categories = ({
     });
   };
 
+  const isInvalid = !!newCategory && !!validateCategory(newCategory);
   return (
     <div className="space-y-3">
       {/* Add Category */}
@@ -145,10 +146,7 @@ export const Categories = ({
         <button
           onClick={addCategory}
           className="border rounded-lg px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-50"
-          disabled={
-            addAction.isLoading ||
-            (newCategory && !!validateCategory(newCategory))
-          }
+          disabled={addAction.isLoading || isInvalid}
         >
           Add
         </button>

@@ -49,10 +49,14 @@ async function deleteWebhook(ownerId: string, apiName: string, url: string) {
   }
 }
 
-export const WebhookList = ({ webhooks, ownerId, apiName }: WebhookListProps) => {
+export const WebhookList = ({
+  webhooks,
+  ownerId,
+  apiName,
+}: WebhookListProps) => {
   const [allWebhooks, setAllWebhooks] = useState(webhooks);
   const [url, setUrl] = useState("");
-  const [method, setMethod] = useState("POST");
+  const [method, setMethod] = useState("GET");
   const [payload, setPayload] = useState("");
 
   const handleCreate = async () => {
@@ -80,27 +84,30 @@ export const WebhookList = ({ webhooks, ownerId, apiName }: WebhookListProps) =>
   return (
     <div className="flex flex-col space-y-4">
       {/* Create new webhook */}
-      <div className="flex flex-col space-y-2 border p-2 rounded">
-        <input
-          type="text"
-          placeholder="Webhook URL"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          className="border p-1 rounded"
-        />
-        <select
-          value={method}
-          onChange={(e) => setMethod(e.target.value)}
-          className="border p-1 rounded"
-        >
-          <option value="POST">POST</option>
-          <option value="GET">GET</option>
-        </select>
+      <div className="flex flex-col space-y-2 border p-2 rounded text-sm">
+        <div className="flex flex-row space-x-2">
+          <select
+            value={method}
+            onChange={(e) => setMethod(e.target.value)}
+            className="border p-1 rounded"
+          >
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+          </select>
+          <input
+            type="text"
+            placeholder="Webhook URL"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className="border p-1 rounded w-full"
+          />
+        </div>
         <textarea
           placeholder="Payload (optional)"
           value={payload}
+          disabled={method !== "POST"}
           onChange={(e) => setPayload(e.target.value)}
-          className="border p-1 rounded"
+          className="border p-1 rounded text-sm"
         />
         <button
           onClick={handleCreate}

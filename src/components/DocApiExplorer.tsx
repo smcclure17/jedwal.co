@@ -10,7 +10,7 @@ import { NotLoggedInScreen } from "./NotLoggedInScreen";
 import { ErrorScreen } from "./ErrorScreen";
 import { DeleteDocApiButton } from "./DeleteDocApiButton";
 import { DocApiPublishButton } from "./DocApiPublishButton";
-import { CategoryInput, CategoryList } from "./CategoryInput";
+import { Categories } from "./Categories";
 import { DocApiSlugUpdater } from "./DocApiSlugUpdater";
 
 const patrick = Patrick_Hand({
@@ -79,16 +79,19 @@ export const DocApiExplorer = async ({
       </div>
       <div className="flex flex-col space-y-2">
         <h3 className={`${patrick.className} text-xl`}>Post Slug</h3>
-        <DocApiSlugUpdater apiName={data.doc_api_name} accountId={accountId} defaultSlug={data.slug} />
+        <DocApiSlugUpdater
+          apiName={data.doc_api_name}
+          accountId={accountId}
+          defaultSlug={data.slug}
+        />
       </div>
       <div className="flex flex-col space-y-2">
         <h3 className={`${patrick.className} text-xl`}>Categories</h3>
-        <CategoryList
-          apiName={data.doc_api_name}
+        <Categories
           accountId={accountId}
-          categories={data.categories}
+          apiName={data.doc_api_name}
+          defaultCategories={data.categories}
         />
-        <CategoryInput apiName={data.doc_api_name} accountId={accountId} />
       </div>
       <div className="flex flex-col space-y-2">
         <h3 className={`${patrick.className} text-xl`}>Use in code</h3>

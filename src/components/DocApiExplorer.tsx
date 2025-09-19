@@ -12,6 +12,7 @@ import { DeleteDocApiButton } from "./DeleteDocApiButton";
 import { DocApiPublishButton } from "./DocApiPublishButton";
 import { Categories } from "./Categories";
 import { DocApiSlugUpdater } from "./DocApiSlugUpdater";
+import { WebhookList } from "./WebhookList";
 
 const patrick = Patrick_Hand({
   subsets: ["latin"],
@@ -91,6 +92,14 @@ export const DocApiExplorer = async ({
           accountId={accountId}
           apiName={data.doc_api_name}
           defaultCategories={data.categories}
+        />
+      </div>
+      <div className="flex flex-col space-y-2">
+        <h3 className={`${patrick.className} text-xl`}>Webhook Integrations</h3>
+        <WebhookList
+          webhooks={data.webhooks}
+          ownerId={accountId}
+          apiName={data.doc_api_name}
         />
       </div>
       <div className="flex flex-col space-y-2">

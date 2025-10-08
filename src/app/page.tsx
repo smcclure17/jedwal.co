@@ -1,18 +1,14 @@
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
-import { HeroButton } from "@/components/HeroButton";
 import { HeroText } from "@/components/HeroText";
 import { HomepageAlertWidget } from "@/components/HomepageAlertWidget";
 import { LiteFooter } from "@/components/LiteFooter";
-import { NavBar } from "@/components/NavBar";
 import { NavBarNoUser } from "@/components/NavLoading";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-import { PricingSection } from "@/components/sections/PricingSection";
 import { UseCases } from "@/components/sections/UseCases";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
-import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"], weight: "600" });
 
@@ -71,26 +67,16 @@ export default function Home() {
     <main className="flex justify-center bg-gradient-to-b from-white to-gray-50">
       <div className="flex flex-col w-full max-w-7xl pt-4 space-y-12 px-4 lg:px-8">
         <div>
-          <Suspense fallback={<NavBarNoUser showSignIn={false} />}>
-            <NavBar showDashboardButton />
-          </Suspense>
+            <NavBarNoUser showSignIn />
           <div className="md:mt-24 mt-16 max-w-3xl mx-auto text-center">
             <HomepageAlertWidget
               page="/blog/roadmap-and-release-notes"
               text="New post: Roadmap and Release Notes"
             />
             <HeroText />
-            <Suspense
-              fallback={
-                <div className="mt-8 flex justify-center w-full">
-                  <GoogleSignInButton />
-                </div>
-              }
-            >
-              <div className="mt-8 w-full">
-                <HeroButton />
+              <div className="mt-8 flex justify-center w-full">
+                <GoogleSignInButton />
               </div>
-            </Suspense>
           </div>
         </div>
 

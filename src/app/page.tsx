@@ -80,9 +80,9 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="rounded-lg overflow-hidden shadow-md">
+        <section className="rounded-lg overflow-hidden shadow-lg bg-[#005430]">
           <Image
-            src="/demo-new.png"
+            src="/hero.png"
             width={1200}
             height={675}
             className="w-full object-cover"

@@ -1,4 +1,3 @@
-import { createCheckout } from "@/lib/utils";
 import Link from "next/link";
 
 const ArrowSvg = () => {

@@ -6,20 +6,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const createCheckout = async () => {
-  try {
-    const response = await fetch(`${config.apiUrl}/create-checkout`, {
-      method: "POST",
-      credentials: "include",
-    });
-    const { url } = await response.json();
-    window.location.href = url;
-  } catch (e) {
-    alert(e);
-  }
-};
-
-export const createApi = async (googleId: string, type: "doc" | "api", accountId?: string) => {
+export const createApi = async (
+  googleId: string,
+  type: "doc" | "api",
+  accountId?: string
+) => {
   const res = await fetch(`${config.apiUrl}/${type}`, {
     method: "POST",
     body: JSON.stringify({ google_id: googleId, owner_id: accountId }),

@@ -66,8 +66,8 @@ export default function BillingPage() {
         <div className="text-[#111827] leading-relaxed">
           <div className="max-w-5xl mx-auto px-6 py-16">
             <div className="text-center mb-12">
-              <h1 className={`text-5xl font-bold pb-4 ${gradientText}`}>
-                Our pricing scales with you
+              <h1 className={`text-5xl font-bold pb-4 text-[#005430]`}>
+                Transparent, Cheap, Usage-based Pricing
               </h1>
               <p className="text-lg text-[#4B5563] max-w-2xl mx-auto leading-relaxed">
                 Only pay when your data is actually refreshed. All other
@@ -75,7 +75,7 @@ export default function BillingPage() {
               </p>
             </div>
 
-            <div className="bg-white border border-[#E5E7EB] rounded-2xl p-10 shadow-sm">
+            <div className="bg-white border border-[#E5E7EB] rounded-2xl p-10 shadow-sm flex flex-col space-y-8">
               <div className="flex justify-between items-start mb-6">
                 <div className="flex-1">
                   <h2 className="text-2xl font-semibold mb-4">Jedwal Pro</h2>
@@ -142,7 +142,7 @@ export default function BillingPage() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="text-base">Unlimited APIs</span>
+                    <span className="text-base">Unlimited posts and APIs</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <svg
@@ -160,7 +160,9 @@ export default function BillingPage() {
                   </div>
                 </div>
               </div>
-              <UpgradeButton />
+              <div className="w-full border flex items-center">
+                <UpgradeButton />
+              </div>
             </div>
             <PricingEstimator />
           </div>

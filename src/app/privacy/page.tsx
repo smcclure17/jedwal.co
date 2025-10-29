@@ -1,7 +1,7 @@
-import { NavBar } from "@/components/NavBar";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import { NavBarNoUser } from "@/components/NavLoading";
 
 export const metadata: Metadata = {
   title: "Jedwal | Privacy Policy",
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
   return (
     (<main className="space-y-14">
       <div className="flex flex-col px-48 pt-4 pb-24">
-        <NavBar />
+        <NavBarNoUser showSignIn={false} />
 
         <div className="max-w-2xl mt-24">
           <Image

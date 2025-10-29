@@ -1,4 +1,4 @@
-import { NavBar } from "@/components/NavBar";
+import { NavBarNoUser } from "@/components/NavLoading";
 
 export default function BlogLayout({
   children,
@@ -9,7 +9,7 @@ export default function BlogLayout({
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur px-4 py-4">
         <div className="container mx-auto">
-          <NavBar showDashboardButton={false} />
+          <NavBarNoUser showSignIn={false} />
         </div>
       </header>
       <main className="flex-1">{children}</main>

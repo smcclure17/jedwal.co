@@ -1,13 +1,18 @@
-import { getRoadmapItems } from "@/data/fetching";
+async function getRoadmapItems() {
+  try {
+    const res = await fetch(
+      "https://api.jedwal.co/api/117187395759203962885/energetic-flank?worksheet=Roadmap"
+    );
+    return res.json();
+  } catch {
+    throw new Error("Could not fetch roadmap items");
+  }
+}
 
 export const RoadmapTimeline = async () => {
-  const roadmapRes = await getRoadmapItems();
-  if (roadmapRes.status !== "logged_in") return <></>; // TODO we don't really use auth here
-  const data: Array<any> = roadmapRes.data;
-
-  // Group items by completion status
-  const completedItems = data.filter((item) => item.completion_date);
-  const upcomingItems = data.filter((item) => !item.completion_date);
+  const data = await getRoadmapItems();
+  const completedItems = data.filter((item: any) => item.completion_date);
+  const upcomingItems = data.filter((item: any) => !item.completion_date);
 
   return (
     <>

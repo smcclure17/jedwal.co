@@ -5,7 +5,6 @@ const localConf = {
   apiUrl: "http://localhost:8000",
   dashUrl: "http://localhost:3000/app",
   homeUrl: "http://localhost:3000",
-  stripeCustPortalId: "test_cN25oncgx0WN8fu7ss",
 };
 
 const prodConf = {
@@ -13,7 +12,6 @@ const prodConf = {
   apiUrl: "https://api.jedwal.co",
   dashUrl: "https://app.jedwal.co",
   homeUrl: "https://jedwal.co",
-  stripeCustPortalId: "dR65lQeDTar38xO9AA",
 };
 
 export default env === "PROD" ? prodConf : localConf;

@@ -1,5 +1,5 @@
-import { UpgradeButton } from "@/components/GetPremiumLink";
-import { NavBarNoUser } from "@/components/NavLoading";
+import { UpgradeButton } from "@/components/UpgradeButton";
+import { NavBar } from "@/components/NavBar";
 import { PricingEstimator } from "@/components/PricingEstimator";
 import { Metadata } from "next";
 
@@ -60,7 +60,7 @@ export default function BillingPage() {
       {/* Main content container with standard margins */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="mb-12">
-          <NavBarNoUser showSignIn={false} />
+          <NavBar showSignIn={false} />
         </div>
 
         <div className="text-[#111827] leading-relaxed">

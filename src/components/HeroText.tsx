@@ -15,13 +15,10 @@ export const HeroText = () => {
           <h1
             className={`font-bold pb-10 ${pat.className} ${gradientText} text-5xl sm:text-8xl px-10`}
           >
-            {/* Power your website with Google Sheets */}
-            {/* The CMS your team already knows */}
             Google Drive as your CMS
           </h1>
         </div>
         <h2 className={`${interLight.className} text-gray-800 font-ultralight text-sm sm:text-xl w-3/4 mx-auto`}>
-          {/* Turn Google Sheets into JSON REST APIs instantly to save you time and money on developm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ent. */}
           Publish website content from Google Docs and Sheets. Integrate with Next.js or any
           modern framework.
         </h2>

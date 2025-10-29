@@ -13,7 +13,7 @@ const patrick = Patrick_Hand({
   subsets: ["latin"],
 });
 
-export const NavBarNoUser = async ({ showSignIn }: { showSignIn: boolean }) => {
+export const NavBar = async ({ showSignIn }: { showSignIn: boolean }) => {
   return (
     <nav className="flex justify-between items-center">
       <Link href="/">

@@ -1,4 +1,4 @@
-import { NavBarNoUser } from "@/components/NavLoading";
+import { NavBar } from "@/components/NavBar";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
   return (
     (<main className="flex justify-center">
       <div className={`flex flex-col sm:w-3/4 pt-4 sm:pr-`}>
-        <NavBarNoUser showSignIn={false} />
+        <NavBar showSignIn={false} />
         <div className="max-w-2xl mt-24">
           <Image
             src="/logo-cropped.svg"

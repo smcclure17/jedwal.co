@@ -2,7 +2,7 @@ import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { HeroText } from "@/components/HeroText";
 import { HomepageAlertWidget } from "@/components/HomepageAlertWidget";
 import { LiteFooter } from "@/components/LiteFooter";
-import { NavBarNoUser } from "@/components/NavLoading";
+import { NavBar } from "@/components/NavBar";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { UseCases } from "@/components/sections/UseCases";
@@ -67,7 +67,7 @@ export default function Home() {
     <main className="flex justify-center bg-linear-to-b from-white to-gray-50">
       <div className="flex flex-col w-full max-w-7xl pt-4 space-y-12 px-4 lg:px-8">
         <div>
-            <NavBarNoUser showSignIn />
+            <NavBar showSignIn />
           <div className="md:mt-24 mt-16 max-w-3xl mx-auto text-center">
             <HomepageAlertWidget
               page="/blog/roadmap-and-release-notes"

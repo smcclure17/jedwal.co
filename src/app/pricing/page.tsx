@@ -1,5 +1,5 @@
 import { UpgradeButton } from "@/components/GetPremiumLink";
-import { NavBar } from "@/components/NavBar";
+import { NavBarNoUser } from "@/components/NavLoading";
 import { PricingEstimator } from "@/components/PricingEstimator";
 import { Metadata } from "next";
 
@@ -53,14 +53,14 @@ export const metadata: Metadata = {
 };
 
 export default function BillingPage() {
-  const gradientText = `bg-gradient-to-r from-[#005430] to-[#8C8A8A] bg-clip-text text-transparent`;
+  const gradientText = `bg-linear-to-r from-[#005430] to-[#8C8A8A] bg-clip-text text-transparent`;
 
   return (
     <main className="min-h-screen">
       {/* Main content container with standard margins */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="mb-12">
-          <NavBar showUpgradeButton={false} />
+          <NavBarNoUser showSignIn={false} />
         </div>
 
         <div className="text-[#111827] leading-relaxed">
@@ -75,7 +75,7 @@ export default function BillingPage() {
               </p>
             </div>
 
-            <div className="bg-white border border-[#E5E7EB] rounded-2xl p-10 shadow-sm flex flex-col space-y-8">
+            <div className="bg-white border border-[#E5E7EB] rounded-2xl p-10 shadow-xs flex flex-col space-y-8">
               <div className="flex justify-between items-start mb-6">
                 <div className="flex-1">
                   <h2 className="text-2xl font-semibold mb-4">Jedwal Pro</h2>
@@ -100,7 +100,7 @@ export default function BillingPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-3">
                     <svg
-                      className="w-5 h-5 text-[#005430] flex-shrink-0"
+                      className="w-5 h-5 text-[#005430] shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -116,7 +116,7 @@ export default function BillingPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <svg
-                      className="w-5 h-5 text-[#005430] flex-shrink-0"
+                      className="w-5 h-5 text-[#005430] shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -132,7 +132,7 @@ export default function BillingPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <svg
-                      className="w-5 h-5 text-[#005430] flex-shrink-0"
+                      className="w-5 h-5 text-[#005430] shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -146,7 +146,7 @@ export default function BillingPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <svg
-                      className="w-5 h-5 text-[#005430] flex-shrink-0"
+                      className="w-5 h-5 text-[#005430] shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >

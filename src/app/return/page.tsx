@@ -1,3 +1,5 @@
+import config from "@/config";
+
 export default async function ReturnPage({
   searchParams,
 }: {
@@ -20,7 +22,7 @@ export default async function ReturnPage({
       <h1>Thank You!</h1>
       <p>Your subscription has been processed successfully.</p>
       <p>A confirmation email will be sent to your address shortly.</p>
-      <a href="/app">Return to dashboard</a>
+      <a href={config.dashUrl}>Return to dashboard</a>
     </section>
   );
 }

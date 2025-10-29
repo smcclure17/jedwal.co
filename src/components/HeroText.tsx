@@ -3,7 +3,7 @@ import { Patrick_Hand } from "next/font/google";
 
 const pat = Patrick_Hand({weight: "400", subsets: ["latin"]})
 const interLight = Inter({ subsets: ["latin"], weight: "400" });
-const gradientText = `bg-gradient-to-r from-[#005430] to-[#8C8A8A] bg-clip-text text-transparent`;
+const gradientText = `bg-linear-to-r from-[#005430] to-[#8C8A8A] bg-clip-text text-transparent`;
 
 
 

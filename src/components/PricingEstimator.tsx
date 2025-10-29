@@ -31,7 +31,7 @@ export const PricingEstimator = () => {
             <div className="relative">
               <select
                 id="data-refreshes"
-                className="block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring-[#47735B] focus:border-[#47735B] rounded-md border"
+                className="block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-hidden focus:ring-[#47735B] focus:border-[#47735B] rounded-md border"
                 onChange={handleSelectChange}
                 value={refreshes}
               >

@@ -38,7 +38,7 @@ const postSteps = [
 export const HowItWorks = () => {
   return (
     <>
-      <section className="py-20 px-6 max-w-5xl mx-auto rounded-2xl bg-gradient-to-br from-[#005430]/85 to-[#005430]/60">
+      <section className="py-20 px-6 max-w-5xl mx-auto rounded-2xl bg-linear-to-br from-[#005430]/85 to-[#005430]/60">
         <h2 className={`text-6xl font-bold text-white text-center mb-8 gradient-text ${pat.className}`}>
           How It Works
         </h2>

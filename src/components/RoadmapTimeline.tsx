@@ -1,7 +1,7 @@
 async function getRoadmapItems() {
   try {
     const res = await fetch(
-      "https://api.jedwal.co/api/117187395759203962885/energetic-flank?worksheet=Roadmap"
+      "https://api.jedwal.co/117187395759203962885/apis/energetic-flank?worksheet=Roadmap"
     );
     return res.json();
   } catch {

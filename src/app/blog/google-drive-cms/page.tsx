@@ -10,7 +10,7 @@ import { markdownComponents, Bebas, Patrick } from "../components";
 async function getBlogPostData() {
   try {
     const response = await fetch(
-      "https://api.jedwal.co/doc/108943681286824037558/quiet-quark"
+      "https://api.jedwal.co/108943681286824037558/posts/quiet-quark"
     );
     if (!response.ok) return null;
     return response.json();

@@ -34,9 +34,9 @@ export const GoogleSignInButton = () => (
           </svg>
         </div>
         <span className="gsi-material-button-contents">
-          Continue with Google
+          Connect with Google
         </span>
-        <span style={{ display: "none" }}>Continue with Google</span>
+        <span style={{ display: "none" }}>Connect with Google</span>
       </div>
     </button>
   </Link>

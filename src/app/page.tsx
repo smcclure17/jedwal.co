@@ -64,14 +64,14 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex justify-center bg-linear-to-b from-white to-gray-50">
+    <main className="flex justify-center bg-white">
       <div className="flex flex-col w-full max-w-7xl pt-4 space-y-12 px-4 lg:px-8">
         <div>
             <NavBar showSignIn />
           <div className="md:mt-24 mt-16 max-w-3xl mx-auto text-center">
             <HomepageAlertWidget
               page="/blog/roadmap-and-release-notes"
-              text="New post: Roadmap and Release Notes"
+              text="Roadmap and Releases"
             />
             <HeroText />
               <div className="mt-8 flex justify-center w-full">
@@ -82,7 +82,7 @@ export default function Home() {
 
         <section className="rounded-lg overflow-hidden shadow-lg bg-[#005430]">
           <Image
-            src="/hero.png"
+            src="/hero-no-browser.png"
             width={1200}
             height={675}
             className="w-full object-cover"

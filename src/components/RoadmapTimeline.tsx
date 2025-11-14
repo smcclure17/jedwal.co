@@ -11,8 +11,8 @@ async function getRoadmapItems() {
 
 export const RoadmapTimeline = async () => {
   const data = await getRoadmapItems();
-  const completedItems = data.filter((item: any) => item.completion_date);
-  const upcomingItems = data.filter((item: any) => !item.completion_date);
+  const completedItems = data.data.filter((item: any) => item.completion_date);
+  const upcomingItems = data.data.filter((item: any) => !item.completion_date);
 
   return (
     <>

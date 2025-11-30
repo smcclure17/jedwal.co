@@ -3,14 +3,11 @@ import { HeroText } from "@/components/HeroText";
 import { HomepageAlertWidget } from "@/components/HomepageAlertWidget";
 import { LiteFooter } from "@/components/LiteFooter";
 import { NavBar } from "@/components/NavBar";
-import { FeaturesSection } from "@/components/sections/FeaturesSection";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { UseCases } from "@/components/sections/UseCases";
+import { ApisSection } from "@/components/sections/ApisSection";
+import { PostsSection } from "@/components/sections/PostsSection";
+import { PrivacySection } from "@/components/sections/PrivacySection";
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Image from "next/image";
-
-const inter = Inter({ subsets: ["latin"], weight: "600" });
 
 export const metadata: Metadata = {
   title: "Jedwal | The Google Drive-Powered CMS",
@@ -67,16 +64,16 @@ export default function Home() {
     <main className="flex justify-center bg-white">
       <div className="flex flex-col w-full max-w-7xl pt-4 space-y-12 px-4 lg:px-8">
         <div>
-            <NavBar showSignIn />
+          <NavBar showSignIn />
           <div className="md:mt-24 mt-16 max-w-3xl mx-auto text-center">
             <HomepageAlertWidget
               page="/blog/roadmap-and-release-notes"
               text="Roadmap and Releases"
             />
             <HeroText />
-              <div className="mt-8 flex justify-center w-full">
-                <GoogleSignInButton />
-              </div>
+            <div className="mt-8 flex justify-center w-full">
+              <GoogleSignInButton />
+            </div>
           </div>
         </div>
 
@@ -92,10 +89,10 @@ export default function Home() {
           />
         </section>
 
-        <section className={`${inter.className}`}>
-          <HowItWorks />
-          <FeaturesSection />
-          <UseCases />
+        <section className="flex flex-col space-y-16 mt-12">
+          <PostsSection />
+          <ApisSection />
+          <PrivacySection />
         </section>
 
         <LiteFooter />

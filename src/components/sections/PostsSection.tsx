@@ -25,12 +25,12 @@ const postFeatures = [
   {
     title: "Automatically parse Frontmatter",
     description:
-      "Frontmatter in your Google Docs is extracted, creating type-safe, post-specific metadata like OG image URLS or post descriptions",
+      "Frontmatter in your Google Docs is extracted, creating type-safe, post-specific metadata like OG image URLS or post descriptions.",
   },
   {
     title: "Integrate with Webhooks",
     description:
-      "Trigger site builds, CI/CD runs, or other integrations with on-publish webhook events",
+      "Trigger site builds, CI/CD runs, or other integrations with on-publish webhook events.",
   },
 ];
 

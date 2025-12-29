@@ -11,7 +11,7 @@ export const HeroText = () => {
       <div className="flex flex-col mt-4 ">
         <div className="flex flex-row mx-auto ">
           <h1
-            className={`font-bold pb-8  ${pat.className} text-[#005430] text-5xl sm:text-7xl px-10 max-w-2xl`}
+            className={`font-bold pb-8  ${pat.className} text-[#005430] text-7xl px-10 max-w-2xl`}
           >
             Google Drive as your CMS
           </h1>

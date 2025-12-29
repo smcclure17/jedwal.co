@@ -6,6 +6,7 @@ import { NavBar } from "@/components/NavBar";
 import { ApisSection } from "@/components/sections/ApisSection";
 import { PostsSection } from "@/components/sections/PostsSection";
 import { PrivacySection } from "@/components/sections/PrivacySection";
+import { CtaSection } from "@/components/sections/CtaSection";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex justify-center bg-white">
+    <main className="flex flex-col items-center bg-white">
       <div className="flex flex-col w-full max-w-7xl pt-4 space-y-12 px-4 lg:px-8">
         <div>
           <NavBar showSignIn />
@@ -89,12 +90,18 @@ export default function Home() {
           />
         </section>
 
-        <section className="flex flex-col space-y-16 mt-12">
+        <section className="flex flex-col space-y-16 mt-16">
           <PostsSection />
           <ApisSection />
           <PrivacySection />
         </section>
+      </div>
 
+      <div className="w-full my-16">
+        <CtaSection />
+      </div>
+
+      <div className="flex flex-col w-full max-w-7xl px-4 lg:px-8">
         <LiteFooter />
       </div>
     </main>
